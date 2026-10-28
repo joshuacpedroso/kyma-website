@@ -8,6 +8,7 @@ Todo o conteúdo (empreendimentos, textos, contatos) fica aqui em cima.
 Edite, rode o script e as páginas .html + sitemap.xml são regeneradas.
 """
 import json
+from hashlib import sha256
 from datetime import date
 from html import escape
 from pathlib import Path
@@ -18,7 +19,7 @@ SITE = "https://kyma.com.br"
 
 # Imagens reaproveitadas do WordPress. Quando copiar os arquivos para
 # /assets/img (mantendo a mesma estrutura de pastas), troque por "/assets/img".
-UP = "https://kyma.com.br/wp-content/uploads"
+UP = "/assets/img"
 
 BRAND = "Kyma Empreendimentos"
 PHONE = "(12) 3878-4488"
@@ -44,7 +45,7 @@ def wa(msg: str) -> str:
 # --------------------------------------------------------------------------
 PROJECTS = [
     dict(
-        slug="haus", name="Haus", full="Residencial Haus Vila Ema", status="lancamento",
+        slug="haus", name="Haus", full="Residencial Haus Vila Ema", status="em-obras",
         region="vale", city="São José dos Campos", hood="Vila Ema",
         location="Vila Ema · São José dos Campos", street="Rua Padre Rodolfo, 286",
         area="79,95m² e 82,21m²", beds="2 dormitórios",
@@ -55,7 +56,7 @@ PROJECTS = [
         wa_link="https://w.app/CoXsmt",
     ),
     dict(
-        slug="mon-tresor", name="Mon Trésor", full="Residencial Mon Trésor", status="lancamento",
+        slug="mon-tresor", name="Mon Trésor", full="Residencial Mon Trésor", status="entregue",
         region="vale", city="São José dos Campos", hood="Vila Ema",
         location="Vila Ema · São José dos Campos", street="Em frente à Igreja Sagrada Família",
         area="114,66m²", beds=None,
@@ -65,17 +66,17 @@ PROJECTS = [
         logo=(f"{UP}/2022/05/monte-tresor0.png", f"{UP}/2022/05/SITE-1.png"),
     ),
     dict(
-        slug="azure", name="Azure", full="Residencial Azure", status="lancamento",
+        slug="azure", name="Azure", full="Residencial Azure", status="em-obras",
         region="litoral", city="Caraguatatuba", hood="Tabatinga",
         location="Tabatinga · Caraguatatuba", street=None,
         area=None, beds=None,
-        pitch="O Litoral Norte como endereço: um lançamento pensado para quem quer viver — ou investir — perto do mar.",
+        pitch="O Litoral Norte como endereço: um empreendimento pensado para quem quer viver — ou investir — perto do mar.",
         card=(f"{UP}/2025/01/obra-azure-new-1024x573.jpg", 1024, 573),
         hero=(f"{UP}/2025/01/obra-azure-new.jpg", 1200, 672),
         logo=(f"{UP}/2022/05/azure.png", f"{UP}/2022/05/COLORIDO.png"),
     ),
     dict(
-        slug="monte-cristo", name="Monte Cristo", full="Residencial Monte Cristo", status="portfolio",
+        slug="monte-cristo", name="Monte Cristo", full="Residencial Monte Cristo", status="entregue",
         region="vale", city="São José dos Campos", hood=None,
         location="São José dos Campos · SP", street=None,
         area="65,76m²", beds=None,
@@ -85,7 +86,7 @@ PROJECTS = [
         logo=(f"{UP}/2022/05/monte-cristo0.png", f"{UP}/2022/05/image-1.png"),
     ),
     dict(
-        slug="monte-negro", name="Monte Negro", full="Residencial Monte Negro", status="portfolio",
+        slug="monte-negro", name="Monte Negro", full="Residencial Monte Negro", status="entregue",
         region="vale", city="São José dos Campos", hood=None,
         location="São José dos Campos · SP", street=None,
         area="68,94m²", beds=None,
@@ -95,7 +96,7 @@ PROJECTS = [
         logo=(f"{UP}/2022/05/monte-negro0.png", f"{UP}/2022/05/image.png"),
     ),
     dict(
-        slug="monte-zurich", name="Monte Zurich", full="Residencial Monte Zurich", status="portfolio",
+        slug="monte-zurich", name="Monte Zurich", full="Residencial Monte Zurich", status="entregue",
         region="vale", city="São José dos Campos", hood=None,
         location="São José dos Campos · SP", street=None,
         area="69,60m²", beds=None,
@@ -105,7 +106,7 @@ PROJECTS = [
         logo=(f"{UP}/2022/05/monte-zurich0.png", f"{UP}/2022/05/500X500.png"),
     ),
     dict(
-        slug="altos-do-parque", name="Altos do Parque", full="Altos do Parque", status="portfolio",
+        slug="altos-do-parque", name="Altos do Parque", full="Altos do Parque", status="entregue",
         region="vale", city=None, hood=None,
         location="Região Sul", street=None,
         area=None, beds=None,
@@ -115,7 +116,7 @@ PROJECTS = [
         logo=(f"{UP}/2022/05/altos-do-parque0.png", f"{UP}/2022/05/site-2.png"),
     ),
     dict(
-        slug="serra-do-sincora", name="Serra do Sincorá", full="Serra do Sincorá", status="portfolio",
+        slug="serra-do-sincora", name="Serra do Sincorá", full="Serra do Sincorá", status="entregue",
         region="outros", city=None, hood=None,
         location="Consulte a localização", street=None,
         area=None, beds=None,
@@ -125,13 +126,23 @@ PROJECTS = [
         logo=(f"{UP}/2022/05/sincora00.jpg", f"{UP}/2022/05/image-3.png"),
     ),
 ]
+PROJECTS.insert(0, dict(
+    slug="uniko", name="Uniko", full="Uniko", status="lancamento",
+    region="", city=None, hood=None, location="Consulte a localização", street=None,
+    area=None, beds=None, pitch="Um novo endereço com a assinatura Kyma. Entre em contato para conhecer o lançamento.",
+    card=("/assets/img/uniko.svg", 1200, 800), hero=None,
+    hero_logo=("/assets/img/uniko.svg", 1200, 800),
+    logo=("/assets/img/uniko.svg", "/assets/img/uniko.svg"), contain=True,
+))
+STATUS = {"lancamento": "Lançamento", "em-obras": "Em obras", "entregue": "Entregue"}
+FEATURED = [next(p for p in PROJECTS if p["slug"] == slug) for slug in ["uniko", "haus", "azure"]]
 P = {p["slug"]: p for p in PROJECTS}
 for p in PROJECTS:
     p.setdefault("contain", False)
     p.setdefault("wa_link", wa(f"Olá! Vim pelo site e gostaria de mais informações sobre o {p['name']}."))
 
 LAUNCHES = [p for p in PROJECTS if p["status"] == "lancamento"]
-PORTFOLIO = [p for p in PROJECTS if p["status"] == "portfolio"]
+PORTFOLIO = [p for p in PROJECTS if p["status"] == "entregue"]
 
 HAUS = dict(
     about=[
@@ -186,8 +197,7 @@ ABOUT = ("Somos uma empresa da indústria da construção civil que atua regiona
          "localização e que tragam o retorno esperado aos nossos clientes — sempre em busca da satisfação de "
          "investidores, parceiros, fornecedores e consumidores finais, proporcionando uma experiência única no mercado.")
 
-NAV = [("/empreendimentos", "Empreendimentos"), ("/lancamentos", "Lançamentos"),
-       ("/quem-somos", "Quem somos"), ("/contato", "Contato")]
+NAV = [("/quem-somos", "Quem somos"), ("/empreendimentos", "Empreendimentos"), ("/blog", "Blog"), ("/contato", "Contato")]
 
 # --------------------------------------------------------------------------
 # Ícones (sprite SVG)
@@ -304,7 +314,7 @@ def meta_items(p, cls="card__meta"):
 def card(p, tags=True):
     c, w, h = p["card"]
     t = f' data-tags="{p["status"]} {p["region"]}"' if tags else ""
-    badge = '<span class="badge">Lançamento</span>' if p["status"] == "lancamento" else ""
+    badge = f'<span class="badge">{STATUS[p["status"]]}</span>'
     return f"""
 <article class="card"{t}>
   <a class="card__media{' is-contain' if p['contain'] else ''}" href="/{p['slug']}" data-cursor="Ver" data-tilt aria-label="Conhecer o {escape(p['name'])}">
@@ -318,7 +328,7 @@ def card(p, tags=True):
 </article>"""
 
 
-def cta_band(title="Está procurando um <em>apartamento?</em>", text="Fale com um de nossos corretores e descubra o empreendimento ideal para o seu momento.",
+def cta_band(title="Está procurando um <em>apartamento?</em>", text="Entre em contato e descubra o empreendimento ideal para o seu momento.",
              bg=(f"{UP}/2024/11/fechado-2.jpg", 1920, 1080), msg="Olá! Estou procurando um apartamento e gostaria de ajuda."):
     return f"""
 <section class="section section--tight">
@@ -398,6 +408,7 @@ def breadcrumb_ld(items):
 
 
 def layout(*, path, title, desc, body, active="", og_image=None, jsonld=(), project="", preload=None, page="page"):
+    asset_version = sha256(((ROOT / "assets/css/style.css").read_bytes() + (ROOT / "assets/js/main.js").read_bytes() + (ROOT / "assets/js/chat.js").read_bytes() + (ROOT / "build.py").read_bytes())).hexdigest()[:12]
     url = SITE + (path if path != "/" else "/")
     og = og_image or f"{UP}/2024/11/Kyma_Haus_Lateral_OK-1024x813.jpg"
     ld = "\n".join(
@@ -435,7 +446,7 @@ def layout(*, path, title, desc, body, active="", og_image=None, jsonld=(), proj
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preconnect" href="https://kyma.com.br">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&amp;family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&amp;display=swap">
-<link rel="stylesheet" href="/assets/css/style.css">
+<link rel="stylesheet" href="/assets/css/style.css?v={asset_version}">
 {pre}
 <script>document.documentElement.classList.replace('no-js','js')</script>
 {ld}
@@ -446,7 +457,7 @@ def layout(*, path, title, desc, body, active="", og_image=None, jsonld=(), proj
   <div class="preloader__inner">
     <img class="preloader__logo" src="{LOGO_WHITE}" alt="" width="461" height="140">
     <div class="preloader__bar"><span></span></div>
-    <p class="preloader__tag">A vida ideal é a real</p>
+    <p class="preloader__tag">O privilégio de viver o singular</p>
   </div>
 </div>
 {header(active)}
@@ -454,9 +465,9 @@ def layout(*, path, title, desc, body, active="", og_image=None, jsonld=(), proj
 {body}
 </main>
 {footer()}
-<script src="/assets/js/data.js" defer></script>
-<script src="/assets/js/main.js" defer></script>
-<script src="/assets/js/chat.js" defer></script>
+<script src="/assets/js/data.js?v={asset_version}" defer></script>
+<script src="/assets/js/main.js?v={asset_version}" defer></script>
+<script src="/assets/js/chat.js?v={asset_version}" defer></script>
 </body>
 </html>
 """
@@ -468,8 +479,6 @@ def layout(*, path, title, desc, body, active="", og_image=None, jsonld=(), proj
 def page_home():
     slides = [
         (f"{UP}/2024/11/Kyma_Haus_Lateral_OK-2048x1625.jpg", 2048, 1625, "Haus — Vila Ema, São José dos Campos"),
-        (f"{UP}/2025/01/obra-mon-2.jpg", 1200, 672, "Mon Trésor — Vila Ema, São José dos Campos"),
-        (f"{UP}/2024/11/fechado-2.jpg", 1920, 1080, "Haus — Open space"),
         (f"{UP}/2025/01/obra-azure-new.jpg", 1200, 672, "Azure — Tabatinga, Caraguatatuba"),
     ]
     slide_html = "".join(
@@ -481,14 +490,13 @@ def page_home():
         for i in range(len(slides)))
 
     logos = "".join(
-        f'<a class="marquee__item" href="/{p["slug"]}" aria-label="{escape(p["name"])}">'
-        f'<img class="base" src="{p["logo"][0]}" alt="" width="200" height="200" loading="lazy">'
-        f'<img class="alt" src="{p["logo"][1]}" alt="" width="200" height="200" loading="lazy"></a>'
+        f'<a class="marquee__item logo-{p["slug"]}" href="/{p["slug"]}" aria-label="{escape(p["name"])}">'
+        f'<img class="base" src="{p["logo"][0]}" alt="" width="200" height="200" loading="lazy"></a>'
         f'<span class="marquee__word" aria-hidden="true">✦</span>'
         for p in PROJECTS)
 
     shows = ""
-    for i, p in enumerate(LAUNCHES):
+    for i, p in enumerate(FEATURED):
         c, w, h = p["card"]
         facts = "".join(filter(None, [
             f'<span>{ic("pin")}{p["location"]}</span>',
@@ -498,7 +506,7 @@ def page_home():
         shows += f"""
 <article class="show">
   <a class="show__media reveal-img" href="/{p['slug']}" data-cursor="Ver">
-    <span class="badge">Lançamento</span>
+    <span class="badge">{STATUS[p["status"]]}</span>
     {img(c, f"{p['full']} — {p['location']}", w, h)}
   </a>
   <div class="show__body">
@@ -510,33 +518,13 @@ def page_home():
   </div>
 </article>"""
 
-    haus = P["haus"]
-    band_items = "".join(f"<li>{x}</li>" for x in [
-        "Piscina com borda infinita", "Academia e sauna", "Coworking indoor e outdoor",
-        "Fechadura biométrica", "2 vagas cobertas", "Carregamento veicular"])
-
-    portfolio_cards = "".join(card(p, tags=False) for p in PORTFOLIO)
-    insta_imgs = [
-        (f"{UP}/2024/11/1_3-Foto.jpg", "Interior decorado do Haus"),
-        (f"{UP}/2025/01/obra-haus-1024x573.jpg", "Obra do Haus"),
-        (f"{UP}/2025/01/obra-mon-2-1024x573.jpg", "Obra do Mon Trésor"),
-        (f"{UP}/2025/01/obra-azure-new-1024x573.jpg", "Obra do Azure"),
-    ]
-    insta = "".join(
-        f'<a href="{INSTAGRAM_URL}" target="_blank" rel="noopener" data-cursor="Seguir">{img(s, a, 600, 600)}{ic("insta")}</a>'
-        for s, a in insta_imgs)
-    pillars = "".join(
-        f'<div class="pillar"><span class="pillar__n">0{i + 1}</span><h3>{t}</h3><p>{x}</p></div>'
-        for i, (t, x) in enumerate(VALUES))
-
     body = f"""
 <section class="hero" data-hero-slider aria-label="Destaques">
   <div class="hero__slides">{slide_html}</div>
   <div class="hero__content">
     <div class="container">
       <p class="eyebrow" data-hero>Kyma Empreendimentos · Vale do Paraíba &amp; Litoral Norte</p>
-      <h1 class="display" data-split="0.2">A vida ideal <em>é a real.</em></h1>
-      <p class="hero__sub" data-hero="2">Empreendimentos que unem arquitetura, localização e qualidade construtiva para transformar o seu jeito de morar — e de investir.</p>
+      <h1 class="display" data-split="0.2">O privilégio de viver <em>o singular.</em></h1>
       <div class="hero__cta" data-hero="3">
         <a class="btn btn--solid" data-magnetic href="/empreendimentos">Ver empreendimentos {ic("arrow")}</a>
         <a class="btn btn--glass" data-magnetic href="/lancamentos">Lançamentos</a>
@@ -559,72 +547,22 @@ def page_home():
   </div>
 </section>
 
-<section class="section">
-  <div class="container">
-    <div class="manifesto__grid">
-      <div class="manifesto__side">
-        <p class="eyebrow" data-reveal>Quem somos</p>
-        <p class="muted" data-reveal>Construção civil com propósito, do Vale do Paraíba ao Litoral Norte de São Paulo.</p>
-        <div data-reveal><a class="link-arrow" href="/quem-somos">Conheça a Kyma <span class="line"></span></a></div>
-      </div>
-      <h2 class="manifesto__text" data-words>Criamos empreendimentos atuais, que primam pela <em>qualidade</em>, pela <em>localização</em> e pelo retorno que cada cliente espera. Porque, para nós, a vida ideal não é um sonho distante — ela é real, e começa no endereço certo.</h2>
-    </div>
-    <div class="stats">
-      <div class="stat" data-reveal><span class="stat__num" data-count="{len(PROJECTS)}" data-pad="2">{len(PROJECTS):02d}</span><span class="stat__label">Empreendimentos no portfólio</span></div>
-      <div class="stat" data-reveal><span class="stat__num" data-count="{len(LAUNCHES)}" data-pad="2">{len(LAUNCHES):02d}</span><span class="stat__label">Lançamentos em andamento</span></div>
-      <div class="stat" data-reveal><span class="stat__num" data-count="2" data-pad="2">02</span><span class="stat__label">Regiões: Vale do Paraíba e Litoral Norte</span></div>
-    </div>
-  </div>
-</section>
+{locations_section()}
 
 <section class="section theme-ink2" id="lancamentos">
   <div class="container">
     <div class="section-head section-head--split">
       <div style="display:grid;gap:22px">
-        <p class="eyebrow" data-reveal>Lançamentos</p>
-        <h2 class="h1" data-split>Novos endereços, <em>novas histórias.</em></h2>
+        <p class="eyebrow" data-reveal>Empreendimentos Kyma</p>
+        <h2 class="h1" data-split>Empreendimentos <em>Kyma.</em></h2>
       </div>
-      <a class="btn" data-reveal data-magnetic href="/lancamentos">Todos os lançamentos {ic("arrow")}</a>
+      <a class="btn" data-reveal data-magnetic href="/empreendimentos">Ver empreendimentos {ic("arrow")}</a>
     </div>
     <div class="showcase">{shows}</div>
   </div>
 </section>
 
-<section class="band" aria-label="Destaque Haus">
-  <div class="band__bg" data-parallax="0.14">{img(haus["hero"][0], "Fachada do Residencial Haus Vila Ema", haus["hero"][1], haus["hero"][2])}</div>
-  <div class="container">
-    <div class="band__card">
-      <p class="eyebrow" data-reveal>Em destaque · Vila Ema</p>
-      <h2 class="h1" data-split>Haus. <em>Lazer de clube,</em> rotina de cidade.</h2>
-      <p class="lead" data-reveal>Plantas de 79,95m² e 82,21m² com 2 dormitórios, conceito aberto e uma estrutura de lazer completa na Rua Padre Rodolfo, 286.</p>
-      <ul class="band__list" data-stagger="0.08">{band_items}</ul>
-      <div data-reveal><a class="btn btn--solid" data-magnetic href="/haus">Conhecer o Haus {ic("arrow")}</a></div>
-    </div>
-  </div>
-</section>
-
-<section class="section">
-  <div class="container">
-    <div class="section-head section-head--split">
-      <div style="display:grid;gap:22px">
-        <p class="eyebrow" data-reveal>Portfólio</p>
-        <h2 class="h1" data-split>Obras que <em>assinamos.</em></h2>
-      </div>
-      <a class="btn" data-reveal data-magnetic href="/empreendimentos">Ver todos {ic("arrow")}</a>
-    </div>
-    <div class="hscroll" data-reveal>{portfolio_cards}</div>
-  </div>
-</section>
-
-<section class="section theme-light">
-  <div class="container">
-    <div class="section-head">
-      <p class="eyebrow" data-reveal>Compromisso</p>
-      <h2 class="h1" data-split>O que nos <em>move.</em></h2>
-    </div>
-    <div class="pillars" data-stagger="0.12">{pillars}</div>
-  </div>
-</section>
+{blog_section()}
 
 {cta_band()}
 
@@ -637,14 +575,17 @@ def page_home():
       </div>
       <a class="btn" data-reveal href="{INSTAGRAM_URL}" target="_blank" rel="noopener">{ic("insta")} @{INSTAGRAM}</a>
     </div>
-    <div class="insta" data-stagger="0.08">{insta}</div>
+    <div class="instagram-feed">
+      <blockquote class="instagram-media" data-instgrm-permalink="{INSTAGRAM_URL}" data-instgrm-version="14"><a href="{INSTAGRAM_URL}" target="_blank" rel="noopener">Veja as publicações mais recentes de @{INSTAGRAM} no Instagram.</a></blockquote>
+    </div>
+    <script async src="https://www.instagram.com/embed.js"></script>
   </div>
 </section>"""
 
     return layout(
         path="/", page="home",
         title="Kyma Empreendimentos | Apartamentos em São José dos Campos e Litoral Norte",
-        desc="Kyma Empreendimentos: lançamentos e apartamentos em São José dos Campos (Vila Ema) e no Litoral Norte. Conheça Haus, Mon Trésor, Azure e todo o portfólio.",
+        desc="Kyma Empreendimentos: lançamentos e apartamentos em São José dos Campos (Vila Ema) e no Litoral Norte. Conheça Uniko, Haus, Azure e todo o portfólio.",
         body=body, preload=slides[0][0],
         jsonld=[ORG, {"@context": "https://schema.org", "@type": "WebSite", "name": BRAND, "url": SITE + "/", "inLanguage": "pt-BR", "publisher": {"@id": f"{SITE}/#org"}}],
     )
@@ -654,21 +595,21 @@ def page_listing(kind):
     if kind == "empreendimentos":
         items, path = PROJECTS, "/empreendimentos"
         title_html = "Nossos <em>empreendimentos</em>"
-        eyebrow = f"{len(PROJECTS)} projetos · Vale do Paraíba &amp; Litoral Norte"
+        eyebrow = "Empreendimentos Kyma"
         lead = "Do lançamento à entrega, cada projeto Kyma nasce do mesmo compromisso: qualidade, localização e retorno para quem confia na gente."
         bg = (f"{UP}/2024/11/fechado-2.jpg", 1920, 1080)
         title = "Empreendimentos | Kyma Empreendimentos"
         desc = "Conheça todos os empreendimentos da Kyma: Haus, Mon Trésor, Azure, Monte Cristo, Monte Negro, Monte Zurich e mais, em São José dos Campos e Litoral Norte."
-        filters = [("todos", "Todos"), ("lancamento", "Lançamentos"), ("portfolio", "Portfólio"), ("vale", "Vale do Paraíba"), ("litoral", "Litoral Norte")]
+        filters = [("todos", "Todos"), ("lancamento", "Lançamentos"), ("em-obras", "Em obras"), ("entregue", "Entregues")]
     else:
         items, path = LAUNCHES, "/lancamentos"
         title_html = "Lança&shy;<em>mentos</em>"
         eyebrow = "Oportunidades exclusivas"
         lead = "Seja para morar ou investir, nossos lançamentos estão em regiões que você vai querer chamar de casa."
-        bg = (f"{UP}/2025/01/obra-azure-new.jpg", 1200, 672)
+        bg = ("/assets/img/uniko.svg", 1200, 800)
         title = "Lançamentos | Kyma Empreendimentos"
-        desc = "Lançamentos Kyma: Haus e Mon Trésor na Vila Ema, em São José dos Campos, e Azure em Tabatinga, Caraguatatuba. Agende sua visita."
-        filters = [("todos", "Todos"), ("vale", "Vale do Paraíba"), ("litoral", "Litoral Norte")]
+        desc = "Conheça o Uniko, lançamento da Kyma. Entre em contato para mais informações."
+        filters = [("todos", "Todos"), ("lancamento", "Lançamentos")]
     label = "Empreendimentos" if kind == "empreendimentos" else "Lançamentos"
     fbtn = "".join(
         f'<button class="filter" type="button" data-filter="{k}" aria-pressed="{"true" if k == "todos" else "false"}">{l}</button>'
@@ -695,7 +636,6 @@ def page_listing(kind):
   <div class="container">
     <div class="filters" data-filters role="group" aria-label="Filtrar empreendimentos" data-reveal>
       {fbtn}
-      <p class="filters__count"><b data-filter-count>{len(items):02d}</b> resultados</p>
     </div>
     <div class="cards" data-stagger="0.08">{cards}</div>
   </div>
@@ -731,7 +671,7 @@ def facts_chips(p):
         items.append(f'<span class="chip">{ic("area")}{p["area"]}</span>')
     if p["beds"]:
         items.append(f'<span class="chip">{ic("bed")}{p["beds"]}</span>')
-    items.append(f'<span class="chip">{ic("building")}{"Lançamento" if p["status"] == "lancamento" else "Portfólio Kyma"}</span>')
+    items.append(f'<span class="chip">{ic("building")}{STATUS[p["status"]]}</span>')
     return f'<div class="hero-facts" data-stagger="0.06">{"".join(items)}</div>'
 
 
@@ -756,7 +696,7 @@ def related(p):
 def page_haus():
     p = P["haus"]
     hero_btns = f"""<div class="hero__cta" data-reveal style="margin-top:8px">
-      <a class="btn btn--solid" data-magnetic href="{p['wa_link']}" target="_blank" rel="noopener">{ic("wa")} Quero saber mais</a>
+      <a class="btn btn--solid" data-magnetic href="{p['wa_link']}" target="_blank" rel="noopener">{ic("wa")} Entre em contato</a>
       <a class="btn btn--glass" href="#plantas">Ver plantas {ic("arrow")}</a></div>"""
     about = "".join(f'<p class="lead" data-reveal>{t}</p>' for t in HAUS["about"])
     specs = f"""
@@ -801,7 +741,7 @@ def page_haus():
         f'<a href="{full}" data-lightbox="haus-galeria" data-caption="Haus — {cap}" data-cursor="Ampliar" data-reveal>{img(med, f"Haus Vila Ema — {cap}", w, h)}</a>'
         for full, med, w, h, cap in gallery_imgs)
 
-    body = page_hero("Haus <em>Vila Ema</em>", "Lançamento · São José dos Campos",
+    body = page_hero("Haus <em>Vila Ema</em>", "Em obras · São José dos Campos",
                      [("/", "Início"), ("/lancamentos", "Lançamentos"), (None, "Haus")],
                      bg=p["hero"], facts=facts_chips(p), extra=hero_btns) + f"""
 <section class="section theme-light">
@@ -812,7 +752,7 @@ def page_haus():
         <h2 class="h2" data-split>Moderno, sofisticado e <em>completo.</em></h2>
         {about}
         <div data-reveal style="display:flex;gap:14px;flex-wrap:wrap">
-          <a class="btn btn--dark" href="{p['wa_link']}" target="_blank" rel="noopener">Falar com corretor {ic("arrow")}</a>
+          <a class="btn btn--dark" href="{p['wa_link']}" target="_blank" rel="noopener">Entre em contato {ic("arrow")}</a>
         </div>
       </div>
       <a class="split__media split__media--wide reveal-img" href="{UP}/2024/11/Kyma_Haus_Lateral_OK-2048x1625.jpg" data-lightbox="haus-galeria-top" data-caption="Haus — Fachada" data-cursor="Ampliar">
@@ -884,26 +824,27 @@ def page_haus():
   </div>
 </section>
 
+{progress_section(p)}
 {cta_band(title="Seu novo endereço na <em>Vila Ema.</em>", text="Agende uma visita e conheça o Haus de perto com um de nossos corretores.", msg="Olá! Gostaria de agendar uma visita ao Haus Vila Ema.", bg=(f"{UP}/2024/11/1_3-Foto.jpg", 1074, 1080))}
 {related(p)}"""
     ld = project_ld(p)
     ld["numberOfBedrooms"] = 2
     ld["amenityFeature"] = [{"@type": "LocationFeatureSpecification", "name": x, "value": True} for x in HAUS["common"]]
     return layout(
-        path="/haus", project="haus", active="/lancamentos",
+        path="/haus", project="haus", active="/empreendimentos",
         title="Haus Vila Ema | Apartamentos de 2 dormitórios em São José dos Campos — Kyma",
         desc="Haus Vila Ema: apartamentos de 79,95m² e 82,21m² com 2 dormitórios, lazer completo com piscina de borda infinita e 2 vagas. Rua Padre Rodolfo, 286 — São José dos Campos.",
         body=body, og_image=p["hero"][0], preload=p["hero"][0],
-        jsonld=[breadcrumb_ld([("/", "Início"), ("/lancamentos", "Lançamentos"), ("/haus", "Haus")]), ld])
+        jsonld=[breadcrumb_ld([("/", "Início"), ("/empreendimentos", "Empreendimentos"), ("/haus", "Haus")]), ld])
 
 
 def page_project(p):
     section = "Lançamentos" if p["status"] == "lancamento" else "Empreendimentos"
     sec_path = "/lancamentos" if p["status"] == "lancamento" else "/empreendimentos"
     hero_btns = f"""<div class="hero__cta" data-reveal style="margin-top:8px">
-      <a class="btn btn--solid" data-magnetic href="{p['wa_link']}" target="_blank" rel="noopener">{ic("wa")} Quero saber mais</a>
+      <a class="btn btn--solid" data-magnetic href="{p['wa_link']}" target="_blank" rel="noopener">{ic("wa")} Entre em contato</a>
       <a class="btn btn--glass" href="#sobre">Conhecer {ic("arrow")}</a></div>"""
-    status_txt = "Lançamento" if p["status"] == "lancamento" else "Portfólio Kyma"
+    status_txt = STATUS[p["status"]]
     c, w, h = p["card"]
     big = p["hero"] or p["card"]
     specs = [
@@ -922,7 +863,7 @@ def page_project(p):
         f'{contain_cls if (p["contain"] or i > 0) else ""}>{img(med, p["full"] + " — " + cap, ww, hh)}</a>'
         for i, (full, med, ww, hh, cap) in enumerate(gallery))
     extra_copy = {
-        "mon-tresor": "Todos os dias recebemos contatos perguntando se o Residencial Mon Trésor é a obra em frente à Igreja Sagrada Família — e a resposta é sim! Com ótima arquitetura e localização, o empreendimento chega para ser um marco no bairro, com plantas de 114,66m².",
+        "mon-tresor": "Todos os dias recebemos contatos perguntando se o Residencial Mon Trésor é a obra em frente à Igreja Sagrada Família — e a resposta é sim! Com ótima arquitetura e localização, o empreendimento é um marco no bairro, com plantas de 114,66m².",
         "azure": "Localizado em Tabatinga, Caraguatatuba, o Azure leva a assinatura Kyma para o Litoral Norte. Fale com nosso time para conhecer plantas, estágio de obra e condições.",
     }.get(p["slug"], "Quer saber mais sobre plantas, disponibilidade e condições? Nosso time de corretores está pronto para te atender com todas as informações atualizadas.")
     body = page_hero(p["name"], f"{status_txt} · {p['location']}",
@@ -936,7 +877,7 @@ def page_project(p):
         <h2 class="h2" data-split>{p['full']}</h2>
         <p class="lead" data-reveal>{p['pitch']}</p>
         <p class="lead" data-reveal>{extra_copy}</p>
-        <div data-reveal><a class="btn btn--dark" href="{p['wa_link']}" target="_blank" rel="noopener">Falar com corretor {ic("arrow")}</a></div>
+        <div data-reveal><a class="btn btn--dark" href="{p['wa_link']}" target="_blank" rel="noopener">Entre em contato {ic("arrow")}</a></div>
       </div>
       <a class="split__media split__media--wide reveal-img{' is-contain' if p['contain'] else ''}" href="{big[0]}" data-lightbox="{p['slug']}-top" data-caption="{escape(p['name'])}" data-cursor="Ampliar" style="{'background:var(--ink-3)' if p['contain'] else ''}">
         {img(c, f"{p['full']} — {p['location']}", w, h, extra=' style="object-fit:contain;padding:10%"' if p['contain'] else "")}
@@ -956,6 +897,8 @@ def page_project(p):
   </div>
 </section>
 
+{project_map(p)}
+{progress_section(p)}
 {cta_band(title=f"Quer conhecer o <em>{p['name']}?</em>", text="Fale com um corretor e receba plantas, disponibilidade e condições atualizadas.", msg=f"Olá! Gostaria de mais informações sobre o {p['name']}.")}
 {related(p)}"""
     return layout(
@@ -992,7 +935,6 @@ def page_about():
     </div>
     <div class="stats">
       <div class="stat" data-reveal><span class="stat__num" data-count="{len(PROJECTS)}" data-pad="2">{len(PROJECTS):02d}</span><span class="stat__label">Empreendimentos no portfólio</span></div>
-      <div class="stat" data-reveal><span class="stat__num" data-count="{len(LAUNCHES)}" data-pad="2">{len(LAUNCHES):02d}</span><span class="stat__label">Lançamentos em andamento</span></div>
       <div class="stat" data-reveal><span class="stat__num" data-count="2" data-pad="2">02</span><span class="stat__label">Regiões atendidas</span></div>
     </div>
   </div>
@@ -1004,7 +946,7 @@ def page_about():
       <div class="split__media split__media--wide reveal-img">{img(f"{UP}/2022/05/quem-somos-02-1024x879.png", "Empreendimento Kyma", 1024, 879)}</div>
       <div class="split__body">
         <p class="eyebrow" data-reveal>Comprometimento</p>
-        <h2 class="h1" data-split>Nossos <em>valores.</em></h2>
+        <h2 class="h1" data-split>O que nos <em>move.</em></h2>
         <p class="lead" data-reveal>Oferecemos empreendimentos diferenciados, prezando pela qualidade, segurança e responsabilidade social.</p>
       </div>
     </div>
@@ -1025,6 +967,7 @@ def page_about():
     <div class="cards" data-stagger="0.08">{"".join(card(p, tags=False) for p in LAUNCHES)}</div>
   </div>
 </section>
+{portfolio_section()}
 {cta_band()}"""
     return layout(
         path="/quem-somos", active="/quem-somos",
@@ -1039,6 +982,7 @@ def page_contact():
     body = page_hero("Vamos <em>conversar?</em>", "Contato", [("/", "Início"), (None, "Contato")],
                      bg=(f"{UP}/2024/11/1_3-Foto.jpg", 1074, 1080),
                      lead="Tire dúvidas, agende uma visita ou receba a tabela atualizada. Nosso time responde rapidinho.", short=True) + f"""
+{help_section()}
 <section class="section">
   <div class="container">
     <div class="contact-grid">
@@ -1059,7 +1003,7 @@ def page_contact():
         <div class="field"><input id="f-tel" name="telefone" type="tel" placeholder=" " autocomplete="tel" required><label for="f-tel">Telefone / WhatsApp *</label></div>
         <div class="field"><input id="f-email" name="email" type="email" placeholder=" " autocomplete="email"><label for="f-email">E-mail</label></div>
         <div class="field full">
-          <select id="f-int" name="interesse"><option value="">Ainda não sei — quero conhecer as opções</option>{options}</select>
+          <select id="f-assunto" name="assunto" aria-label="Assunto"><option>Informações sobre imóveis</option><option>Financeiro</option><option>Seguros</option><option>Trabalhe conosco</option><option>Negocie seu terreno</option><option>Portal do fornecedor</option><option>Boleto bancário</option><option>Assistência técnica</option><option>Sou vizinho de uma obra</option><option>Relatar desvio de conduta</option><option>Enviar e-mail</option><option>Assessoria de imprensa</option><option>Privacidade de dados</option></select></div><div class="field full"><select id="f-int" name="interesse"><option value="">Ainda não sei — quero conhecer as opções</option>{options}</select>
           <label for="f-int">Interesse</label>
         </div>
         <div class="field full"><textarea id="f-msg" name="mensagem" placeholder=" " rows="4"></textarea><label for="f-msg">Mensagem</label></div>
@@ -1071,11 +1015,7 @@ def page_contact():
     </div>
   </div>
 </section>
-<section class="section section--tight" style="padding-top:0">
-  <div class="container">
-    <div class="map" data-reveal><iframe title="Mapa — escritório Kyma Empreendimentos" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="{MAPS_EMBED}"></iframe></div>
-  </div>
-</section>"""
+"""
     contact_ld = dict(ORG)
     contact_ld["contactPoint"] = {"@type": "ContactPoint", "telephone": PHONE_INTL, "contactType": "sales", "areaServed": "BR", "availableLanguage": "Portuguese"}
     return layout(
@@ -1084,6 +1024,70 @@ def page_contact():
         desc=f"Fale com a Kyma Empreendimentos: WhatsApp e telefone {PHONE}. Escritório na {ADDRESS}. Agende sua visita.",
         body=body, og_image=f"{UP}/2024/11/1_3-Foto.jpg",
         jsonld=[breadcrumb_ld([("/", "Início"), ("/contato", "Contato")]), contact_ld])
+
+
+def portfolio_section():
+    return f'''<section class="section"><div class="container">
+      <div class="section-head"><p class="eyebrow">Portfólio</p><h2 class="h1" data-split>Obras que <em>assinamos.</em></h2></div>
+      <div class="cards">{"".join(card(p, tags=False) for p in PORTFOLIO)}</div>
+    </div></section>'''
+
+
+def project_map(p):
+    if not p.get("city"):
+        return ""
+    query = ", ".join(filter(None, [p.get("street"), p.get("hood"), p.get("city"), "SP"]))
+    return f'''<section class="section section--tight"><div class="container">
+      <div class="section-head"><p class="eyebrow">Localização</p><h2 class="h2">{escape(p['name'])} · <em>{escape(p['location'])}</em></h2></div>
+      <div class="map"><iframe title="Localização de {escape(p['name'])}" loading="lazy" src="https://www.google.com/maps?q={quote(query)}&amp;output=embed" referrerpolicy="no-referrer-when-downgrade"></iframe></div>
+      <a class="link-arrow" href="https://www.google.com/maps/search/?api=1&amp;query={quote(query)}" target="_blank" rel="noopener">Abrir localização no Google Maps</a>
+    </div></section>'''
+
+
+def locations_section():
+    # Only use verified addresses; do not fabricate coordinates for the new launch.
+    tabs = ''.join(f'<button class="btn location-tab" type="button" data-location="{p["slug"]}" aria-pressed="{"true" if p["slug"] == "haus" else "false"}">{p["name"]}</button>' for i, p in enumerate(FEATURED))
+    panels = ''.join(f'<div data-location-panel="{p["slug"]}" {"" if p["slug"] == "haus" else "hidden"}>' + (project_map(p) if p.get('city') else f'<div class="location-pending"><h3 class="h2">{p["name"]}</h3><p class="lead">Entre em contato para conhecer a localização do lançamento.</p><a class="btn" href="/uniko">Conheça o Uniko</a></div>') + '</div>' for i, p in enumerate(FEATURED))
+    return f'''<section class="section" id="enderecos"><div class="container">
+      <div class="section-head"><p class="eyebrow">Empreendimentos Kyma</p><h2 class="h1">Novos <em>endereços.</em></h2><p class="lead">Encontre o seu próximo endereço no Vale do Paraíba e no Litoral Norte.</p></div>
+      <div class="location-tabs" role="group" aria-label="Escolher empreendimento">{tabs}</div>{panels}
+    </div></section>'''
+
+
+def progress_section(p):
+    value = p.get('progress', 100 if p['status'] == 'entregue' else None)
+    if value is None:
+        content = '<p class="lead">Consulte nossa equipe para receber o percentual atualizado e acompanhar as etapas da obra.</p>'
+    else:
+        content = f'<p class="progress-value">{value}%</p><progress class="construction-progress" max="100" value="{value}" aria-label="Evolução da obra">{value}%</progress>'
+    return f'''<section class="section theme-ink2" id="evolucao"><div class="container">
+      <div class="section-head"><p class="eyebrow">{p['name']}</p><h2 class="h2">Evolução <em>da obra.</em></h2></div>
+      {content}<a class="link-arrow" href="{p['wa_link']}" target="_blank" rel="noopener">Entre em contato {ic('arrow')}</a>
+    </div></section>'''
+
+
+NEWS = [
+    ('uniko', 'Uniko: conheça o lançamento Kyma', 'O Uniko é o lançamento da Kyma. Fale com nossa equipe para receber as informações do empreendimento.'),
+    ('haus', 'Haus: lazer de clube na Vila Ema', 'Conheça as plantas de dois dormitórios, os espaços de lazer e a localização do Haus em São José dos Campos.'),
+    ('azure', 'Azure: acompanhe a obra em Tabatinga', 'O Azure está em obras no Litoral Norte. Entre em contato para conhecer o empreendimento e receber as atualizações.'),
+]
+
+
+def blog_section():
+    cards = ''.join(f'''<article class="card"><a class="card__media{' is-contain' if P[slug]['contain'] else ''}" href="/blog#{slug}">{img(*[P[slug]['card'][0], title, P[slug]['card'][1], P[slug]['card'][2]])}</a><div><p class="eyebrow">Notícias</p><h3 class="card__title"><a href="/blog#{slug}">{title}</a></h3><p class="muted">{text}</p></div></article>''' for slug, title, text in NEWS)
+    return f'''<section class="section theme-ink2"><div class="container"><div class="section-head section-head--split"><div><p class="eyebrow">Blog</p><h2 class="h1">Notícias e <em>destaques.</em></h2></div><a class="btn" href="/blog">Ver notícias {ic('arrow')}</a></div><div class="cards">{cards}</div></div></section>'''
+
+
+def page_blog():
+    articles = ''.join(f'''<article class="section" id="{slug}"><div class="container"><div class="split"><div class="split__media">{img(P[slug]['card'][0], title, P[slug]['card'][1], P[slug]['card'][2])}</div><div class="split__body"><p class="eyebrow">Notícias · {STATUS[P[slug]['status']]}</p><h2 class="h2">{title}</h2><p class="lead">{text}</p><p class="lead">{P[slug]['pitch']}</p><a class="btn" href="/{slug}">Conhecer o {P[slug]['name']} {ic('arrow')}</a></div></div></div></article>''' for slug, title, text in NEWS)
+    body = page_hero('Notícias e <em>destaques.</em>', 'Blog Kyma', [('/', 'Início'), (None, 'Blog')], short=True) + articles
+    return layout(path='/blog', active='/blog', title='Blog | Notícias da Kyma Empreendimentos', desc='Notícias e informações sobre Uniko, Haus e Azure. Acompanhe os empreendimentos Kyma.', body=body)
+
+
+def help_section():
+    subjects = [('Procurando por um imóvel', 'key'), ('Financeiro', 'building'), ('Seguros', 'key'), ('Trabalhe conosco', 'building'), ('Negocie seu terreno', 'pin'), ('Portal do fornecedor', 'building'), ('Boleto bancário', 'building'), ('Assistência técnica', 'building'), ('Sou vizinho de uma obra', 'pin'), ('Relatar desvio de conduta', 'phone'), ('Enviar e-mail', 'phone'), ('Assessoria de imprensa', 'phone'), ('Privacidade de dados', 'key')]
+    items = ''.join(f'<a class="help-card" href="#contact-form" data-subject="{label}">{ic(icon)}<span>{label}</span>{ic("arrow-ur")}</a>' for label, icon in subjects)
+    return f'''<section class="section theme-light"><div class="container"><div class="section-head"><p class="eyebrow">Atendimento Kyma</p><h2 class="h1">Precisando de <em>ajuda?</em></h2><p class="lead">Selecione o assunto e entre em contato com nossa equipe.</p></div><div class="help-grid">{items}</div></div></section>'''
 
 
 def page_404():
@@ -1125,6 +1129,7 @@ def main():
         "lancamentos.html": page_listing("lancamentos"),
         "quem-somos.html": page_about(),
         "contato.html": page_contact(),
+        "blog.html": page_blog(),
         "haus.html": page_haus(),
         "404.html": page_404(),
     }
@@ -1136,7 +1141,7 @@ def main():
     (ROOT / "assets/js/data.js").write_text(data_js(), encoding="utf-8")
 
     today = date.today().isoformat()
-    urls = ["/", "/empreendimentos", "/lancamentos", "/quem-somos", "/contato"] + [f"/{p['slug']}" for p in PROJECTS]
+    urls = ["/", "/empreendimentos", "/lancamentos", "/quem-somos", "/blog", "/contato"] + [f"/{p['slug']}" for p in PROJECTS]
     prio = {"/": "1.0", "/empreendimentos": "0.9", "/lancamentos": "0.9"}
     sitemap = ['<?xml version="1.0" encoding="UTF-8"?>', '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">']
     for u in urls:

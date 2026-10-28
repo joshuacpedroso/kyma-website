@@ -183,10 +183,11 @@
     ['Ver lançamentos', 'lancamentos'],
     ['Agendar visita', 'visita'],
     ['Valores e condições', 'preco'],
-    ['Falar com corretor', 'humano']
+    ['Entre em contato', 'humano']
   ];
 
   const PROJECT_KEYS = [
+    ['uniko', ['uniko', 'úniko']],
     ['mon-tresor', ['mon tresor', 'montresor', 'tresor', 'sagrada familia']],
     ['haus', ['haus', 'house']],
     ['azure', ['azure', 'tabatinga', 'caragua', 'caraguatatuba']],
@@ -289,7 +290,7 @@
         say(pick([`Olá${hi()}! Que bom te ver por aqui. Como posso te ajudar hoje?`, `Oi${hi()}! Tô por aqui pra te ajudar a encontrar o seu próximo endereço. Por onde começamos?`]), { chips: MAIN_CHIPS });
         break;
       case 'lancamentos':
-        say(`Temos **${launches.length} lançamentos** acontecendo agora${hi()}. Cada um com uma proposta bem própria:`, {
+        say(`Nosso lançamento é o **Uniko**${hi()}. Conheça o empreendimento:`, {
           cards: launches.map(p => p.slug),
           chips: launches.map(p => [p.name, 'proj:' + p.slug]).concat([['Agendar visita', 'visita']])
         });
@@ -301,7 +302,7 @@
         });
         break;
       case 'vila-ema':
-        say('Na Vila Ema, uma das regiões mais desejadas de São José dos Campos, temos dois lançamentos: o **Haus** (2 dormitórios, 79,95m² e 82,21m²) e o **Mon Trésor** (114,66m², em frente à Igreja Sagrada Família).', {
+        say('Na Vila Ema, uma das regiões mais desejadas de São José dos Campos, temos o **Haus**, em obras, (2 dormitórios, 79,95m² e 82,21m²) e o **Mon Trésor**, entregue (114,66m², em frente à Igreja Sagrada Família).', {
           cards: ['haus', 'mon-tresor'], chips: [['Haus', 'proj:haus'], ['Mon Trésor', 'proj:mon-tresor'], ['Agendar visita', 'visita']]
         });
         break;
@@ -357,11 +358,11 @@
         break;
       case 'humano':
         say(`Claro${hi()}! Um corretor de verdade vai te atender pelo WhatsApp. Já deixei a mensagem pronta${state.interest ? ` falando do **${state.interest}**` : ''}. 😉`, {
-          cta: { label: 'Falar com corretor', href: wa(`Olá! ${state.name ? `Meu nome é ${state.name}. ` : ''}Vim pelo site da Kyma${state.interest ? ` e tenho interesse no ${state.interest}` : ''}. Pode me ajudar?`) }
+          cta: { label: 'Entre em contato', href: wa(`Olá! ${state.name ? `Meu nome é ${state.name}. ` : ''}Vim pelo site da Kyma${state.interest ? ` e tenho interesse no ${state.interest}` : ''}. Pode me ajudar?`) }
         });
         break;
       case 'obrigado':
-        say(pick([`Imagina${hi()}! Foi um prazer. Se surgir qualquer dúvida, é só chamar.`, `Eu que agradeço${hi()}! Tô sempre por aqui. ✨`]), { chips: [['Ver lançamentos', 'lancamentos'], ['Falar com corretor', 'humano']] });
+        say(pick([`Imagina${hi()}! Foi um prazer. Se surgir qualquer dúvida, é só chamar.`, `Eu que agradeço${hi()}! Tô sempre por aqui. ✨`]), { chips: [['Ver lançamentos', 'lancamentos'], ['Entre em contato', 'humano']] });
         break;
       case 'morar':
         say(`Que demais${hi()}! Pra morar, o **Haus** costuma encantar: 2 dormitórios, conceito aberto, lazer de clube e uma das regiões mais completas de São José dos Campos. E pra quem busca mais espaço, o **Mon Trésor** tem 114,66m².`, {
@@ -369,8 +370,8 @@
         });
         break;
       case 'investir':
-        say(`Ótima visão${hi()}! Nossos destaques no momento são o **Haus** e o **Mon Trésor**, na Vila Ema, e o **Azure**, no Litoral Norte. Um corretor pode te mostrar as condições de cada um.`, {
-          cards: launches.map(p => p.slug), chips: [['Simular condições', 'financiamento'], ['Falar com corretor', 'humano']]
+        say(`Ótima visão${hi()}! Nossos destaques são o **Uniko**, lançamento, e o **Haus** e o **Azure**, em obras. Um corretor pode te mostrar as condições de cada um.`, {
+          cards: launches.map(p => p.slug), chips: [['Simular condições', 'financiamento'], ['Entre em contato', 'humano']]
         });
         break;
       case 'tchau':
@@ -466,7 +467,7 @@
     }
     say('Olá! 👋 Sou a assistente virtual da **Kyma Empreendimentos**.');
     say('Posso te apresentar nossos lançamentos, tirar dúvidas sobre plantas e localização ou agendar uma visita com um corretor. Antes, como posso te chamar?', {
-      chips: [['Ver lançamentos', 'lancamentos'], ['Agendar visita', 'visita'], ['Falar com corretor', 'humano']]
+      chips: [['Ver lançamentos', 'lancamentos'], ['Agendar visita', 'visita'], ['Entre em contato', 'humano']]
     });
   };
 

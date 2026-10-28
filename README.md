@@ -7,12 +7,12 @@ HTML + CSS + JS puros: sem framework, sem build obrigatório, carregamento rápi
 
 | URL | Arquivo |
 | --- | --- |
-| `/` | `index.html` — hero com slider, manifesto, lançamentos, portfólio, valores |
+| `/` | `index.html` — slider, localizações, destaques e notícias |
 | `/empreendimentos` | lista completa com filtros |
-| `/lancamentos` | Haus, Mon Trésor e Azure |
+| `/lancamentos` | Uniko |
 | `/haus` | página completa (plantas, lazer, galeria, mapa) |
 | `/mon-tresor`, `/azure`, `/monte-cristo`, `/monte-negro`, `/monte-zurich`, `/altos-do-parque`, `/serra-do-sincora` | páginas de cada empreendimento |
-| `/quem-somos`, `/contato`, `/404` | institucionais |
+| `/quem-somos`, `/contato`, `/blog`, `/uniko`, `/404` | institucionais |
 
 ## Destaques
 
@@ -37,20 +37,20 @@ python3 build.py
 Isso regenera todas as páginas `.html`, o `sitemap.xml` e o `assets/js/data.js` usado pelo chat.
 Estilos em `assets/css/style.css`; interações em `assets/js/main.js`.
 
+## Conteúdo pendente
+
+- Uniko: substituir a identificação tipográfica provisória pelos materiais oficiais e informar endereço, plantas e imagens.
+- Haus e Azure: informar `progress` (0–100) em cada registro de `PROJECTS`; enquanto ausente, a página orienta a consultar a equipe. Entregues exibem 100%.
+- Mapas usam os endereços disponíveis, com seleção de empreendimento. Azure indica o bairro Tabatinga; ainda falta o endereço exato. Uniko não recebe um pin fictício.
+- Instagram usa incorporação pública oficial do perfil, com link alternativo. O carregamento depende da Meta e das configurações públicas do perfil; um feed por API requer integração autenticada.
+- As opções de ajuda encaminham o assunto ao formulário e ao WhatsApp da Kyma. Não há URLs fornecidas de portais, e-mail ou canais específicos para cada departamento.
+
 ## Imagens
 
-As imagens são reaproveitadas do WordPress atual (`kyma.com.br/wp-content/uploads`).
-Antes de desligar o WordPress, copie a pasta `wp-content/uploads` para `assets/img` e troque
-a constante `UP` no `build.py` para `"/assets/img"`.
+As imagens existentes foram copiadas sem alterações do WordPress para `assets/img`, preservando ano, mês e nome. O site não depende mais desse servidor para carregar fotos e logos. O logo Azure usa composição CSS para ocultar o fundo branco e segue o efeito luminoso dos demais logos.
 
-## Rodar localmente
+## Validação e deploy
 
-```bash
-npx serve .
-```
+Rode `python3 build.py` após editar o conteúdo. O gerador atualiza HTML, sitemap e dados do chat, e versiona os assets para evitar cache desatualizado.
 
-(`serve` entende URLs limpas como `/haus`.)
-
-## Deploy
-
-Pronto para Vercel: o `vercel.json` ativa URLs limpas, redireciona `/home` e faz cache dos assets.
+O `vercel.json` mantém URLs limpas e redirecionamentos. O projeto Vercel existente é `kyma-website`, da equipe `joshua-pedroso`.

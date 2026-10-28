@@ -414,6 +414,7 @@
       const v = n => (form.elements[n] && form.elements[n].value.trim()) || '';
       const lines = [
         `Olá! Meu nome é ${v('nome')}.`,
+        v('assunto') ? `Assunto: ${v('assunto')}.` : '',
         v('interesse') ? `Tenho interesse em: ${v('interesse')}.` : '',
         v('mensagem'),
         '',
@@ -448,3 +449,22 @@
   /* ---------- Ano no rodapé ---------- */
   $$('[data-year]').forEach(el => { el.textContent = new Date().getFullYear(); });
 })();
+
+/* Localizações e encaminhamento de atendimento */
+document.querySelectorAll('[data-location]').forEach(button => {
+  button.addEventListener('click', () => {
+    document.querySelectorAll('[data-location]').forEach(tab => tab.setAttribute('aria-pressed', String(tab === button)));
+    document.querySelectorAll('[data-location-panel]').forEach(panel => { panel.hidden = panel.dataset.locationPanel !== button.dataset.location; });
+  });
+});
+document.querySelectorAll('[data-subject]').forEach(link => {
+  link.addEventListener('click', () => {
+    const select = document.getElementById('f-assunto');
+    const subject = link.dataset.subject;
+    if (select) {
+      const option = Array.from(select.options).find(option => option.text === subject);
+      select.value = option ? option.value : select.options[0].value;
+      setTimeout(() => document.getElementById('f-nome')?.focus({preventScroll:true}), 100);
+    }
+  });
+});
