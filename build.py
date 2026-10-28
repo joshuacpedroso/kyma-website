@@ -478,8 +478,10 @@ def layout(*, path, title, desc, body, active="", og_image=None, jsonld=(), proj
 # --------------------------------------------------------------------------
 def page_home():
     slides = [
-        (f"{UP}/2024/11/Kyma_Haus_Lateral_OK-2048x1625.jpg", 2048, 1625, "Haus — Vila Ema, São José dos Campos"),
-        (f"{UP}/2025/01/obra-azure-new.jpg", 1200, 672, "Azure — Tabatinga, Caraguatatuba"),
+        (f"{UP}/hero/hero-1.jpg", 1280, 731, "Lazer e bem-estar"),
+        (f"{UP}/hero/hero-2.jpg", 1280, 720, "Ambientes que acolhem"),
+        (f"{UP}/hero/hero-3.jpg", 1280, 768, "Azure — Tabatinga, Caraguatatuba"),
+        (f"{UP}/hero/hero-4.jpg", 1280, 720, "Cada detalhe pensado para viver"),
     ]
     slide_html = "".join(
         f'<div class="hero__slide{" is-active" if i == 0 else ""}" data-caption="{escape(c)}">'
