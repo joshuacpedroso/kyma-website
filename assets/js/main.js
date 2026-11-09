@@ -468,3 +468,35 @@ document.querySelectorAll('[data-subject]').forEach(link => {
     }
   });
 });
+
+/* Mapa: somente coordenadas verificadas; dados ausentes nunca recebem um pin fictício. */
+(() => {
+  const element = document.getElementById('project-map');
+  if (!element) return;
+  const status = document.getElementById('map-status');
+  const projects = window.KYMA?.projects || [];
+  if (!window.L) { if (status) status.textContent = 'O mapa está indisponível. Consulte os endereços na lista.'; return; }
+  const map = L.map(element, {scrollWheelZoom:false}).setView([-23.2044083,-45.9029535],16);
+  const tiles = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom:19, attribution:'&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>' }).addTo(map);
+  let tileReady = false;
+  tiles.on('tileload', () => {tileReady = true;const note=document.getElementById('map-tiles-note');if(note) note.textContent='';});
+  tiles.on('tileerror', () => {const note=document.getElementById('map-tiles-note');if (!tileReady && note) note.textContent = 'Não foi possível carregar o mapa. Os endereços continuam disponíveis na lista.';});
+  const markers = new Map();
+  projects.filter(p => Array.isArray(p.coordinates)).forEach(project => {
+    const icon = L.divIcon({className:'kyma-map-marker',html:'<div class="kyma-map-pin"></div>',iconSize:[32,32],iconAnchor:[16,32]});
+    const popup = document.createElement('div');
+    const title = document.createElement('strong');title.textContent=project.name;popup.append(title,document.createElement('br'),document.createTextNode(project.location));
+    const marker=L.marker(project.coordinates,{icon,title:project.name,alt:project.name}).addTo(map).bindPopup(popup);
+    markers.set(project.slug,marker);
+  });
+  document.querySelectorAll('[data-map-project]').forEach(button => {
+    button.setAttribute('aria-pressed','false');
+    button.addEventListener('click', () => {
+      document.querySelectorAll('[data-map-project]').forEach(other => other.setAttribute('aria-pressed', String(other===button)));
+      const project=projects.find(p=>p.slug===button.dataset.mapProject);
+      const marker=markers.get(project?.slug);
+      if(marker) {map.setView(project.coordinates,17);marker.openPopup();if(status) status.textContent=project.name+': pin no endereço confirmado.';}
+      else if(status) status.textContent=(project?.name||'Empreendimento')+': endereço exato a confirmar. Entre em contato para receber a localização.';
+    });
+  });
+})();

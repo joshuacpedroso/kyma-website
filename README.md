@@ -37,20 +37,18 @@ python3 build.py
 Isso regenera todas as páginas `.html`, o `sitemap.xml` e o `assets/js/data.js` usado pelo chat.
 Estilos em `assets/css/style.css`; interações em `assets/js/main.js`.
 
-## Conteúdo pendente
+## Revisão de novembro de 2026
 
-- Uniko: substituir a identificação tipográfica provisória pelos materiais oficiais e informar endereço, plantas e imagens.
-- Haus e Azure: informar `progress` (0–100) em cada registro de `PROJECTS`; enquanto ausente, a página orienta a consultar a equipe. Entregues exibem 100%.
-- Mapas usam os endereços disponíveis, com seleção de empreendimento. Azure indica o bairro Tabatinga; ainda falta o endereço exato. Uniko não recebe um pin fictício.
-- Instagram usa incorporação pública oficial do perfil, com link alternativo. O carregamento depende da Meta e das configurações públicas do perfil; um feed por API requer integração autenticada.
-- As opções de ajuda encaminham o assunto ao formulário e ao WhatsApp da Kyma. Não há URLs fornecidas de portais, e-mail ou canais específicos para cada departamento.
+Consulte [a conferência dos 23 itens e pendências](docs/REVISAO-2026-11-09.md).
 
-## Imagens
+- Galerias oficiais: 7 fotos de Montresor, 22 de Haus, 6 de Azure e 15 imagens de Uniko.
+- Status: lançamento somente Uniko; em obras Haus e Azure; demais entregues.
+- Marca: logos oficiais fornecidas e paleta verde/cinza do pedido.
+- Fotos das galerias restritas às respectivas páginas. As quatro fotos do hero são exclusivas da home.
+- Percentuais e localizações confirmadas em `content/project-updates.json`; `null` não é um percentual zero.
+- Atualize os dados e execute `python3 build.py` antes de publicar.
 
-As imagens existentes foram copiadas sem alterações do WordPress para `assets/img`, preservando ano, mês e nome. O site não depende mais desse servidor para carregar fotos e logos. O logo Azure usa composição CSS para ocultar o fundo branco e segue o efeito luminoso dos demais logos.
+## Deploy
 
-## Validação e deploy
-
-Rode `python3 build.py` após editar o conteúdo. O gerador atualiza HTML, sitemap e dados do chat, e versiona os assets para evitar cache desatualizado.
-
-O `vercel.json` mantém URLs limpas e redirecionamentos. O projeto Vercel existente é `kyma-website`, da equipe `joshua-pedroso`.
+Projeto Vercel existente: `kyma-website`, equipe `joshua-pedroso`.
+O site é estático, com URLs limpas configuradas em `vercel.json`.

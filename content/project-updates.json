@@ -1,0 +1,59 @@
+{
+  "uniko": {
+    "progress_percent": null,
+    "exact_address": null,
+    "coordinates": null,
+    "coordinate_source": null
+  },
+  "haus": {
+    "progress_percent": null,
+    "exact_address": "Rua Padre Rodolfo, 286",
+    "coordinates": [
+      -23.2044083,
+      -45.9029535
+    ],
+    "coordinate_source": "OpenStreetMap / Nominatim, Rua Padre Rodolfo, 286, conferido em 09/11/2026"
+  },
+  "mon-tresor": {
+    "progress_percent": null,
+    "exact_address": null,
+    "coordinates": null,
+    "coordinate_source": null
+  },
+  "azure": {
+    "progress_percent": null,
+    "exact_address": null,
+    "coordinates": null,
+    "coordinate_source": null
+  },
+  "monte-cristo": {
+    "progress_percent": null,
+    "exact_address": null,
+    "coordinates": null,
+    "coordinate_source": null
+  },
+  "monte-negro": {
+    "progress_percent": null,
+    "exact_address": null,
+    "coordinates": null,
+    "coordinate_source": null
+  },
+  "monte-zurich": {
+    "progress_percent": null,
+    "exact_address": null,
+    "coordinates": null,
+    "coordinate_source": null
+  },
+  "altos-do-parque": {
+    "progress_percent": null,
+    "exact_address": null,
+    "coordinates": null,
+    "coordinate_source": null
+  },
+  "serra-do-sincora": {
+    "progress_percent": null,
+    "exact_address": null,
+    "coordinates": null,
+    "coordinate_source": null
+  }
+}

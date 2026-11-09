@@ -10,12 +10,15 @@ window.KYMA = {
       "slug": "uniko",
       "name": "Uniko",
       "status": "lancamento",
-      "location": "Consulte a localização",
+      "location": "Vila Ema · São José dos Campos",
       "area": null,
       "beds": null,
       "pitch": "Um novo endereço com a assinatura Kyma. Entre em contato para conhecer o lançamento.",
+      "progress": null,
+      "coordinates": null,
+      "mapSource": null,
       "url": "/uniko",
-      "thumb": "/assets/img/uniko.svg",
+      "thumb": "/assets/img/brand/uniko-oficial.svg",
       "contain": true
     },
     {
@@ -26,6 +29,12 @@ window.KYMA = {
       "area": "79,95m² e 82,21m²",
       "beds": "2 dormitórios",
       "pitch": "Moderno, sofisticado e completo, em uma das regiões mais desejadas de São José dos Campos.",
+      "progress": null,
+      "coordinates": [
+        -23.2044083,
+        -45.9029535
+      ],
+      "mapSource": "OpenStreetMap / Nominatim, Rua Padre Rodolfo, 286, conferido em 09/11/2026",
       "url": "/haus",
       "thumb": "/assets/img/2025/01/obra-haus-1024x573.jpg",
       "contain": false
@@ -38,6 +47,9 @@ window.KYMA = {
       "area": "114,66m²",
       "beds": null,
       "pitch": "Arquitetura marcante e plantas amplas, em frente à Igreja Sagrada Família — um novo marco na Vila Ema.",
+      "progress": null,
+      "coordinates": null,
+      "mapSource": null,
       "url": "/mon-tresor",
       "thumb": "/assets/img/2025/01/obra-mon-2-1024x573.jpg",
       "contain": false
@@ -50,6 +62,9 @@ window.KYMA = {
       "area": null,
       "beds": null,
       "pitch": "O Litoral Norte como endereço: um empreendimento pensado para quem quer viver — ou investir — perto do mar.",
+      "progress": null,
+      "coordinates": null,
+      "mapSource": null,
       "url": "/azure",
       "thumb": "/assets/img/2025/01/obra-azure-new-1024x573.jpg",
       "contain": false
@@ -62,6 +77,9 @@ window.KYMA = {
       "area": "65,76m²",
       "beds": null,
       "pitch": "Plantas inteligentes e bem distribuídas, com a assinatura de qualidade Kyma.",
+      "progress": null,
+      "coordinates": null,
+      "mapSource": null,
       "url": "/monte-cristo",
       "thumb": "/assets/img/2022/05/site-miniatura-monte-cristo-1-1024x576.png",
       "contain": false
@@ -74,6 +92,9 @@ window.KYMA = {
       "area": "68,94m²",
       "beds": null,
       "pitch": "Conforto e praticidade para o dia a dia, em uma localização estratégica da cidade.",
+      "progress": null,
+      "coordinates": null,
+      "mapSource": null,
       "url": "/monte-negro",
       "thumb": "/assets/img/2022/05/capa-monte-negro-1024x576.png",
       "contain": false
@@ -86,6 +107,9 @@ window.KYMA = {
       "area": "69,60m²",
       "beds": null,
       "pitch": "Linhas contemporâneas e espaços bem aproveitados para viver com leveza.",
+      "progress": null,
+      "coordinates": null,
+      "mapSource": null,
       "url": "/monte-zurich",
       "thumb": "/assets/img/2022/05/capa-zurich-1024x576.png",
       "contain": false
@@ -98,8 +122,11 @@ window.KYMA = {
       "area": null,
       "beds": null,
       "pitch": "Localização privilegiada na região Sul, com a natureza como vizinha.",
+      "progress": null,
+      "coordinates": null,
+      "mapSource": null,
       "url": "/altos-do-parque",
-      "thumb": "/assets/img/2022/05/site-2.png",
+      "thumb": "/assets/img/2022/05/altos-do-parque0.png",
       "contain": true
     },
     {
@@ -110,8 +137,11 @@ window.KYMA = {
       "area": null,
       "beds": null,
       "pitch": "Um projeto que integra o portfólio Kyma — fale com nosso time para conhecer os detalhes.",
+      "progress": null,
+      "coordinates": null,
+      "mapSource": null,
       "url": "/serra-do-sincora",
-      "thumb": "/assets/img/2022/05/image-3.png",
+      "thumb": "/assets/img/2022/05/sincora00.jpg",
       "contain": true
     }
   ]

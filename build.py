@@ -32,8 +32,8 @@ MAPS_Q = "Av. Alfredo Ignácio Nogueira Penido, 305, São José dos Campos - SP"
 MAPS_URL = "https://www.google.com/maps/search/?api=1&query=" + quote(MAPS_Q)
 MAPS_EMBED = "https://www.google.com/maps?q=" + quote(MAPS_Q) + "&output=embed"
 
-LOGO_WHITE = f"{UP}/2022/04/logo-kyma-branco-full.png"
-FAVICON = f"{UP}/2022/06/cropped-logo-kyma02"
+LOGO_WHITE = f"{UP}/brand/kyma-negativo.png"
+FAVICON = f"{UP}/brand/kyma-positivo.png"
 
 
 def wa(msg: str) -> str:
@@ -127,19 +127,44 @@ PROJECTS = [
     ),
 ]
 PROJECTS.insert(0, dict(
-    slug="uniko", name="Uniko", full="Uniko", status="lancamento",
-    region="", city=None, hood=None, location="Consulte a localização", street=None,
+    slug="uniko", name="Uniko", full="Uniko Vila Ema", status="lancamento",
+    region="vale", city="São José dos Campos", hood="Vila Ema", location="Vila Ema · São José dos Campos", street=None,
     area=None, beds=None, pitch="Um novo endereço com a assinatura Kyma. Entre em contato para conhecer o lançamento.",
-    card=("/assets/img/uniko.svg", 1200, 800), hero=None,
-    hero_logo=("/assets/img/uniko.svg", 1200, 800),
-    logo=("/assets/img/uniko.svg", "/assets/img/uniko.svg"), contain=True,
+    card=("/assets/img/brand/uniko-oficial.svg", 733, 500), hero=None,
+    hero_logo=("/assets/img/brand/uniko-oficial.svg", 733, 500),
+    logo=("/assets/img/brand/uniko-oficial.svg", "/assets/img/brand/uniko-oficial.svg"), contain=True,
 ))
 STATUS = {"lancamento": "Lançamento", "em-obras": "Em obras", "entregue": "Entregue"}
 FEATURED = [next(p for p in PROJECTS if p["slug"] == slug) for slug in ["uniko", "haus", "azure"]]
 P = {p["slug"]: p for p in PROJECTS}
 for p in PROJECTS:
     p.setdefault("contain", False)
+    p.setdefault("progress", None)  # Unknown until the client supplies the percentage.
+    p.setdefault("coordinates", None)
+    p.setdefault("map_source", None)
     p.setdefault("wa_link", wa(f"Olá! Vim pelo site e gostaria de mais informações sobre o {p['name']}."))
+
+# Official project media are restricted to their own page/gallery.
+MEDIA = json.loads((ROOT / "assets/project-media.json").read_text(encoding="utf-8"))
+P["haus"]["coordinates"] = [-23.2044083, -45.9029535]
+P["haus"]["map_source"] = "OpenStreetMap / Nominatim, Rua Padre Rodolfo, 286, conferido em 09/11/2026"
+UPDATES = json.loads((ROOT / 'content/project-updates.json').read_text(encoding='utf-8'))
+for p in PROJECTS:
+    update = UPDATES[p['slug']]
+    value = update['progress_percent']
+    if value is not None and (isinstance(value, bool) or not isinstance(value, (int, float)) or not 0 <= value <= 100):
+        raise ValueError(f"Percentual inválido: {p['slug']}")
+    p['progress'] = value
+    p['coordinates'] = update['coordinates']
+    p['map_source'] = update['coordinate_source']
+    if update['exact_address']:
+        p['street'] = update['exact_address']
+for p in PROJECTS:
+    p['logo'] = (p['logo'][0], p['logo'][0])
+    if p['contain'] and p['slug'] != 'uniko':
+        p['card'] = (p['logo'][0], 500, 500)
+        p['hero_logo'] = p['card']
+DISPLAY_PORTFOLIO_COUNT = 8  # Indicator explicitly requested by the client; preserve all 9 project records.
 
 LAUNCHES = [p for p in PROJECTS if p["status"] == "lancamento"]
 PORTFOLIO = [p for p in PROJECTS if p["status"] == "entregue"]
@@ -216,6 +241,15 @@ SPRITE = """<svg width="0" height="0" style="position:absolute" aria-hidden="tru
 <symbol id="i-phone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></symbol>
 <symbol id="i-clock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
 </svg>"""
+
+
+SPRITE += '''<svg width="0" height="0" aria-hidden="true" style="position:absolute"><defs>
+<filter id="logo-solid" color-interpolation-filters="sRGB"><feColorMatrix type="matrix" values="0 0 0 0 .75686 0 0 0 0 .84706 0 0 0 0 .59216 0 0 0 1 0"/></filter>
+<filter id="logo-light-alpha" color-interpolation-filters="sRGB"><feColorMatrix type="matrix" values="0 0 0 0 .75686 0 0 0 0 .84706 0 0 0 0 .59216 .2126 .7152 .0722 0 0"/><feComposite in2="SourceAlpha" operator="in"/></filter>
+<filter id="logo-dark-alpha" color-interpolation-filters="sRGB"><feColorMatrix type="matrix" values="0 0 0 0 .75686 0 0 0 0 .84706 0 0 0 0 .59216 -.2126 -.7152 -.0722 0 1"/><feComposite in2="SourceAlpha" operator="in"/></filter>
+<filter id="logo-deep-solid" color-interpolation-filters="sRGB"><feColorMatrix type="matrix" values="0 0 0 0 .18824 0 0 0 0 .24706 0 0 0 0 .12157 0 0 0 1 0"/></filter>
+<filter id="logo-deep-alpha" color-interpolation-filters="sRGB"><feColorMatrix type="matrix" values="0 0 0 0 .18824 0 0 0 0 .24706 0 0 0 0 .12157 -.2126 -.7152 -.0722 0 1"/><feComposite in2="SourceAlpha" operator="in"/></filter>
+</defs></svg>'''
 
 
 def ic(name: str) -> str:
@@ -299,7 +333,7 @@ def footer() -> str:
       <span>Design &amp; desenvolvimento por Joshua</span>
     </div>
   </div>
-  <div class="footer-word" aria-hidden="true">Kyma</div>
+
 </footer>"""
 
 
@@ -318,7 +352,7 @@ def card(p, tags=True):
     return f"""
 <article class="card"{t}>
   <a class="card__media{' is-contain' if p['contain'] else ''}" href="/{p['slug']}" data-cursor="Ver" data-tilt aria-label="Conhecer o {escape(p['name'])}">
-    {badge}{img(c, f"{p['full']} — {p['location']}", w, h)}
+    {badge}{img(c, f"{p['full']} — {p['location']}", w, h, cls=f'identity-logo logo-{p["slug"]}' if p['contain'] else '')}
     <span class="card__go">{ic("arrow-ur")}</span>
   </a>
   <div>
@@ -329,7 +363,7 @@ def card(p, tags=True):
 
 
 def cta_band(title="Está procurando um <em>apartamento?</em>", text="Entre em contato e descubra o empreendimento ideal para o seu momento.",
-             bg=(f"{UP}/2024/11/fechado-2.jpg", 1920, 1080), msg="Olá! Estou procurando um apartamento e gostaria de ajuda."):
+             bg=(LOGO_WHITE, 2065, 783), msg="Olá! Estou procurando um apartamento e gostaria de ajuda."):
     return f"""
 <section class="section section--tight">
   <div class="container">
@@ -339,7 +373,7 @@ def cta_band(title="Está procurando um <em>apartamento?</em>", text="Entre em c
       <h2 class="h2" data-split>{title}</h2>
       <p class="lead">{text}</p>
       <div class="cta__actions">
-        <a class="btn btn--solid" data-magnetic href="{wa(msg)}" target="_blank" rel="noopener">{ic("wa")} Chamar no WhatsApp</a>
+        <a class="btn btn--solid" data-magnetic href="{wa(msg)}" target="_blank" rel="noopener">{ic("wa")} Entre em contato</a>
         <a class="btn btn--glass" href="/contato">Outros contatos {ic("arrow")}</a>
       </div>
     </div>
@@ -408,9 +442,10 @@ def breadcrumb_ld(items):
 
 
 def layout(*, path, title, desc, body, active="", og_image=None, jsonld=(), project="", preload=None, page="page"):
-    asset_version = sha256(((ROOT / "assets/css/style.css").read_bytes() + (ROOT / "assets/js/main.js").read_bytes() + (ROOT / "assets/js/chat.js").read_bytes() + (ROOT / "build.py").read_bytes())).hexdigest()[:12]
+    asset_version = sha256(((ROOT / "assets/css/style.css").read_bytes() + (ROOT / "assets/js/main.js").read_bytes() + (ROOT / "assets/js/chat.js").read_bytes() + (ROOT / "build.py").read_bytes() + (ROOT / "assets/project-media.json").read_bytes() + (ROOT / 'content/project-updates.json').read_bytes())).hexdigest()[:12]
     url = SITE + (path if path != "/" else "/")
     og = og_image or f"{UP}/2024/11/Kyma_Haus_Lateral_OK-1024x813.jpg"
+    if og.startswith("/"): og = SITE + og
     ld = "\n".join(
         f'<script type="application/ld+json">{json.dumps(x, ensure_ascii=False)}</script>' for x in jsonld)
     pre = f'<link rel="preload" as="image" href="{preload}" fetchpriority="high">' if preload else ""
@@ -423,7 +458,7 @@ def layout(*, path, title, desc, body, active="", og_image=None, jsonld=(), proj
 <meta name="description" content="{escape(desc)}">
 <link rel="canonical" href="{url}">
 <meta name="robots" content="index, follow, max-image-preview:large">
-<meta name="theme-color" content="#0b0c0c">
+<meta name="theme-color" content="#303F1F">
 <meta name="format-detection" content="telephone=no">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="pt_BR">
@@ -438,14 +473,14 @@ def layout(*, path, title, desc, body, active="", og_image=None, jsonld=(), proj
 <meta name="twitter:image" content="{og}">
 <meta name="geo.region" content="BR-SP">
 <meta name="geo.placename" content="São José dos Campos">
-<link rel="icon" href="{FAVICON}-32x32.png" sizes="32x32">
-<link rel="icon" href="{FAVICON}-192x192.png" sizes="192x192">
-<link rel="apple-touch-icon" href="{FAVICON}-180x180.png">
+<link rel="icon" href="{FAVICON}" type="image/png">
+<link rel="apple-touch-icon" href="{FAVICON}">
 <link rel="manifest" href="/site.webmanifest">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preconnect" href="https://kyma.com.br">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&amp;family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&amp;display=swap">
+<link rel="stylesheet" href="/assets/vendor/leaflet/leaflet.css">
 <link rel="stylesheet" href="/assets/css/style.css?v={asset_version}">
 {pre}
 <script>document.documentElement.classList.replace('no-js','js')</script>
@@ -466,6 +501,7 @@ def layout(*, path, title, desc, body, active="", og_image=None, jsonld=(), proj
 </main>
 {footer()}
 <script src="/assets/js/data.js?v={asset_version}" defer></script>
+<script src="/assets/vendor/leaflet/leaflet.js" defer></script>
 <script src="/assets/js/main.js?v={asset_version}" defer></script>
 <script src="/assets/js/chat.js?v={asset_version}" defer></script>
 </body>
@@ -480,7 +516,7 @@ def page_home():
     slides = [
         (f"{UP}/hero/hero-1.jpg", 1280, 731, "Lazer e bem-estar"),
         (f"{UP}/hero/hero-2.jpg", 1280, 720, "Ambientes que acolhem"),
-        (f"{UP}/hero/hero-3.jpg", 1280, 768, "Azure — Tabatinga, Caraguatatuba"),
+        (f"{UP}/hero/hero-3.jpg", 1280, 768, "Fachada residencial"),
         (f"{UP}/hero/hero-4.jpg", 1280, 720, "Cada detalhe pensado para viver"),
     ]
     slide_html = "".join(
@@ -512,7 +548,6 @@ def page_home():
     {img(c, f"{p['full']} — {p['location']}", w, h)}
   </a>
   <div class="show__body">
-    <span class="show__num" aria-hidden="true">0{i + 1}</span>
     <h3 class="h2" data-split>{p['name']}</h3>
     <p class="lead" data-reveal>{p['pitch']}</p>
     <div class="show__meta" data-reveal>{facts}</div>
@@ -525,17 +560,11 @@ def page_home():
   <div class="hero__slides">{slide_html}</div>
   <div class="hero__content">
     <div class="container">
-      <p class="eyebrow" data-hero>Kyma Empreendimentos · Vale do Paraíba &amp; Litoral Norte</p>
-      <h1 class="display" data-split="0.2">O privilégio de viver <em>o singular.</em></h1>
-      <div class="hero__cta" data-hero="3">
-        <a class="btn btn--solid" data-magnetic href="/empreendimentos">Ver empreendimentos {ic("arrow")}</a>
-        <a class="btn btn--glass" data-magnetic href="/lancamentos">Lançamentos</a>
-      </div>
+      <h1 class="hero__tagline" data-hero>O privilégio de viver o singular</h1>
+
     </div>
   </div>
   <div class="hero__meta" data-hero="4">
-    <p class="hero__count"><b>01</b> / 0{len(slides)}</p>
-    <p class="hero__caption">{slides[0][3]}</p>
     <div class="hero__bar"><span></span></div>
     <div class="hero__dots">{dots}</div>
   </div>
@@ -545,7 +574,7 @@ def page_home():
 <section class="marquee" aria-label="Nossos empreendimentos">
   <div class="marquee__track">
     <div class="marquee__group">{logos}</div>
-    <div class="marquee__group" aria-hidden="true">{logos}</div>
+    <div class="marquee__group" aria-hidden="true" inert>{logos}</div>
   </div>
 </section>
 
@@ -560,7 +589,7 @@ def page_home():
       </div>
       <a class="btn" data-reveal data-magnetic href="/empreendimentos">Ver empreendimentos {ic("arrow")}</a>
     </div>
-    <div class="showcase">{shows}</div>
+    <div class="cards featured-cards">{shows}</div>
   </div>
 </section>
 
@@ -608,7 +637,7 @@ def page_listing(kind):
         title_html = "Lança&shy;<em>mentos</em>"
         eyebrow = "Oportunidades exclusivas"
         lead = "Seja para morar ou investir, nossos lançamentos estão em regiões que você vai querer chamar de casa."
-        bg = ("/assets/img/uniko.svg", 1200, 800)
+        bg = ("/assets/img/brand/uniko-oficial.svg", 733, 500)
         title = "Lançamentos | Kyma Empreendimentos"
         desc = "Conheça o Uniko, lançamento da Kyma. Entre em contato para mais informações."
         filters = [("todos", "Todos"), ("lancamento", "Lançamentos")]
@@ -696,7 +725,7 @@ def related(p):
 
 
 def page_haus():
-    p = P["haus"]
+    p = project_page_data(P["haus"])
     hero_btns = f"""<div class="hero__cta" data-reveal style="margin-top:8px">
       <a class="btn btn--solid" data-magnetic href="{p['wa_link']}" target="_blank" rel="noopener">{ic("wa")} Entre em contato</a>
       <a class="btn btn--glass" href="#plantas">Ver plantas {ic("arrow")}</a></div>"""
@@ -739,12 +768,14 @@ def page_haus():
         (f"{UP}/2025/01/obra-haus.jpg", f"{UP}/2025/01/obra-haus-1024x573.jpg", 1024, 573, "Andamento da obra"),
         (f"{UP}/2024/11/fechado-2.jpg", f"{UP}/2024/11/fechado-2.jpg", 1920, 1080, "Open space"),
     ]
+    if MEDIA.get('haus'):
+        gallery_imgs = [(photo['src'], photo['src'], photo['width'], photo['height'], photo['caption']) for photo in MEDIA['haus']]
     gallery = "".join(
         f'<a href="{full}" data-lightbox="haus-galeria" data-caption="Haus — {cap}" data-cursor="Ampliar" data-reveal>{img(med, f"Haus Vila Ema — {cap}", w, h)}</a>'
         for full, med, w, h, cap in gallery_imgs)
 
     body = page_hero("Haus <em>Vila Ema</em>", "Em obras · São José dos Campos",
-                     [("/", "Início"), ("/lancamentos", "Lançamentos"), (None, "Haus")],
+                     [("/", "Início"), ("/empreendimentos", "Empreendimentos"), (None, "Haus")],
                      bg=p["hero"], facts=facts_chips(p), extra=hero_btns) + f"""
 <section class="section theme-light">
   <div class="container">
@@ -799,7 +830,7 @@ def page_haus():
         <p class="eyebrow" data-reveal>Plantas</p>
         <h2 class="h1" data-split>Espaços que <em>se adaptam.</em></h2>
       </div>
-      <a class="btn btn--dark" data-reveal href="{p['wa_link']}" target="_blank" rel="noopener">Receber plantas completas {ic("arrow")}</a>
+      <a class="btn btn--dark" data-reveal href="{p['wa_link']}" target="_blank" rel="noopener">Entre em contato {ic("arrow")}</a>
     </div>
     <div class="plans">{plans}</div>
   </div>
@@ -840,7 +871,19 @@ def page_haus():
         jsonld=[breadcrumb_ld([("/", "Início"), ("/empreendimentos", "Empreendimentos"), ("/haus", "Haus")]), ld])
 
 
+def project_page_data(p):
+    local = dict(p)
+    photos = MEDIA.get(p['slug'], [])
+    if photos:
+        first = next((photo for photo in photos if photo['caption'] in ['Fachada principal', 'Fachada frontal', 'Fachada A Final']), photos[0])
+        local['card'] = (first['src'], first['width'], first['height'])
+        local['hero'] = local['card']
+        local['contain'] = False
+    return local
+
+
 def page_project(p):
+    p = project_page_data(p)
     section = "Lançamentos" if p["status"] == "lancamento" else "Empreendimentos"
     sec_path = "/lancamentos" if p["status"] == "lancamento" else "/empreendimentos"
     hero_btns = f"""<div class="hero__cta" data-reveal style="margin-top:8px">
@@ -856,13 +899,15 @@ def page_project(p):
         (ic("clock"), "Atendimento", "Corretor dedicado"),
     ]
     spec_html = "".join(f'<div class="spec">{i}<b>{b}</b><span>{s}</span></div>' for i, b, s in specs)
-    gallery = [(big[0], c, w, h, "Imagem principal")]
+    gallery = [(photo["src"], photo["src"], photo["width"], photo["height"], photo["caption"]) for photo in MEDIA.get(p["slug"], [])]
+    if not gallery:
+        gallery = [(big[0], c, w, h, "Imagem principal")]
     if p["logo"][1] != c:
         gallery.append((p["logo"][1], p["logo"][1], 500, 500, "Identidade visual"))
     contain_cls = ' class="is-contain"'
     gal_html = "".join(
         f'<a href="{full}" data-lightbox="{p["slug"]}" data-caption="{escape(p["name"])} — {cap}" data-cursor="Ampliar" data-reveal'
-        f'{contain_cls if (p["contain"] or i > 0) else ""}>{img(med, p["full"] + " — " + cap, ww, hh)}</a>'
+        f'{contain_cls if (p["contain"] or cap == "Identidade visual") else ""}>{img(med, p["full"] + " — " + cap, ww, hh, cls="identity-logo logo-" + p["slug"] if (p["contain"] or cap == "Identidade visual") else "")}</a>'
         for i, (full, med, ww, hh, cap) in enumerate(gallery))
     extra_copy = {
         "mon-tresor": "Todos os dias recebemos contatos perguntando se o Residencial Mon Trésor é a obra em frente à Igreja Sagrada Família — e a resposta é sim! Com ótima arquitetura e localização, o empreendimento é um marco no bairro, com plantas de 114,66m².",
@@ -876,6 +921,7 @@ def page_project(p):
     <div class="split">
       <div class="split__body">
         <p class="eyebrow" data-reveal>O empreendimento</p>
+        <img class="project-logo logo-{p['slug']}" src="{p['logo'][0]}" alt="Logo oficial {escape(p['name'])}" width="300" height="200" loading="lazy">
         <h2 class="h2" data-split>{p['full']}</h2>
         <p class="lead" data-reveal>{p['pitch']}</p>
         <p class="lead" data-reveal>{extra_copy}</p>
@@ -936,7 +982,7 @@ def page_about():
       </div>
     </div>
     <div class="stats">
-      <div class="stat" data-reveal><span class="stat__num" data-count="{len(PROJECTS)}" data-pad="2">{len(PROJECTS):02d}</span><span class="stat__label">Empreendimentos no portfólio</span></div>
+      <div class="stat" data-reveal><span class="stat__num" data-count="{DISPLAY_PORTFOLIO_COUNT}" data-pad="2">{DISPLAY_PORTFOLIO_COUNT:02d}</span><span class="stat__label">Empreendimentos no portfólio</span></div>
       <div class="stat" data-reveal><span class="stat__num" data-count="2" data-pad="2">02</span><span class="stat__label">Regiões atendidas</span></div>
     </div>
   </div>
@@ -961,16 +1007,16 @@ def page_about():
     <div class="section-head section-head--split">
       <div style="display:grid;gap:22px">
         <p class="eyebrow" data-reveal>Lançamentos</p>
-        <h2 class="h1" data-split>Conheça nossos <em>lançamentos.</em></h2>
-        <p class="lead" data-reveal>Marque uma visita com um de nossos corretores e conheça os lançamentos exclusivos na região.</p>
+        <h2 class="h1" data-split>Conheça o <em>Uniko.</em></h2>
+        <p class="lead" data-reveal>Marque uma visita com um de nossos corretores e conheça os lançamento exclusivo na região.</p>
       </div>
       <a class="btn" data-reveal href="/lancamentos">Ver lançamentos {ic("arrow")}</a>
     </div>
     <div class="cards" data-stagger="0.08">{"".join(card(p, tags=False) for p in LAUNCHES)}</div>
   </div>
 </section>
-{portfolio_section()}
-{cta_band()}"""
+{cta_band()}
+{portfolio_section()}"""
     return layout(
         path="/quem-somos", active="/quem-somos",
         title="Quem somos | Kyma Empreendimentos",
@@ -1005,7 +1051,7 @@ def page_contact():
         <div class="field"><input id="f-tel" name="telefone" type="tel" placeholder=" " autocomplete="tel" required><label for="f-tel">Telefone / WhatsApp *</label></div>
         <div class="field"><input id="f-email" name="email" type="email" placeholder=" " autocomplete="email"><label for="f-email">E-mail</label></div>
         <div class="field full">
-          <select id="f-assunto" name="assunto" aria-label="Assunto"><option>Informações sobre imóveis</option><option>Financeiro</option><option>Seguros</option><option>Trabalhe conosco</option><option>Negocie seu terreno</option><option>Portal do fornecedor</option><option>Boleto bancário</option><option>Assistência técnica</option><option>Sou vizinho de uma obra</option><option>Relatar desvio de conduta</option><option>Enviar e-mail</option><option>Assessoria de imprensa</option><option>Privacidade de dados</option></select></div><div class="field full"><select id="f-int" name="interesse"><option value="">Ainda não sei — quero conhecer as opções</option>{options}</select>
+          <label class="sr-only" for="f-assunto">Assunto</label><select id="f-assunto" name="assunto" aria-label="Assunto"><option>Procurando por um imóvel</option><option>Financeiro</option><option>Seguro de entrega</option><option>Trabalhe conosco</option><option>Negocie seu terreno</option><option>Portal do fornecedor</option><option>Boleto bancário</option><option>Solicitar assistência</option><option>Sou vizinho de uma obra</option><option>Relatar desvio de conduta</option><option>Enviar e-mail</option><option>Assessoria de imprensa</option><option>Privacidade de dados</option></select></div><div class="field full"><select id="f-int" name="interesse"><option value="">Ainda não sei — quero conhecer as opções</option>{options}</select>
           <label for="f-int">Interesse</label>
         </div>
         <div class="field full"><textarea id="f-msg" name="mensagem" placeholder=" " rows="4"></textarea><label for="f-msg">Mensagem</label></div>
@@ -1036,8 +1082,8 @@ def portfolio_section():
 
 
 def project_map(p):
-    if not p.get("city"):
-        return ""
+    if not p.get("coordinates"):
+        return f'''<section class="section section--tight"><div class="container"><p class="eyebrow">Localização</p><h2 class="h2">{escape(p['name'])}</h2><p class="lead">{escape(p['location'])}. Entre em contato para receber o endereço exato.</p></div></section>'''
     query = ", ".join(filter(None, [p.get("street"), p.get("hood"), p.get("city"), "SP"]))
     return f'''<section class="section section--tight"><div class="container">
       <div class="section-head"><p class="eyebrow">Localização</p><h2 class="h2">{escape(p['name'])} · <em>{escape(p['location'])}</em></h2></div>
@@ -1047,22 +1093,21 @@ def project_map(p):
 
 
 def locations_section():
-    # Only use verified addresses; do not fabricate coordinates for the new launch.
-    tabs = ''.join(f'<button class="btn location-tab" type="button" data-location="{p["slug"]}" aria-pressed="{"true" if p["slug"] == "haus" else "false"}">{p["name"]}</button>' for i, p in enumerate(FEATURED))
-    panels = ''.join(f'<div data-location-panel="{p["slug"]}" {"" if p["slug"] == "haus" else "hidden"}>' + (project_map(p) if p.get('city') else f'<div class="location-pending"><h3 class="h2">{p["name"]}</h3><p class="lead">Entre em contato para conhecer a localização do lançamento.</p><a class="btn" href="/uniko">Conheça o Uniko</a></div>') + '</div>' for i, p in enumerate(FEATURED))
+    # Coordinates remain null until an exact address has been verified.
+    items = ''.join(f'''<li><button type="button" class="map-project" data-map-project="{p['slug']}"><span>{p['name']}</span><small>{escape(p['street'] or p['location'])}</small><small>{'Ver pin no mapa' if p['coordinates'] else 'Localização exata a confirmar'}</small></button></li>''' for p in PROJECTS)
     return f'''<section class="section" id="enderecos"><div class="container">
-      <div class="section-head"><p class="eyebrow">Empreendimentos Kyma</p><h2 class="h1">Novos <em>endereços.</em></h2><p class="lead">Encontre o seu próximo endereço no Vale do Paraíba e no Litoral Norte.</p></div>
-      <div class="location-tabs" role="group" aria-label="Escolher empreendimento">{tabs}</div>{panels}
+      <div class="section-head"><p class="eyebrow">Empreendimentos Kyma</p><h2 class="h1">Novos <em>endereços.</em></h2><p class="lead">Entre em contato e descubra o empreendimento ideal para o seu momento.</p></div>
+      <div class="locations-layout"><div><div id="project-map" class="project-map" role="region" aria-label="Mapa dos empreendimentos com localização confirmada"></div><p id="map-status" class="map-status" role="status">Selecione um empreendimento. Pins disponíveis para endereços confirmados.</p><p id="map-tiles-note" class="map-status" role="status"></p><noscript><p>Consulte os endereços na lista de empreendimentos.</p></noscript></div><ul class="map-projects">{items}</ul></div>
     </div></section>'''
 
 
 def progress_section(p):
-    value = p.get('progress', 100 if p['status'] == 'entregue' else None)
+    value = p["progress"]
     if value is None:
-        content = '<p class="lead">Consulte nossa equipe para receber o percentual atualizado e acompanhar as etapas da obra.</p>'
+        content = '<p class="progress-value progress-value--pending" aria-label="Percentual ainda não informado">—%</p><p class="lead">Percentual a informar. Entre em contato para acompanhar a evolução da obra.</p>'
     else:
         content = f'<p class="progress-value">{value}%</p><progress class="construction-progress" max="100" value="{value}" aria-label="Evolução da obra">{value}%</progress>'
-    return f'''<section class="section theme-ink2" id="evolucao"><div class="container">
+    return f'''<section class="section theme-ink2" id="evolucao" data-progress="{'' if value is None else value}"><div class="container">
       <div class="section-head"><p class="eyebrow">{p['name']}</p><h2 class="h2">Evolução <em>da obra.</em></h2></div>
       {content}<a class="link-arrow" href="{p['wa_link']}" target="_blank" rel="noopener">Entre em contato {ic('arrow')}</a>
     </div></section>'''
@@ -1087,9 +1132,9 @@ def page_blog():
 
 
 def help_section():
-    subjects = [('Procurando por um imóvel', 'key'), ('Financeiro', 'building'), ('Seguros', 'key'), ('Trabalhe conosco', 'building'), ('Negocie seu terreno', 'pin'), ('Portal do fornecedor', 'building'), ('Boleto bancário', 'building'), ('Assistência técnica', 'building'), ('Sou vizinho de uma obra', 'pin'), ('Relatar desvio de conduta', 'phone'), ('Enviar e-mail', 'phone'), ('Assessoria de imprensa', 'phone'), ('Privacidade de dados', 'key')]
+    subjects = [('Procurando por um imóvel', 'key'), ('Financeiro', 'building'), ('Seguro de entrega', 'key'), ('Trabalhe conosco', 'building'), ('Negocie seu terreno', 'pin'), ('Portal do fornecedor', 'building'), ('Boleto bancário', 'building'), ('Solicitar assistência', 'building'), ('Sou vizinho de uma obra', 'pin'), ('Relatar desvio de conduta', 'phone'), ('Enviar e-mail', 'phone'), ('Assessoria de imprensa', 'phone'), ('Privacidade de dados', 'key')]
     items = ''.join(f'<a class="help-card" href="#contact-form" data-subject="{label}">{ic(icon)}<span>{label}</span>{ic("arrow-ur")}</a>' for label, icon in subjects)
-    return f'''<section class="section theme-light"><div class="container"><div class="section-head"><p class="eyebrow">Atendimento Kyma</p><h2 class="h1">Precisando de <em>ajuda?</em></h2><p class="lead">Selecione o assunto e entre em contato com nossa equipe.</p></div><div class="help-grid">{items}</div></div></section>'''
+    return f'''<section class="section theme-light"><div class="container"><div class="section-head"><p class="eyebrow">Atendimento Kyma</p><h2 class="h1">Precisando de <em>ajuda?</em></h2><p class="lead">Selecione o assunto. O formulário abaixo encaminha sua mensagem à equipe pelo WhatsApp.</p></div><div class="help-grid">{items}</div></div></section>'''
 
 
 def page_404():
@@ -1116,7 +1161,8 @@ def data_js():
         "projects": [
             {
                 "slug": p["slug"], "name": p["name"], "status": p["status"], "location": p["location"],
-                "area": p["area"], "beds": p["beds"], "pitch": p["pitch"], "url": f"/{p['slug']}",
+                "area": p["area"], "beds": p["beds"], "pitch": p["pitch"],
+                "progress": p["progress"], "coordinates": p["coordinates"], "mapSource": p["map_source"], "url": f"/{p['slug']}",
                 "thumb": p["card"][0], "contain": p["contain"],
             } for p in PROJECTS
         ],
