@@ -52,3 +52,8 @@ Consulte [a conferência dos 23 itens e pendências](docs/REVISAO-2026-11-09.md)
 
 Projeto Vercel existente: `kyma-website`, equipe `joshua-pedroso`.
 O site é estático, com URLs limpas configuradas em `vercel.json`.
+
+## Rodada 2 — novembro de 2026
+
+[Conferência dos 26 itens e pendências](docs/RODADA-2-2026-11-11.md).
+A evolução animada usa `progress_percent` e `progress_stages` em `content/project-updates.json`; campos ausentes ficam como `null`, sem números presumidos. As fontes das metragens estão em `content/area-sources.json`.

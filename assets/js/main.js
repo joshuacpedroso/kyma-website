@@ -487,16 +487,75 @@ document.querySelectorAll('[data-subject]').forEach(link => {
     const popup = document.createElement('div');
     const title = document.createElement('strong');title.textContent=project.name;popup.append(title,document.createElement('br'),document.createTextNode(project.location));
     const marker=L.marker(project.coordinates,{icon,title:project.name,alt:project.name}).addTo(map).bindPopup(popup);
+    marker.on('click',()=>{window.location.assign(project.url);});
     markers.set(project.slug,marker);
   });
-  document.querySelectorAll('[data-map-project]').forEach(button => {
-    button.setAttribute('aria-pressed','false');
-    button.addEventListener('click', () => {
-      document.querySelectorAll('[data-map-project]').forEach(other => other.setAttribute('aria-pressed', String(other===button)));
-      const project=projects.find(p=>p.slug===button.dataset.mapProject);
+  document.querySelectorAll('[data-map-project]').forEach(link => {
+    link.addEventListener('focus', () => {
+      const project=projects.find(p=>p.slug===link.dataset.mapProject);
       const marker=markers.get(project?.slug);
-      if(marker) {map.setView(project.coordinates,17);marker.openPopup();if(status) status.textContent=project.name+': pin no endereço confirmado.';}
-      else if(status) status.textContent=(project?.name||'Empreendimento')+': endereço exato a confirmar. Entre em contato para receber a localização.';
+      if(marker) {map.setView(project.coordinates,17);marker.openPopup();}
+      if(status) status.textContent=project?.coordinates ? project.name+': clique para conhecer o empreendimento.' : (project?.name||'Empreendimento')+': endereço exato a confirmar.';
     });
   });
+})();
+
+/* Evolução: apenas valores fornecidos; nenhuma contagem para campos a informar. */
+(() => {
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const formatter = new Intl.NumberFormat('pt-BR', {maximumFractionDigits:1});
+  const valueOf = element => {
+    const raw=element.dataset.progressTarget;
+    if(raw===undefined || raw.trim()==='') return null;
+    const value=Number(raw);
+    return Number.isFinite(value) && value>=0 && value<=100 ? value : null;
+  };
+  const setLabel=(element,value)=>{
+    const label=element.querySelector('[data-progress-count]');
+    if(label) label.textContent=formatter.format(value)+'%';
+  };
+  const fill=(element,value)=>{
+    const ring=element.querySelector('[data-progress-ring]');
+    const bar=element.querySelector('[data-progress-fill]');
+    if(ring) ring.style.strokeDashoffset=String(100-value);
+    if(bar) bar.style.setProperty('--progress-value',value+'%');
+  };
+  const animate=element=>{
+    const target=valueOf(element);
+    if(target===null) return;
+    element.dataset.progressRunning='true';
+    fill(element,target);
+    if(reduce){setLabel(element,target);return;}
+    const start=performance.now();
+    const tick=now=>{
+      const time=Math.min(1,(now-start)/1200);
+      const eased=1-Math.pow(1-time,3);
+      setLabel(element,target*eased);
+      if(time<1) requestAnimationFrame(tick);
+      else {setLabel(element,target);element.dataset.progressRunning='complete';}
+    };
+    requestAnimationFrame(tick);
+  };
+  const sections=[...document.querySelectorAll('[data-progress-section]')];
+  sections.forEach(section=>{
+    section.querySelectorAll('[data-progress-target]').forEach(element=>{
+      const value=valueOf(element);
+      if(value===null || reduce) return;
+      setLabel(element,0);fill(element,0);
+    });
+  });
+  const reveal=section=>{
+    animate(section.querySelector('[data-progress-overall]'));
+    section.querySelectorAll('[data-progress-stage]').forEach((stage,index)=>{
+      if(valueOf(stage)!==null) setTimeout(()=>animate(stage),reduce?0:120*(index+1));
+    });
+    section.dataset.progressRevealed='true';
+  };
+  if(reduce || !('IntersectionObserver' in window)){sections.forEach(reveal);return;}
+  const observer=new IntersectionObserver(entries=>{
+    entries.forEach(entry=>{
+      if(entry.isIntersecting){reveal(entry.target);observer.unobserve(entry.target);}
+    });
+  },{threshold:.2});
+  sections.forEach(section=>observer.observe(section));
 })();

@@ -155,6 +155,11 @@ for p in PROJECTS:
     if value is not None and (isinstance(value, bool) or not isinstance(value, (int, float)) or not 0 <= value <= 100):
         raise ValueError(f"Percentual inválido: {p['slug']}")
     p['progress'] = value
+    p['progress_stages'] = update.get('progress_stages', [])
+    for stage in p['progress_stages']:
+        stage_value = stage.get('percent')
+        if stage_value is not None and (isinstance(stage_value, bool) or not isinstance(stage_value, (int,float)) or not 0 <= stage_value <= 100):
+            raise ValueError(f"Percentual de etapa inválido: {p['slug']}")
     p['coordinates'] = update['coordinates']
     p['map_source'] = update['coordinate_source']
     if update['exact_address']:
@@ -164,6 +169,24 @@ for p in PROJECTS:
     if p['contain'] and p['slug'] != 'uniko':
         p['card'] = (p['logo'][0], 500, 500)
         p['hero_logo'] = p['card']
+
+# Round 2: photographs explicitly selected by the client replace the former card images.
+P['uniko']['card'] = ('/assets/img/round2/uniko-fachada.jpg', 1185, 1600)
+P['uniko']['contain'] = False
+P['haus']['card'] = ('/assets/img/round2/haus-fachada.jpg', 1280, 1600)
+P['azure']['card'] = ('/assets/img/round2/azure-fachada.jpg', 1280, 1600)
+P['mon-tresor']['card'] = (f'{UP}/2025/01/obra-mon-2-1024x573.jpg', 1024, 573)
+FEATURED_COPY = {
+    'uniko': 'Um novo endereço com a assinatura Kyma. Studios e apartamentos de 1 dormitório que valorizam praticidade, conforto e contemporaneidade em Vila Ema.',
+    'haus': 'Arquitetura Atemporal e conforto em cada detalhe, em um dos endereços mais desejados de São José dos Campos.',
+    'azure': 'O privilégio de viver próximo ao mar. Um empreendimento que une a atmosfera do litoral à qualidade Kyma.',
+}
+P['altos-do-parque']['area'] = '68,85m²'
+P['altos-do-parque']['city'] = 'São José dos Campos'
+P['altos-do-parque']['hood'] = 'Parque Industrial'
+P['altos-do-parque']['location'] = 'Parque Industrial · São José dos Campos'
+P['altos-do-parque']['street'] = 'Rua Palmares, 686'
+
 DISPLAY_PORTFOLIO_COUNT = 8  # Indicator explicitly requested by the client; preserve all 9 project records.
 
 LAUNCHES = [p for p in PROJECTS if p["status"] == "lancamento"]
@@ -198,7 +221,7 @@ HAUS = dict(
             ("Ventilação natural", "Além de ecológica, garante maior conforto nos espaços internos."),
             ("Vista privilegiada", "Visão para um dos principais pontos da cidade."),
         ]),
-        dict(eyebrow="Conforto &amp;", title="Exclusi&shy;<em>vidade</em>", img=(f"{UP}/2024/11/Kyma_Haus_Lateral_OK-1024x813.jpg", 1024, 813), feats=[
+        dict(eyebrow="Conforto &amp;", title="<em>Exclusividade</em>", img=(f"{UP}/2024/11/Kyma_Haus_Lateral_OK-1024x813.jpg", 1024, 813), feats=[
             ("Ambientes integrados", "Entregue com piso nivelado e fechamento na sacada."),
             ("Bancadas em granito", "Tornando o apartamento muito mais elegante e funcional."),
             ("Banheiros com circulação de ar natural", "Sem necessidade de ventilação mecânica."),
@@ -310,7 +333,7 @@ def footer() -> str:
     <div class="footer-grid">
       <div class="footer-brand">
         <img src="{LOGO_WHITE}" alt="{BRAND}" width="461" height="140" loading="lazy">
-        <p>Empreendimentos atuais, com qualidade e localização, no Vale do Paraíba e Litoral Norte de São Paulo.</p>
+        <p>Empreendimentos que unem qualidade, arquitetura e localização em endereços estratégicos.</p>
         <div class="footer-social">
           <a class="icon-btn" href="{INSTAGRAM_URL}" target="_blank" rel="noopener" aria-label="Instagram">{ic("insta")}</a>
           <a class="icon-btn" href="{wa("Olá! Vim pelo site da Kyma.")}" target="_blank" rel="noopener" aria-label="WhatsApp">{ic("wa")}</a>
@@ -341,6 +364,8 @@ def meta_items(p, cls="card__meta"):
     bits = []
     if p.get("area"):
         bits.append(f'<span>{ic("area")}{p["area"]}</span>')
+    else:
+        bits.append('<span class="area-pending">Metragem a confirmar</span>')
     bits.append(f'<span>{ic("pin")}{p["location"]}</span>')
     return f'<div class="{cls}">{"".join(bits)}</div>'
 
@@ -482,6 +507,7 @@ def layout(*, path, title, desc, body, active="", og_image=None, jsonld=(), proj
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&amp;family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&amp;display=swap">
 <link rel="stylesheet" href="/assets/vendor/leaflet/leaflet.css">
 <link rel="stylesheet" href="/assets/css/style.css?v={asset_version}">
+<link rel="preload" as="font" href="/assets/fonts/cormorant-garamond-normal.ttf" type="font/ttf" crossorigin>
 {pre}
 <script>document.documentElement.classList.replace('no-js','js')</script>
 {ld}
@@ -536,20 +562,16 @@ def page_home():
     shows = ""
     for i, p in enumerate(FEATURED):
         c, w, h = p["card"]
-        facts = "".join(filter(None, [
-            f'<span>{ic("pin")}{p["location"]}</span>',
-            f'<span>{ic("area")}{p["area"]}</span>' if p["area"] else "",
-            f'<span>{ic("bed")}{p["beds"]}</span>' if p["beds"] else "",
-        ]))
+        facts = f'<span>{ic("pin")}{p["location"]}</span>'
         shows += f"""
-<article class="show">
+<article class="show" data-featured="{p['slug']}">
   <a class="show__media reveal-img" href="/{p['slug']}" data-cursor="Ver">
     <span class="badge">{STATUS[p["status"]]}</span>
     {img(c, f"{p['full']} — {p['location']}", w, h)}
   </a>
   <div class="show__body">
     <h3 class="h2" data-split>{p['name']}</h3>
-    <p class="lead" data-reveal>{p['pitch']}</p>
+    <p class="lead" data-reveal>{FEATURED_COPY[p['slug']]}</p>
     <div class="show__meta" data-reveal>{facts}</div>
     <div data-reveal><a class="link-arrow" href="/{p['slug']}">Conhecer o {p['name']} <span class="line"></span></a></div>
   </div>
@@ -560,7 +582,7 @@ def page_home():
   <div class="hero__slides">{slide_html}</div>
   <div class="hero__content">
     <div class="container">
-      <h1 class="hero__tagline" data-hero>O privilégio de viver o singular</h1>
+      <h1 class="hero__tagline" data-hero><span>O privilégio de viver</span> <em>o singular</em></h1>
 
     </div>
   </div>
@@ -597,21 +619,7 @@ def page_home():
 
 {cta_band()}
 
-<section class="section section--tight">
-  <div class="container">
-    <div class="section-head section-head--split">
-      <div style="display:grid;gap:22px">
-        <p class="eyebrow" data-reveal>Redes sociais</p>
-        <h2 class="h2" data-split>Acompanhe cada <em>etapa da obra.</em></h2>
-      </div>
-      <a class="btn" data-reveal href="{INSTAGRAM_URL}" target="_blank" rel="noopener">{ic("insta")} @{INSTAGRAM}</a>
-    </div>
-    <div class="instagram-feed">
-      <blockquote class="instagram-media" data-instgrm-permalink="{INSTAGRAM_URL}" data-instgrm-version="14"><a href="{INSTAGRAM_URL}" target="_blank" rel="noopener">Veja as publicações mais recentes de @{INSTAGRAM} no Instagram.</a></blockquote>
-    </div>
-    <script async src="https://www.instagram.com/embed.js"></script>
-  </div>
-</section>"""
+{instagram_section()}"""
 
     return layout(
         path="/", page="home",
@@ -627,7 +635,7 @@ def page_listing(kind):
         items, path = PROJECTS, "/empreendimentos"
         title_html = "Nossos <em>empreendimentos</em>"
         eyebrow = "Empreendimentos Kyma"
-        lead = "Do lançamento à entrega, cada projeto Kyma nasce do mesmo compromisso: qualidade, localização e retorno para quem confia na gente."
+        lead = "Uma seleção de empreendimentos que expressam a identidade KYMA por meio de projetos arquitetônicos singulares e endereços cuidadosamente escolhidos."
         bg = (f"{UP}/2024/11/fechado-2.jpg", 1920, 1080)
         title = "Empreendimentos | Kyma Empreendimentos"
         desc = "Conheça todos os empreendimentos da Kyma: Haus, Mon Trésor, Azure, Monte Cristo, Monte Negro, Monte Zurich e mais, em São José dos Campos e Litoral Norte."
@@ -645,7 +653,7 @@ def page_listing(kind):
     fbtn = "".join(
         f'<button class="filter" type="button" data-filter="{k}" aria-pressed="{"true" if k == "todos" else "false"}">{l}</button>'
         for k, l in filters)
-    cards = "".join(card(p) for p in items)
+    cards = "".join(card(dict(p, card=("/assets/img/round2/uniko-interior.jpg",1280,720),contain=False)) if kind == "lancamentos" and p["slug"] == "uniko" else card(p) for p in items)
     extra_section = ""
     if kind == "lancamentos":
         extra_section = f"""
@@ -753,7 +761,7 @@ def page_haus():
   </a>
   <div class="split__body">
     <p class="eyebrow" data-reveal>{b['eyebrow']}</p>
-    <h3 class="h1" data-split>{b['title']}</h3>
+    <h3 class="h1{' word-together' if b['eyebrow'].startswith('Conforto') else ''}" data-split>{b['title']}</h3>
     <div class="feats" data-stagger="0.08">{feats}</div>
     <div data-reveal><a class="link-arrow" href="{p['wa_link']}" target="_blank" rel="noopener">Mais informações <span class="line"></span></a></div>
   </div>
@@ -879,6 +887,9 @@ def project_page_data(p):
         local['card'] = (first['src'], first['width'], first['height'])
         local['hero'] = local['card']
         local['contain'] = False
+    if p['slug'] == 'mon-tresor':
+        local['card'] = P['mon-tresor']['card']
+        local['hero'] = local['card']
     return local
 
 
@@ -894,7 +905,7 @@ def page_project(p):
     big = p["hero"] or p["card"]
     specs = [
         (ic("pin"), p["location"], "Localização"),
-        (ic("area"), p["area"] or "Consulte", "Área privativa"),
+        (ic("area"), p["area"] or "A confirmar", "Área privativa"),
         (ic("building"), status_txt, "Status"),
         (ic("clock"), "Atendimento", "Corretor dedicado"),
     ]
@@ -963,12 +974,12 @@ def page_about():
         for i, (t, x) in enumerate(VALUES))
     body = page_hero("Kyma <em>Empreendimentos</em>", "Quem somos", [("/", "Início"), (None, "Quem somos")],
                      bg=(f"{UP}/2022/05/quem-somos-02.png", 1550, 1330),
-                     lead="Construção civil com propósito, do Vale do Paraíba ao Litoral Norte de São Paulo.", short=True) + f"""
-<section class="section">
+                     lead="Desenvolvendo há 17 anos empreendimentos que unem qualidade construtiva, arquitetura atemporal e atenção aos detalhes.", short=True) + f"""
+<section class="section about-intro">
   <div class="container">
     <div class="split">
       <div class="split__media split__media--tall reveal-img">
-        <div data-parallax="0.08" style="height:112%;margin-top:-6%">{img(f"{UP}/2022/05/quem-somos-01.png", "Kyma Empreendimentos", 813, 830)}</div>
+        <div data-parallax="0.08" style="height:112%;margin-top:-6%">{img(f"{UP}/projects/haus/19.webp", "Portaria do Haus — acervo oficial Kyma", 2048, 2560)}</div>
         <span class="frame-deco"></span>
       </div>
       <div class="split__body">
@@ -981,17 +992,15 @@ def page_about():
         </div>
       </div>
     </div>
-    <div class="stats">
-      <div class="stat" data-reveal><span class="stat__num" data-count="{DISPLAY_PORTFOLIO_COUNT}" data-pad="2">{DISPLAY_PORTFOLIO_COUNT:02d}</span><span class="stat__label">Empreendimentos no portfólio</span></div>
-      <div class="stat" data-reveal><span class="stat__num" data-count="2" data-pad="2">02</span><span class="stat__label">Regiões atendidas</span></div>
-    </div>
   </div>
 </section>
 
-<section class="section theme-light">
+{portfolio_section()}
+
+<section class="section theme-light about-values">
   <div class="container">
     <div class="split split--rev">
-      <div class="split__media split__media--wide reveal-img">{img(f"{UP}/2022/05/quem-somos-02-1024x879.png", "Empreendimento Kyma", 1024, 879)}</div>
+      <div class="split__media split__media--wide reveal-img">{img(f"{UP}/projects/mon-tresor/05.webp", "Espaço gourmet do Montresor — acervo oficial Kyma", 2560, 1506)}</div>
       <div class="split__body">
         <p class="eyebrow" data-reveal>Comprometimento</p>
         <h2 class="h1" data-split>O que nos <em>move.</em></h2>
@@ -1002,23 +1011,9 @@ def page_about():
   </div>
 </section>
 
-<section class="section theme-ink2">
-  <div class="container">
-    <div class="section-head section-head--split">
-      <div style="display:grid;gap:22px">
-        <p class="eyebrow" data-reveal>Lançamentos</p>
-        <h2 class="h1" data-split>Conheça o <em>Uniko.</em></h2>
-        <p class="lead" data-reveal>Marque uma visita com um de nossos corretores e conheça os lançamento exclusivo na região.</p>
-      </div>
-      <a class="btn" data-reveal href="/lancamentos">Ver lançamentos {ic("arrow")}</a>
-    </div>
-    <div class="cards" data-stagger="0.08">{"".join(card(p, tags=False) for p in LAUNCHES)}</div>
-  </div>
-</section>
-{cta_band()}
-{portfolio_section()}"""
+"""
     return layout(
-        path="/quem-somos", active="/quem-somos",
+        path="/quem-somos", page="about", active="/quem-somos",
         title="Quem somos | Kyma Empreendimentos",
         desc="Conheça a Kyma Empreendimentos: construção civil no Vale do Paraíba e Litoral Norte de SP, com foco em qualidade, localização e retorno para o cliente.",
         body=body, og_image=f"{UP}/2022/05/quem-somos-02.png", preload=f"{UP}/2022/05/quem-somos-02.png",
@@ -1051,7 +1046,7 @@ def page_contact():
         <div class="field"><input id="f-tel" name="telefone" type="tel" placeholder=" " autocomplete="tel" required><label for="f-tel">Telefone / WhatsApp *</label></div>
         <div class="field"><input id="f-email" name="email" type="email" placeholder=" " autocomplete="email"><label for="f-email">E-mail</label></div>
         <div class="field full">
-          <label class="sr-only" for="f-assunto">Assunto</label><select id="f-assunto" name="assunto" aria-label="Assunto"><option>Procurando por um imóvel</option><option>Financeiro</option><option>Seguro de entrega</option><option>Trabalhe conosco</option><option>Negocie seu terreno</option><option>Portal do fornecedor</option><option>Boleto bancário</option><option>Solicitar assistência</option><option>Sou vizinho de uma obra</option><option>Relatar desvio de conduta</option><option>Enviar e-mail</option><option>Assessoria de imprensa</option><option>Privacidade de dados</option></select></div><div class="field full"><select id="f-int" name="interesse"><option value="">Ainda não sei — quero conhecer as opções</option>{options}</select>
+          <label class="sr-only" for="f-assunto">Assunto</label><select id="f-assunto" name="assunto" aria-label="Assunto"><option>Procurando por um imóvel</option><option>Financeiro</option><option>Seguro de entrega</option><option>Trabalhe conosco</option><option>Negocie seu terreno</option><option>Sou fornecedor</option><option>Boleto bancário</option><option>Solicitar assistência</option><option>Sou vizinho de uma obra</option><option>Relatar desvio de conduta</option><option>Enviar e-mail</option><option>Assessoria de imprensa</option><option>Privacidade de dados</option></select></div><div class="field full"><select id="f-int" name="interesse"><option value="">Ainda não sei — quero conhecer as opções</option>{options}</select>
           <label for="f-int">Interesse</label>
         </div>
         <div class="field full"><textarea id="f-msg" name="mensagem" placeholder=" " rows="4"></textarea><label for="f-msg">Mensagem</label></div>
@@ -1094,22 +1089,49 @@ def project_map(p):
 
 def locations_section():
     # Coordinates remain null until an exact address has been verified.
-    items = ''.join(f'''<li><button type="button" class="map-project" data-map-project="{p['slug']}"><span>{p['name']}</span><small>{escape(p['street'] or p['location'])}</small><small>{'Ver pin no mapa' if p['coordinates'] else 'Localização exata a confirmar'}</small></button></li>''' for p in PROJECTS)
+    items = ''.join(f'''<li><a class="map-project" href="/{p['slug']}" data-map-project="{p['slug']}"><span>{p['name']}</span><small>{escape(p['street'] or p['location'])}</small><small>{'Ver empreendimento' if p['coordinates'] else 'Pin a confirmar' if UPDATES[p['slug']]['exact_address'] else 'Localização exata a confirmar'}</small></a></li>''' for p in PROJECTS)
     return f'''<section class="section" id="enderecos"><div class="container">
-      <div class="section-head"><p class="eyebrow">Empreendimentos Kyma</p><h2 class="h1">Novos <em>endereços.</em></h2><p class="lead">Entre em contato e descubra o empreendimento ideal para o seu momento.</p></div>
+      <div class="section-head"><p class="eyebrow">Empreendimentos Kyma</p><h2 class="h1">Nossos <em>endereços</em></h2><p class="lead">Conheça a localização de cada empreendimento Kyma</p></div>
       <div class="locations-layout"><div><div id="project-map" class="project-map" role="region" aria-label="Mapa dos empreendimentos com localização confirmada"></div><p id="map-status" class="map-status" role="status">Selecione um empreendimento. Pins disponíveis para endereços confirmados.</p><p id="map-tiles-note" class="map-status" role="status"></p><noscript><p>Consulte os endereços na lista de empreendimentos.</p></noscript></div><ul class="map-projects">{items}</ul></div>
     </div></section>'''
 
 
 def progress_section(p):
-    value = p["progress"]
-    if value is None:
-        content = '<p class="progress-value progress-value--pending" aria-label="Percentual ainda não informado">—%</p><p class="lead">Percentual a informar. Entre em contato para acompanhar a evolução da obra.</p>'
-    else:
-        content = f'<p class="progress-value">{value}%</p><progress class="construction-progress" max="100" value="{value}" aria-label="Evolução da obra">{value}%</progress>'
-    return f'''<section class="section theme-ink2" id="evolucao" data-progress="{'' if value is None else value}"><div class="container">
-      <div class="section-head"><p class="eyebrow">{p['name']}</p><h2 class="h2">Evolução <em>da obra.</em></h2></div>
-      {content}<a class="link-arrow" href="{p['wa_link']}" target="_blank" rel="noopener">Entre em contato {ic('arrow')}</a>
+    value = p['progress']
+    target = '' if value is None else str(value)
+    label = 'A informar' if value is None else f'{value:g}%'
+    aria = '' if value is None else f' aria-valuenow="{value:g}"'
+    offset = 100 if value is None else 100 - value
+    stages = ''
+    for i, stage in enumerate(p.get('progress_stages', [])):
+        percent = stage.get('percent')
+        stage_target = '' if percent is None else str(percent)
+        stage_label = 'A informar' if percent is None else f'{percent:g}%'
+        stage_aria = '' if percent is None else f' aria-valuenow="{percent:g}"'
+        stages += f'''<div class="build-stage" data-progress-stage data-progress-target="{stage_target}" style="--stage-index:{i}">
+          <div class="build-stage__label"><span>{escape(stage['name'])}</span><strong data-progress-count>{stage_label}</strong></div>
+          <div class="build-stage__track" role="progressbar" aria-label="{escape(stage['name'])}" aria-valuemin="0" aria-valuemax="100"{stage_aria} aria-valuetext="{stage_label}"><span data-progress-fill style="--progress-value:{0 if percent is None else percent}%"></span></div>
+        </div>'''
+    if not stages:
+        stages = '<p class="build-progress__pending">Etapas detalhadas a informar.</p>'
+    return f'''<section class="section theme-ink2 build-progress" id="evolucao" data-progress="{target}" data-progress-section>
+      <div class="container build-progress__panel">
+        <div class="build-progress__intro"><p class="eyebrow">{p['name']}</p><h2 class="h2">Evolução <em>da obra.</em></h2><p class="lead">{'Percentual a informar. Entre em contato para acompanhar a evolução da obra.' if value is None else 'Acompanhe a evolução da obra.'}</p>
+          <a class="link-arrow" href="{p['wa_link']}" target="_blank" rel="noopener">Entre em contato {ic('arrow')}</a></div>
+        <div class="build-progress__overall" data-progress-overall data-progress-target="{target}" role="progressbar" aria-label="Evolução geral da obra" aria-valuemin="0" aria-valuemax="100"{aria} aria-valuetext="{label}">
+          <svg class="build-progress__ring" viewBox="0 0 180 180" aria-hidden="true"><circle class="build-progress__track" cx="90" cy="90" r="76"/><circle class="build-progress__fill" data-progress-ring cx="90" cy="90" r="76" pathLength="100" stroke-dasharray="100" style="stroke-dashoffset:{offset}"/></svg>
+          <div class="build-progress__number"><strong data-progress-count>{label}</strong><span>Evolução geral</span></div>
+        </div>
+        <div class="build-progress__stages">{stages}</div>
+      </div></section>'''
+
+
+def instagram_section():
+    # Official public profile embed. An authenticated live feed requires account authorization.
+    return f'''<section class="section instagram-section" id="instagram"><div class="container">
+      <div class="section-head section-head--split"><div><p class="eyebrow">Instagram</p><h2 class="h2">@{INSTAGRAM}</h2></div><a class="btn" href="{INSTAGRAM_URL}" target="_blank" rel="noopener">{ic('insta')} Ver no Instagram</a></div>
+      <div class="instagram-feed"><blockquote class="instagram-media" data-instgrm-permalink="{INSTAGRAM_URL}" data-instgrm-version="14"><a href="{INSTAGRAM_URL}" target="_blank" rel="noopener">Ver publicações de @{INSTAGRAM} no Instagram</a></blockquote></div>
+      <script async src="https://www.instagram.com/embed.js"></script>
     </div></section>'''
 
 
@@ -1122,7 +1144,7 @@ NEWS = [
 
 def blog_section():
     cards = ''.join(f'''<article class="card"><a class="card__media{' is-contain' if P[slug]['contain'] else ''}" href="/blog#{slug}">{img(*[P[slug]['card'][0], title, P[slug]['card'][1], P[slug]['card'][2]])}</a><div><p class="eyebrow">Notícias</p><h3 class="card__title"><a href="/blog#{slug}">{title}</a></h3><p class="muted">{text}</p></div></article>''' for slug, title, text in NEWS)
-    return f'''<section class="section theme-ink2"><div class="container"><div class="section-head section-head--split"><div><p class="eyebrow">Blog</p><h2 class="h1">Notícias e <em>destaques.</em></h2></div><a class="btn" href="/blog">Ver notícias {ic('arrow')}</a></div><div class="cards">{cards}</div></div></section>'''
+    return f'''<section class="section theme-ink2 news-highlights"><div class="container"><div class="section-head section-head--split"><div><p class="eyebrow">Blog</p><h2 class="h1">Notícias e <em>destaques.</em></h2></div><a class="btn" href="/blog">Ver notícias {ic('arrow')}</a></div><div class="cards">{cards}</div></div></section>'''
 
 
 def page_blog():
@@ -1132,7 +1154,7 @@ def page_blog():
 
 
 def help_section():
-    subjects = [('Procurando por um imóvel', 'key'), ('Financeiro', 'building'), ('Seguro de entrega', 'key'), ('Trabalhe conosco', 'building'), ('Negocie seu terreno', 'pin'), ('Portal do fornecedor', 'building'), ('Boleto bancário', 'building'), ('Solicitar assistência', 'building'), ('Sou vizinho de uma obra', 'pin'), ('Relatar desvio de conduta', 'phone'), ('Enviar e-mail', 'phone'), ('Assessoria de imprensa', 'phone'), ('Privacidade de dados', 'key')]
+    subjects = [('Procurando por um imóvel', 'key'), ('Financeiro', 'building'), ('Seguro de entrega', 'key'), ('Trabalhe conosco', 'building'), ('Negocie seu terreno', 'pin'), ('Sou fornecedor', 'building'), ('Boleto bancário', 'building'), ('Solicitar assistência', 'building'), ('Sou vizinho de uma obra', 'pin'), ('Relatar desvio de conduta', 'phone'), ('Enviar e-mail', 'phone'), ('Assessoria de imprensa', 'phone'), ('Privacidade de dados', 'key')]
     items = ''.join(f'<a class="help-card" href="#contact-form" data-subject="{label}">{ic(icon)}<span>{label}</span>{ic("arrow-ur")}</a>' for label, icon in subjects)
     return f'''<section class="section theme-light"><div class="container"><div class="section-head"><p class="eyebrow">Atendimento Kyma</p><h2 class="h1">Precisando de <em>ajuda?</em></h2><p class="lead">Selecione o assunto. O formulário abaixo encaminha sua mensagem à equipe pelo WhatsApp.</p></div><div class="help-grid">{items}</div></div></section>'''
 

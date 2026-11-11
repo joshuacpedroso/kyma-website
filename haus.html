@@ -30,7 +30,8 @@
 <link rel="preconnect" href="https://kyma.com.br">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&amp;family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&amp;display=swap">
 <link rel="stylesheet" href="/assets/vendor/leaflet/leaflet.css">
-<link rel="stylesheet" href="/assets/css/style.css?v=24df0df73e42">
+<link rel="stylesheet" href="/assets/css/style.css?v=9b57d26ecd72">
+<link rel="preload" as="font" href="/assets/fonts/cormorant-garamond-normal.ttf" type="font/ttf" crossorigin>
 <link rel="preload" as="image" href="/assets/img/projects/haus/17.webp" fetchpriority="high">
 <script>document.documentElement.classList.replace('no-js','js')</script>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Início", "item": "https://kyma.com.br/"}, {"@type": "ListItem", "position": 2, "name": "Empreendimentos", "item": "https://kyma.com.br/empreendimentos"}, {"@type": "ListItem", "position": 3, "name": "Haus", "item": "https://kyma.com.br/haus"}]}</script>
@@ -184,7 +185,7 @@
   </a>
   <div class="split__body">
     <p class="eyebrow" data-reveal>Conforto &amp;</p>
-    <h3 class="h1" data-split>Exclusi&shy;<em>vidade</em></h3>
+    <h3 class="h1 word-together" data-split><em>Exclusividade</em></h3>
     <div class="feats" data-stagger="0.08"><div class="feat"><span class="feat__i">01</span><div><h3>Ambientes integrados</h3><p>Entregue com piso nivelado e fechamento na sacada.</p></div></div><div class="feat"><span class="feat__i">02</span><div><h3>Bancadas em granito</h3><p>Tornando o apartamento muito mais elegante e funcional.</p></div></div><div class="feat"><span class="feat__i">03</span><div><h3>Banheiros com circulação de ar natural</h3><p>Sem necessidade de ventilação mecânica.</p></div></div><div class="feat"><span class="feat__i">04</span><div><h3>Revestimento Portobello</h3><p>Áreas frias com revestimento Portobello.</p></div></div></div>
     <div data-reveal><a class="link-arrow" href="https://w.app/CoXsmt" target="_blank" rel="noopener">Mais informações <span class="line"></span></a></div>
   </div>
@@ -225,10 +226,16 @@
   </div>
 </section>
 
-<section class="section theme-ink2" id="evolucao" data-progress=""><div class="container">
-      <div class="section-head"><p class="eyebrow">Haus</p><h2 class="h2">Evolução <em>da obra.</em></h2></div>
-      <p class="progress-value progress-value--pending" aria-label="Percentual ainda não informado">—%</p><p class="lead">Percentual a informar. Entre em contato para acompanhar a evolução da obra.</p><a class="link-arrow" href="https://w.app/CoXsmt" target="_blank" rel="noopener">Entre em contato <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
-    </div></section>
+<section class="section theme-ink2 build-progress" id="evolucao" data-progress="" data-progress-section>
+      <div class="container build-progress__panel">
+        <div class="build-progress__intro"><p class="eyebrow">Haus</p><h2 class="h2">Evolução <em>da obra.</em></h2><p class="lead">Percentual a informar. Entre em contato para acompanhar a evolução da obra.</p>
+          <a class="link-arrow" href="https://w.app/CoXsmt" target="_blank" rel="noopener">Entre em contato <svg aria-hidden="true"><use href="#i-arrow"/></svg></a></div>
+        <div class="build-progress__overall" data-progress-overall data-progress-target="" role="progressbar" aria-label="Evolução geral da obra" aria-valuemin="0" aria-valuemax="100" aria-valuetext="A informar">
+          <svg class="build-progress__ring" viewBox="0 0 180 180" aria-hidden="true"><circle class="build-progress__track" cx="90" cy="90" r="76"/><circle class="build-progress__fill" data-progress-ring cx="90" cy="90" r="76" pathLength="100" stroke-dasharray="100" style="stroke-dashoffset:100"/></svg>
+          <div class="build-progress__number"><strong data-progress-count>A informar</strong><span>Evolução geral</span></div>
+        </div>
+        <div class="build-progress__stages"><p class="build-progress__pending">Etapas detalhadas a informar.</p></div>
+      </div></section>
 
 <section class="section section--tight">
   <div class="container">
@@ -257,22 +264,22 @@
     <div class="hscroll" data-reveal>
 <article class="card">
   <a class="card__media" href="/azure" data-cursor="Ver" data-tilt aria-label="Conhecer o Azure">
-    <span class="badge">Em obras</span><img src="/assets/img/2025/01/obra-azure-new-1024x573.jpg" alt="Residencial Azure — Tabatinga · Caraguatatuba" width="1024" height="573" loading="lazy" decoding="async">
+    <span class="badge">Em obras</span><img src="/assets/img/round2/azure-fachada.jpg" alt="Residencial Azure — Tabatinga · Caraguatatuba" width="1280" height="1600" loading="lazy" decoding="async">
     <span class="card__go"><svg aria-hidden="true"><use href="#i-arrow-ur"/></svg></span>
   </a>
   <div>
     <h3 class="card__title"><a href="/azure">Azure</a></h3>
-    <div class="card__meta"><span><svg aria-hidden="true"><use href="#i-pin"/></svg>Tabatinga · Caraguatatuba</span></div>
+    <div class="card__meta"><span class="area-pending">Metragem a confirmar</span><span><svg aria-hidden="true"><use href="#i-pin"/></svg>Tabatinga · Caraguatatuba</span></div>
   </div>
 </article>
 <article class="card">
-  <a class="card__media is-contain" href="/uniko" data-cursor="Ver" data-tilt aria-label="Conhecer o Uniko">
-    <span class="badge">Lançamento</span><img src="/assets/img/brand/uniko-oficial.svg" alt="Uniko Vila Ema — Vila Ema · São José dos Campos" width="733" height="500" loading="lazy" decoding="async" class="identity-logo logo-uniko">
+  <a class="card__media" href="/uniko" data-cursor="Ver" data-tilt aria-label="Conhecer o Uniko">
+    <span class="badge">Lançamento</span><img src="/assets/img/round2/uniko-fachada.jpg" alt="Uniko Vila Ema — Vila Ema · São José dos Campos" width="1185" height="1600" loading="lazy" decoding="async">
     <span class="card__go"><svg aria-hidden="true"><use href="#i-arrow-ur"/></svg></span>
   </a>
   <div>
     <h3 class="card__title"><a href="/uniko">Uniko</a></h3>
-    <div class="card__meta"><span><svg aria-hidden="true"><use href="#i-pin"/></svg>Vila Ema · São José dos Campos</span></div>
+    <div class="card__meta"><span class="area-pending">Metragem a confirmar</span><span><svg aria-hidden="true"><use href="#i-pin"/></svg>Vila Ema · São José dos Campos</span></div>
   </div>
 </article>
 <article class="card">
@@ -317,12 +324,12 @@
 </article>
 <article class="card">
   <a class="card__media is-contain" href="/altos-do-parque" data-cursor="Ver" data-tilt aria-label="Conhecer o Altos do Parque">
-    <span class="badge">Entregue</span><img src="/assets/img/2022/05/altos-do-parque0.png" alt="Altos do Parque — Região Sul" width="500" height="500" loading="lazy" decoding="async" class="identity-logo logo-altos-do-parque">
+    <span class="badge">Entregue</span><img src="/assets/img/2022/05/altos-do-parque0.png" alt="Altos do Parque — Parque Industrial · São José dos Campos" width="500" height="500" loading="lazy" decoding="async" class="identity-logo logo-altos-do-parque">
     <span class="card__go"><svg aria-hidden="true"><use href="#i-arrow-ur"/></svg></span>
   </a>
   <div>
     <h3 class="card__title"><a href="/altos-do-parque">Altos do Parque</a></h3>
-    <div class="card__meta"><span><svg aria-hidden="true"><use href="#i-pin"/></svg>Região Sul</span></div>
+    <div class="card__meta"><span><svg aria-hidden="true"><use href="#i-area"/></svg>68,85m²</span><span><svg aria-hidden="true"><use href="#i-pin"/></svg>Parque Industrial · São José dos Campos</span></div>
   </div>
 </article>
 <article class="card">
@@ -332,7 +339,7 @@
   </a>
   <div>
     <h3 class="card__title"><a href="/serra-do-sincora">Serra do Sincorá</a></h3>
-    <div class="card__meta"><span><svg aria-hidden="true"><use href="#i-pin"/></svg>Consulte a localização</span></div>
+    <div class="card__meta"><span class="area-pending">Metragem a confirmar</span><span><svg aria-hidden="true"><use href="#i-pin"/></svg>Consulte a localização</span></div>
   </div>
 </article></div>
   </div>
@@ -348,7 +355,7 @@
     <div class="footer-grid">
       <div class="footer-brand">
         <img src="/assets/img/brand/kyma-negativo.png" alt="Kyma Empreendimentos" width="461" height="140" loading="lazy">
-        <p>Empreendimentos atuais, com qualidade e localização, no Vale do Paraíba e Litoral Norte de São Paulo.</p>
+        <p>Empreendimentos que unem qualidade, arquitetura e localização em endereços estratégicos.</p>
         <div class="footer-social">
           <a class="icon-btn" href="https://www.instagram.com/kymaempreendimentos/" target="_blank" rel="noopener" aria-label="Instagram"><svg aria-hidden="true"><use href="#i-insta"/></svg></a>
           <a class="icon-btn" href="https://wa.me/551238784488?text=Ol%C3%A1%21%20Vim%20pelo%20site%20da%20Kyma." target="_blank" rel="noopener" aria-label="WhatsApp"><svg aria-hidden="true"><use href="#i-wa"/></svg></a>
@@ -373,9 +380,9 @@
   </div>
 
 </footer>
-<script src="/assets/js/data.js?v=24df0df73e42" defer></script>
+<script src="/assets/js/data.js?v=9b57d26ecd72" defer></script>
 <script src="/assets/vendor/leaflet/leaflet.js" defer></script>
-<script src="/assets/js/main.js?v=24df0df73e42" defer></script>
-<script src="/assets/js/chat.js?v=24df0df73e42" defer></script>
+<script src="/assets/js/main.js?v=9b57d26ecd72" defer></script>
+<script src="/assets/js/chat.js?v=9b57d26ecd72" defer></script>
 </body>
 </html>

@@ -3,7 +3,8 @@
     "progress_percent": null,
     "exact_address": null,
     "coordinates": null,
-    "coordinate_source": null
+    "coordinate_source": null,
+    "progress_stages": []
   },
   "haus": {
     "progress_percent": null,
@@ -12,48 +13,56 @@
       -23.2044083,
       -45.9029535
     ],
-    "coordinate_source": "OpenStreetMap / Nominatim, Rua Padre Rodolfo, 286, conferido em 09/11/2026"
+    "coordinate_source": "OpenStreetMap / Nominatim, Rua Padre Rodolfo, 286, conferido em 09/11/2026",
+    "progress_stages": []
   },
   "mon-tresor": {
     "progress_percent": null,
     "exact_address": null,
     "coordinates": null,
-    "coordinate_source": null
+    "coordinate_source": null,
+    "progress_stages": []
   },
   "azure": {
     "progress_percent": null,
     "exact_address": null,
     "coordinates": null,
-    "coordinate_source": null
+    "coordinate_source": null,
+    "progress_stages": []
   },
   "monte-cristo": {
     "progress_percent": null,
     "exact_address": null,
     "coordinates": null,
-    "coordinate_source": null
+    "coordinate_source": null,
+    "progress_stages": []
   },
   "monte-negro": {
     "progress_percent": null,
     "exact_address": null,
     "coordinates": null,
-    "coordinate_source": null
+    "coordinate_source": null,
+    "progress_stages": []
   },
   "monte-zurich": {
     "progress_percent": null,
     "exact_address": null,
     "coordinates": null,
-    "coordinate_source": null
+    "coordinate_source": null,
+    "progress_stages": []
   },
   "altos-do-parque": {
     "progress_percent": null,
-    "exact_address": null,
+    "exact_address": "Rua Palmares, 686, Parque Industrial, São José dos Campos – SP",
     "coordinates": null,
-    "coordinate_source": null
+    "coordinate_source": null,
+    "progress_stages": []
   },
   "serra-do-sincora": {
     "progress_percent": null,
     "exact_address": null,
     "coordinates": null,
-    "coordinate_source": null
+    "coordinate_source": null,
+    "progress_stages": []
   }
 }

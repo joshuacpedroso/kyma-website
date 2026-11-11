@@ -1,0 +1,23 @@
+{
+  "altos-do-parque": {
+    "area": "68,85m²",
+    "source": "https://kyma.com.br/altos-do-parque/",
+    "checked": "2026-11-11",
+    "context": "LOCALIZAÇÃO Rua Palmares 686 – Parque Industrial; Habite-se 01/10/2021; 68,85m²"
+  },
+  "uniko": {
+    "area": null,
+    "source": "Histórico do repositório e https://kyma.com.br/uniko/",
+    "reason": "Sem metragem no histórico; página antiga não encontrada."
+  },
+  "azure": {
+    "area": null,
+    "source": "https://kyma.com.br/azure/ e histórico do repositório",
+    "reason": "Página oficial identifica Tabatinga e não informa metragem do Azure; valores de outros cards relacionados não foram atribuídos ao Azure."
+  },
+  "serra-do-sincora": {
+    "area": null,
+    "source": "Histórico do repositório e https://kyma.com.br/serra-do-sincora/",
+    "reason": "Sem metragem no histórico; página antiga não encontrada."
+  }
+}

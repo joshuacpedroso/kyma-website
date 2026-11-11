@@ -18,8 +18,8 @@ window.KYMA = {
       "coordinates": null,
       "mapSource": null,
       "url": "/uniko",
-      "thumb": "/assets/img/brand/uniko-oficial.svg",
-      "contain": true
+      "thumb": "/assets/img/round2/uniko-fachada.jpg",
+      "contain": false
     },
     {
       "slug": "haus",
@@ -36,7 +36,7 @@ window.KYMA = {
       ],
       "mapSource": "OpenStreetMap / Nominatim, Rua Padre Rodolfo, 286, conferido em 09/11/2026",
       "url": "/haus",
-      "thumb": "/assets/img/2025/01/obra-haus-1024x573.jpg",
+      "thumb": "/assets/img/round2/haus-fachada.jpg",
       "contain": false
     },
     {
@@ -66,7 +66,7 @@ window.KYMA = {
       "coordinates": null,
       "mapSource": null,
       "url": "/azure",
-      "thumb": "/assets/img/2025/01/obra-azure-new-1024x573.jpg",
+      "thumb": "/assets/img/round2/azure-fachada.jpg",
       "contain": false
     },
     {
@@ -118,8 +118,8 @@ window.KYMA = {
       "slug": "altos-do-parque",
       "name": "Altos do Parque",
       "status": "entregue",
-      "location": "Região Sul",
-      "area": null,
+      "location": "Parque Industrial · São José dos Campos",
+      "area": "68,85m²",
       "beds": null,
       "pitch": "Localização privilegiada na região Sul, com a natureza como vizinha.",
       "progress": null,
