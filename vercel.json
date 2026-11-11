@@ -96,5 +96,7 @@
     "api/adm.js": {
       "includeFiles": "{content/**,assets/project-media.json}"
     }
-  }
+  },
+  "buildCommand": "node tools/prepare-vercel.cjs",
+  "outputDirectory": ".vercel-public"
 }

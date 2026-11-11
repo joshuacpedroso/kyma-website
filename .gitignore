@@ -10,3 +10,5 @@ private/.login.lock
 *.tmp
 
 /private/admin-config.json
+
+/.vercel-public/
