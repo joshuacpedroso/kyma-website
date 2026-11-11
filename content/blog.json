@@ -1,0 +1,26 @@
+[
+  {
+    "id": "uniko",
+    "project_slug": "uniko",
+    "title": "Uniko: conheça o lançamento Kyma",
+    "text": "O Uniko é o lançamento da Kyma. Fale com nossa equipe para receber as informações do empreendimento.",
+    "image": "/assets/img/round2/uniko-fachada.jpg",
+    "date": ""
+  },
+  {
+    "id": "haus",
+    "project_slug": "haus",
+    "title": "Haus: lazer de clube na Vila Ema",
+    "text": "Conheça as plantas de dois dormitórios, os espaços de lazer e a localização do Haus em São José dos Campos.",
+    "image": "/assets/img/round2/haus-fachada.jpg",
+    "date": ""
+  },
+  {
+    "id": "azure",
+    "project_slug": "azure",
+    "title": "Azure: acompanhe a obra em Tabatinga",
+    "text": "O Azure está em obras no Litoral Norte. Entre em contato para conhecer o empreendimento e receber as atualizações.",
+    "image": "/assets/img/round2/azure-fachada.jpg",
+    "date": ""
+  }
+]

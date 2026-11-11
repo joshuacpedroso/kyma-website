@@ -1,0 +1,308 @@
+[
+  {
+    "slug": "uniko",
+    "name": "Uniko",
+    "full": "Uniko Vila Ema",
+    "status": "lancamento",
+    "region": "vale",
+    "city": "São José dos Campos",
+    "hood": "Vila Ema",
+    "location": "Vila Ema · São José dos Campos",
+    "street": null,
+    "area": null,
+    "beds": null,
+    "pitch": "Um novo endereço com a assinatura Kyma. Entre em contato para conhecer o lançamento.",
+    "card": [
+      "/assets/img/round2/uniko-fachada.jpg",
+      1185,
+      1600
+    ],
+    "hero": null,
+    "hero_logo": [
+      "/assets/img/brand/uniko-oficial.svg",
+      733,
+      500
+    ],
+    "logo": [
+      "/assets/img/brand/uniko-oficial.svg",
+      "/assets/img/brand/uniko-oficial.svg"
+    ],
+    "contain": false,
+    "wa_link": "https://wa.me/551238784488?text=Ol%C3%A1%21%20Vim%20pelo%20site%20e%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es%20sobre%20o%20Uniko.",
+    "featured_order": 1,
+    "featured_text": "Um novo endereço com a assinatura Kyma. Studios e apartamentos de 1 dormitório que valorizam praticidade, conforto e contemporaneidade em Vila Ema.",
+    "additional_description": "Quer saber mais sobre plantas, disponibilidade e condições? Nosso time de corretores está pronto para te atender com todas as informações atualizadas.",
+    "launch_card": [
+      "/assets/img/round2/uniko-interior.jpg",
+      1280,
+      720
+    ]
+  },
+  {
+    "slug": "haus",
+    "name": "Haus",
+    "full": "Residencial Haus Vila Ema",
+    "status": "em-obras",
+    "region": "vale",
+    "city": "São José dos Campos",
+    "hood": "Vila Ema",
+    "location": "Vila Ema · São José dos Campos",
+    "street": "Rua Padre Rodolfo, 286",
+    "area": "79,95m² e 82,21m²",
+    "beds": "2 dormitórios",
+    "pitch": "Moderno, sofisticado e completo, em uma das regiões mais desejadas de São José dos Campos.",
+    "card": [
+      "/assets/img/round2/haus-fachada.jpg",
+      1280,
+      1600
+    ],
+    "hero": [
+      "/assets/img/2024/11/Kyma_Haus_Lateral_OK-2048x1625.jpg",
+      2048,
+      1625
+    ],
+    "logo": [
+      "/assets/img/2022/05/haus0.png",
+      "/assets/img/2022/05/haus0.png"
+    ],
+    "wa_link": "https://w.app/CoXsmt",
+    "contain": false,
+    "featured_order": 2,
+    "featured_text": "Arquitetura Atemporal e conforto em cada detalhe, em um dos endereços mais desejados de São José dos Campos.",
+    "additional_description": "Quer saber mais sobre plantas, disponibilidade e condições? Nosso time de corretores está pronto para te atender com todas as informações atualizadas."
+  },
+  {
+    "slug": "mon-tresor",
+    "name": "Mon Trésor",
+    "full": "Residencial Mon Trésor",
+    "status": "entregue",
+    "region": "vale",
+    "city": "São José dos Campos",
+    "hood": "Vila Ema",
+    "location": "Vila Ema · São José dos Campos",
+    "street": "Em frente à Igreja Sagrada Família",
+    "area": "114,66m²",
+    "beds": null,
+    "pitch": "Arquitetura marcante e plantas amplas, em frente à Igreja Sagrada Família — um novo marco na Vila Ema.",
+    "card": [
+      "/assets/img/2025/01/obra-mon-2-1024x573.jpg",
+      1024,
+      573
+    ],
+    "hero": [
+      "/assets/img/2025/01/obra-mon-2.jpg",
+      1200,
+      672
+    ],
+    "logo": [
+      "/assets/img/2022/05/monte-tresor0.png",
+      "/assets/img/2022/05/monte-tresor0.png"
+    ],
+    "contain": false,
+    "wa_link": "https://wa.me/551238784488?text=Ol%C3%A1%21%20Vim%20pelo%20site%20e%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es%20sobre%20o%20Mon%20Tr%C3%A9sor.",
+    "featured_order": null,
+    "featured_text": "Arquitetura marcante e plantas amplas, em frente à Igreja Sagrada Família — um novo marco na Vila Ema.",
+    "additional_description": "Todos os dias recebemos contatos perguntando se o Residencial Mon Trésor é a obra em frente à Igreja Sagrada Família — e a resposta é sim! Com ótima arquitetura e localização, o empreendimento é um marco no bairro, com plantas de 114,66m².",
+    "presentation_from_card": true
+  },
+  {
+    "slug": "azure",
+    "name": "Azure",
+    "full": "Residencial Azure",
+    "status": "em-obras",
+    "region": "litoral",
+    "city": "Caraguatatuba",
+    "hood": "Tabatinga",
+    "location": "Tabatinga · Caraguatatuba",
+    "street": null,
+    "area": null,
+    "beds": null,
+    "pitch": "O Litoral Norte como endereço: um empreendimento pensado para quem quer viver — ou investir — perto do mar.",
+    "card": [
+      "/assets/img/round2/azure-fachada.jpg",
+      1280,
+      1600
+    ],
+    "hero": [
+      "/assets/img/2025/01/obra-azure-new.jpg",
+      1200,
+      672
+    ],
+    "logo": [
+      "/assets/img/2022/05/azure.png",
+      "/assets/img/2022/05/azure.png"
+    ],
+    "contain": false,
+    "wa_link": "https://wa.me/551238784488?text=Ol%C3%A1%21%20Vim%20pelo%20site%20e%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es%20sobre%20o%20Azure.",
+    "featured_order": 3,
+    "featured_text": "O privilégio de viver próximo ao mar. Um empreendimento que une a atmosfera do litoral à qualidade Kyma.",
+    "additional_description": "Localizado em Tabatinga, Caraguatatuba, o Azure leva a assinatura Kyma para o Litoral Norte. Fale com nosso time para conhecer plantas, estágio de obra e condições."
+  },
+  {
+    "slug": "monte-cristo",
+    "name": "Monte Cristo",
+    "full": "Residencial Monte Cristo",
+    "status": "entregue",
+    "region": "vale",
+    "city": "São José dos Campos",
+    "hood": null,
+    "location": "São José dos Campos · SP",
+    "street": null,
+    "area": "65,76m²",
+    "beds": null,
+    "pitch": "Plantas inteligentes e bem distribuídas, com a assinatura de qualidade Kyma.",
+    "card": [
+      "/assets/img/2022/05/site-miniatura-monte-cristo-1-1024x576.png",
+      1024,
+      576
+    ],
+    "hero": [
+      "/assets/img/2022/05/site-miniatura-monte-cristo-1.png",
+      1200,
+      675
+    ],
+    "logo": [
+      "/assets/img/2022/05/monte-cristo0.png",
+      "/assets/img/2022/05/monte-cristo0.png"
+    ],
+    "contain": false,
+    "wa_link": "https://wa.me/551238784488?text=Ol%C3%A1%21%20Vim%20pelo%20site%20e%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es%20sobre%20o%20Monte%20Cristo.",
+    "featured_order": null,
+    "featured_text": "Plantas inteligentes e bem distribuídas, com a assinatura de qualidade Kyma.",
+    "additional_description": "Quer saber mais sobre plantas, disponibilidade e condições? Nosso time de corretores está pronto para te atender com todas as informações atualizadas."
+  },
+  {
+    "slug": "monte-negro",
+    "name": "Monte Negro",
+    "full": "Residencial Monte Negro",
+    "status": "entregue",
+    "region": "vale",
+    "city": "São José dos Campos",
+    "hood": null,
+    "location": "São José dos Campos · SP",
+    "street": null,
+    "area": "68,94m²",
+    "beds": null,
+    "pitch": "Conforto e praticidade para o dia a dia, em uma localização estratégica da cidade.",
+    "card": [
+      "/assets/img/2022/05/capa-monte-negro-1024x576.png",
+      1024,
+      576
+    ],
+    "hero": [
+      "/assets/img/2022/05/capa-monte-negro.png",
+      1200,
+      675
+    ],
+    "logo": [
+      "/assets/img/2022/05/monte-negro0.png",
+      "/assets/img/2022/05/monte-negro0.png"
+    ],
+    "contain": false,
+    "wa_link": "https://wa.me/551238784488?text=Ol%C3%A1%21%20Vim%20pelo%20site%20e%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es%20sobre%20o%20Monte%20Negro.",
+    "featured_order": null,
+    "featured_text": "Conforto e praticidade para o dia a dia, em uma localização estratégica da cidade.",
+    "additional_description": "Quer saber mais sobre plantas, disponibilidade e condições? Nosso time de corretores está pronto para te atender com todas as informações atualizadas."
+  },
+  {
+    "slug": "monte-zurich",
+    "name": "Monte Zurich",
+    "full": "Residencial Monte Zurich",
+    "status": "entregue",
+    "region": "vale",
+    "city": "São José dos Campos",
+    "hood": null,
+    "location": "São José dos Campos · SP",
+    "street": null,
+    "area": "69,60m²",
+    "beds": null,
+    "pitch": "Linhas contemporâneas e espaços bem aproveitados para viver com leveza.",
+    "card": [
+      "/assets/img/2022/05/capa-zurich-1024x576.png",
+      1024,
+      576
+    ],
+    "hero": [
+      "/assets/img/2022/05/capa-zurich.png",
+      1200,
+      675
+    ],
+    "logo": [
+      "/assets/img/2022/05/monte-zurich0.png",
+      "/assets/img/2022/05/monte-zurich0.png"
+    ],
+    "contain": false,
+    "wa_link": "https://wa.me/551238784488?text=Ol%C3%A1%21%20Vim%20pelo%20site%20e%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es%20sobre%20o%20Monte%20Zurich.",
+    "featured_order": null,
+    "featured_text": "Linhas contemporâneas e espaços bem aproveitados para viver com leveza.",
+    "additional_description": "Quer saber mais sobre plantas, disponibilidade e condições? Nosso time de corretores está pronto para te atender com todas as informações atualizadas."
+  },
+  {
+    "slug": "altos-do-parque",
+    "name": "Altos do Parque",
+    "full": "Altos do Parque",
+    "status": "entregue",
+    "region": "vale",
+    "city": "São José dos Campos",
+    "hood": "Parque Industrial",
+    "location": "Parque Industrial · São José dos Campos",
+    "street": "Rua Palmares, 686",
+    "area": "68,85m²",
+    "beds": null,
+    "pitch": "Localização privilegiada na região Sul, com a natureza como vizinha.",
+    "card": [
+      "/assets/img/2022/05/altos-do-parque0.png",
+      500,
+      500
+    ],
+    "contain": true,
+    "hero": null,
+    "hero_logo": [
+      "/assets/img/2022/05/altos-do-parque0.png",
+      500,
+      500
+    ],
+    "logo": [
+      "/assets/img/2022/05/altos-do-parque0.png",
+      "/assets/img/2022/05/altos-do-parque0.png"
+    ],
+    "wa_link": "https://wa.me/551238784488?text=Ol%C3%A1%21%20Vim%20pelo%20site%20e%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es%20sobre%20o%20Altos%20do%20Parque.",
+    "featured_order": null,
+    "featured_text": "Localização privilegiada na região Sul, com a natureza como vizinha.",
+    "additional_description": "Quer saber mais sobre plantas, disponibilidade e condições? Nosso time de corretores está pronto para te atender com todas as informações atualizadas."
+  },
+  {
+    "slug": "serra-do-sincora",
+    "name": "Serra do Sincorá",
+    "full": "Serra do Sincorá",
+    "status": "entregue",
+    "region": "outros",
+    "city": null,
+    "hood": null,
+    "location": "Consulte a localização",
+    "street": null,
+    "area": null,
+    "beds": null,
+    "pitch": "Um projeto que integra o portfólio Kyma — fale com nosso time para conhecer os detalhes.",
+    "card": [
+      "/assets/img/2022/05/sincora00.jpg",
+      500,
+      500
+    ],
+    "contain": true,
+    "hero": null,
+    "hero_logo": [
+      "/assets/img/2022/05/sincora00.jpg",
+      500,
+      500
+    ],
+    "logo": [
+      "/assets/img/2022/05/sincora00.jpg",
+      "/assets/img/2022/05/sincora00.jpg"
+    ],
+    "wa_link": "https://wa.me/551238784488?text=Ol%C3%A1%21%20Vim%20pelo%20site%20e%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es%20sobre%20o%20Serra%20do%20Sincor%C3%A1.",
+    "featured_order": null,
+    "featured_text": "Um projeto que integra o portfólio Kyma — fale com nosso time para conhecer os detalhes.",
+    "additional_description": "Quer saber mais sobre plantas, disponibilidade e condições? Nosso time de corretores está pronto para te atender com todas as informações atualizadas."
+  }
+]

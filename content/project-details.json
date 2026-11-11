@@ -1,0 +1,181 @@
+{
+  "haus": {
+    "about": [
+      "O HAUS Vila Ema está localizado em uma das regiões mais desejadas de São José dos Campos, com infraestrutura completa e opções de lazer, cultura, gastronomia e serviços. A torre possui plantas de 79,95m² e 82,21m², com dois dormitórios.",
+      "O empreendimento combina conforto, conveniência, modernidade e uma localização privilegiada — ideal para quem busca qualidade de vida, oferecendo facilidade na rotina dos proprietários ou se tornando uma ótima oportunidade de investimento."
+    ],
+    "private": [
+      "Área gourmet com churrasqueira",
+      "Área técnica e infra para ar-condicionado",
+      "Bancada em granito",
+      "Conceito aberto",
+      "Fechadura biométrica",
+      "Hobby box",
+      "Porta anti-impacto",
+      "2 vagas cobertas e demarcadas em subsolo"
+    ],
+    "common": [
+      "Piscina adulto e infantil com deck molhado e borda infinita",
+      "Academia",
+      "Espaço gym",
+      "Sauna",
+      "Solarium",
+      "Coworking outdoor e indoor",
+      "Sala de reuniões",
+      "Salão de festas",
+      "Sala de jogos",
+      "Brinquedoteca",
+      "Playground",
+      "Espaço lareira",
+      "Espaço outdoor",
+      "Lounge externo",
+      "Sala de estar",
+      "Churrasqueira",
+      "Bicicletário",
+      "Carregamento veicular",
+      "Pulmão de segurança"
+    ],
+    "blocks": [
+      {
+        "eyebrow": "Open",
+        "title": "Open <em>space</em>",
+        "img": [
+          "/assets/img/2024/11/fechado-2.jpg",
+          1920,
+          1080
+        ],
+        "feats": [
+          [
+            "Ar-condicionado",
+            "Infraestrutura para ar-condicionado entregue em dormitórios e sala."
+          ],
+          [
+            "Aquecimento de água individual a gás",
+            "Proporcionando muito mais praticidade."
+          ],
+          [
+            "Churrasqueira integrada",
+            "Churrasqueira a carvão com ponto extra para gás."
+          ],
+          [
+            "Fechaduras elétricas",
+            "Fechadura eletromecânica nas áreas sociais."
+          ]
+        ]
+      },
+      {
+        "eyebrow": "O imóvel",
+        "title": "Do seu <em>jeito</em>",
+        "img": [
+          "/assets/img/2024/11/1_3-Foto.jpg",
+          1074,
+          1080
+        ],
+        "feats": [
+          [
+            "Menos ruídos",
+            "Borracha atenuadora de ruídos nas portas."
+          ],
+          [
+            "Personalização em revestimentos e pedras",
+            "Crie a sua identidade para o imóvel."
+          ],
+          [
+            "Ventilação natural",
+            "Além de ecológica, garante maior conforto nos espaços internos."
+          ],
+          [
+            "Vista privilegiada",
+            "Visão para um dos principais pontos da cidade."
+          ]
+        ]
+      },
+      {
+        "eyebrow": "Conforto &amp;",
+        "title": "<em>Exclusividade</em>",
+        "img": [
+          "/assets/img/2024/11/Kyma_Haus_Lateral_OK-1024x813.jpg",
+          1024,
+          813
+        ],
+        "feats": [
+          [
+            "Ambientes integrados",
+            "Entregue com piso nivelado e fechamento na sacada."
+          ],
+          [
+            "Bancadas em granito",
+            "Tornando o apartamento muito mais elegante e funcional."
+          ],
+          [
+            "Banheiros com circulação de ar natural",
+            "Sem necessidade de ventilação mecânica."
+          ],
+          [
+            "Revestimento Portobello",
+            "Áreas frias com revestimento Portobello."
+          ]
+        ]
+      }
+    ],
+    "plans": [
+      [
+        "/assets/img/2024/11/planta-1-haus.png",
+        "/assets/img/2024/11/planta-1-haus-1024x870.png",
+        1024,
+        870,
+        "Planta tipo 1"
+      ],
+      [
+        "/assets/img/2024/11/planta-2-haus.png",
+        "/assets/img/2024/11/planta-2-haus-1024x872.png",
+        1024,
+        872,
+        "Planta tipo 2"
+      ]
+    ],
+    "hero_title": "Haus <em>Vila Ema</em>",
+    "intro_heading": "Moderno, sofisticado e <em>completo.</em>",
+    "intro_image": [
+      "/assets/img/2024/11/Kyma_Haus_Lateral_OK-1024x813.jpg",
+      1024,
+      813
+    ],
+    "specs": [
+      [
+        "area",
+        "79,95 e 82,21m²",
+        "Área privativa"
+      ],
+      [
+        "bed",
+        "2 dormitórios",
+        "1 suíte + 1 banheiro"
+      ],
+      [
+        "car",
+        "2 vagas",
+        "Cobertas e demarcadas no subsolo"
+      ],
+      [
+        "key",
+        "Biometria",
+        "Fechadura biométrica e porta anti-impacto"
+      ]
+    ],
+    "private_heading": "Cada detalhe <em>pensado.</em>",
+    "common_heading": "Lazer de <em>clube.</em>",
+    "common_intro": "São {count} espaços para viver, trabalhar, receber e desacelerar — sem sair de casa.",
+    "plans_heading": "Espaços que <em>se adaptam.</em>",
+    "gallery_heading": "Veja de <em>perto.</em>",
+    "location_heading": "Rua Padre Rodolfo, 286 — <em>Vila Ema.</em>",
+    "location_description": "Uma das regiões mais desejadas de São José dos Campos, com infraestrutura completa e opções de lazer, cultura, gastronomia e serviços.",
+    "cta_title": "Seu novo endereço na <em>Vila Ema.</em>",
+    "cta_text": "Agende uma visita e conheça o Haus de perto com um de nossos corretores.",
+    "cta_image": [
+      "/assets/img/2024/11/1_3-Foto.jpg",
+      1074,
+      1080
+    ]
+  }
+}

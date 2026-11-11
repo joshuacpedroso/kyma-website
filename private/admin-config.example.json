@@ -1,0 +1,11 @@
+{
+  "password": {
+    "algorithm": "pbkdf2-sha256",
+    "iterations": 210000,
+    "salt": "",
+    "hash": ""
+  },
+  "session_ttl": 3600,
+  "python_command": "python3",
+  "uploads_max_bytes": 8388608
+}
