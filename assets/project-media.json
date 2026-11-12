@@ -1,0 +1,310 @@
+{
+  "uniko": [
+    {
+      "src": "/assets/img/projects/uniko/01.webp",
+      "width": 1280,
+      "height": 720,
+      "caption": "Imagem oficial 01"
+    },
+    {
+      "src": "/assets/img/projects/uniko/02.webp",
+      "width": 1280,
+      "height": 720,
+      "caption": "Imagem oficial 02"
+    },
+    {
+      "src": "/assets/img/projects/uniko/03.webp",
+      "width": 1280,
+      "height": 720,
+      "caption": "Imagem oficial 03"
+    },
+    {
+      "src": "/assets/img/projects/uniko/04.webp",
+      "width": 1280,
+      "height": 720,
+      "caption": "Imagem oficial 04"
+    },
+    {
+      "src": "/assets/img/projects/uniko/05.webp",
+      "width": 1280,
+      "height": 720,
+      "caption": "Imagem oficial 05"
+    },
+    {
+      "src": "/assets/img/projects/uniko/06.webp",
+      "width": 1280,
+      "height": 720,
+      "caption": "Imagem oficial 06"
+    },
+    {
+      "src": "/assets/img/projects/uniko/07.webp",
+      "width": 1280,
+      "height": 720,
+      "caption": "Imagem oficial 07"
+    },
+    {
+      "src": "/assets/img/projects/uniko/08.webp",
+      "width": 1280,
+      "height": 720,
+      "caption": "Imagem oficial 08"
+    },
+    {
+      "src": "/assets/img/projects/uniko/09.webp",
+      "width": 1280,
+      "height": 720,
+      "caption": "Imagem oficial 09"
+    },
+    {
+      "src": "/assets/img/projects/uniko/10.webp",
+      "width": 1280,
+      "height": 720,
+      "caption": "Imagem oficial 10"
+    },
+    {
+      "src": "/assets/img/projects/uniko/11.webp",
+      "width": 1280,
+      "height": 720,
+      "caption": "Imagem oficial 11"
+    },
+    {
+      "src": "/assets/img/projects/uniko/12.webp",
+      "width": 1280,
+      "height": 720,
+      "caption": "Imagem oficial 12"
+    },
+    {
+      "src": "/assets/img/projects/uniko/13.webp",
+      "width": 1280,
+      "height": 720,
+      "caption": "Imagem oficial 13"
+    },
+    {
+      "src": "/assets/img/projects/uniko/14.webp",
+      "width": 1896,
+      "height": 2560,
+      "caption": "Zoom oficial 14"
+    },
+    {
+      "src": "/assets/img/projects/uniko/15.webp",
+      "width": 1896,
+      "height": 2560,
+      "caption": "Zoom oficial 15"
+    }
+  ],
+  "mon-tresor": [
+    {
+      "src": "/assets/img/projects/mon-tresor/01.webp",
+      "width": 2560,
+      "height": 1502,
+      "caption": "Fachada A Close Final"
+    },
+    {
+      "src": "/assets/img/projects/mon-tresor/02.webp",
+      "width": 2048,
+      "height": 2560,
+      "caption": "Fachada A Final"
+    },
+    {
+      "src": "/assets/img/projects/mon-tresor/03.webp",
+      "width": 2048,
+      "height": 2560,
+      "caption": "Fachada B (1)"
+    },
+    {
+      "src": "/assets/img/projects/mon-tresor/04.webp",
+      "width": 2048,
+      "height": 2560,
+      "caption": "Fachada B"
+    },
+    {
+      "src": "/assets/img/projects/mon-tresor/05.webp",
+      "width": 2560,
+      "height": 1506,
+      "caption": "Gourmet"
+    },
+    {
+      "src": "/assets/img/projects/mon-tresor/06.webp",
+      "width": 2560,
+      "height": 1463,
+      "caption": "Piscina01"
+    },
+    {
+      "src": "/assets/img/projects/mon-tresor/07.webp",
+      "width": 2048,
+      "height": 2560,
+      "caption": "Piscina02"
+    }
+  ],
+  "haus": [
+    {
+      "src": "/assets/img/projects/haus/01.webp",
+      "width": 1160,
+      "height": 663,
+      "caption": "Ambiente do Haus 01"
+    },
+    {
+      "src": "/assets/img/projects/haus/02.webp",
+      "width": 1200,
+      "height": 1500,
+      "caption": "Ambiente do Haus 02"
+    },
+    {
+      "src": "/assets/img/projects/haus/03.webp",
+      "width": 1400,
+      "height": 840,
+      "caption": "Ambiente do Haus 03"
+    },
+    {
+      "src": "/assets/img/projects/haus/04.webp",
+      "width": 1200,
+      "height": 1500,
+      "caption": "Ambiente do Haus 04"
+    },
+    {
+      "src": "/assets/img/projects/haus/05.webp",
+      "width": 1920,
+      "height": 1080,
+      "caption": "Ambiente do Haus 05"
+    },
+    {
+      "src": "/assets/img/projects/haus/06.webp",
+      "width": 1920,
+      "height": 1080,
+      "caption": "Ambiente do Haus 06"
+    },
+    {
+      "src": "/assets/img/projects/haus/07.webp",
+      "width": 1920,
+      "height": 1080,
+      "caption": "Ambiente do Haus 07"
+    },
+    {
+      "src": "/assets/img/projects/haus/08.webp",
+      "width": 1920,
+      "height": 1080,
+      "caption": "Ambiente do Haus 08"
+    },
+    {
+      "src": "/assets/img/projects/haus/09.webp",
+      "width": 1920,
+      "height": 1080,
+      "caption": "Ambiente do Haus 09"
+    },
+    {
+      "src": "/assets/img/projects/haus/10.webp",
+      "width": 1920,
+      "height": 1080,
+      "caption": "Ambiente do Haus 10"
+    },
+    {
+      "src": "/assets/img/projects/haus/11.webp",
+      "width": 1920,
+      "height": 1080,
+      "caption": "Ambiente do Haus 11"
+    },
+    {
+      "src": "/assets/img/projects/haus/12.webp",
+      "width": 1920,
+      "height": 1080,
+      "caption": "Ambiente do Haus 12"
+    },
+    {
+      "src": "/assets/img/projects/haus/13.webp",
+      "width": 1920,
+      "height": 1080,
+      "caption": "Ambiente do Haus 13"
+    },
+    {
+      "src": "/assets/img/projects/haus/14.webp",
+      "width": 1920,
+      "height": 1080,
+      "caption": "Ambiente do Haus 14"
+    },
+    {
+      "src": "/assets/img/projects/haus/15.webp",
+      "width": 1920,
+      "height": 1080,
+      "caption": "Ambiente do Haus 15"
+    },
+    {
+      "src": "/assets/img/projects/haus/16.webp",
+      "width": 1920,
+      "height": 1080,
+      "caption": "Ambiente do Haus 16"
+    },
+    {
+      "src": "/assets/img/projects/haus/17.webp",
+      "width": 2048,
+      "height": 2560,
+      "caption": "Fachada principal"
+    },
+    {
+      "src": "/assets/img/projects/haus/18.webp",
+      "width": 2560,
+      "height": 2032,
+      "caption": "Fachada lateral"
+    },
+    {
+      "src": "/assets/img/projects/haus/19.webp",
+      "width": 2048,
+      "height": 2560,
+      "caption": "Portaria"
+    },
+    {
+      "src": "/assets/img/projects/haus/20.webp",
+      "width": 1920,
+      "height": 1080,
+      "caption": "Ambiente do Haus 20"
+    },
+    {
+      "src": "/assets/img/projects/haus/21.webp",
+      "width": 1920,
+      "height": 1080,
+      "caption": "Ambiente do Haus 21"
+    },
+    {
+      "src": "/assets/img/projects/haus/22.webp",
+      "width": 1920,
+      "height": 1080,
+      "caption": "Ambiente do Haus 22"
+    }
+  ],
+  "azure": [
+    {
+      "src": "/assets/img/projects/azure/01.webp",
+      "width": 2048,
+      "height": 2560,
+      "caption": "Fachada frontal"
+    },
+    {
+      "src": "/assets/img/projects/azure/02.webp",
+      "width": 2048,
+      "height": 2560,
+      "caption": "Fachada lateral durante o dia"
+    },
+    {
+      "src": "/assets/img/projects/azure/03.webp",
+      "width": 2048,
+      "height": 2560,
+      "caption": "Fachada lateral à noite"
+    },
+    {
+      "src": "/assets/img/projects/azure/04.webp",
+      "width": 2560,
+      "height": 1536,
+      "caption": "Detalhe da fachada"
+    },
+    {
+      "src": "/assets/img/projects/azure/05.webp",
+      "width": 1600,
+      "height": 2000,
+      "caption": "Fachada frontal"
+    },
+    {
+      "src": "/assets/img/projects/azure/06.webp",
+      "width": 1500,
+      "height": 900,
+      "caption": "Detalhe da fachada"
+    }
+  ]
+}

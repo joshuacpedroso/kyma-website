@@ -1,0 +1,8 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>Painel Kyma</title><link rel="stylesheet" href="/adm/admin.css"></head>
+<body>
+<main id="login-view" class="login"><form id="login-form" class="login-card"><img src="/assets/img/brand/kyma-positivo.png" alt="Kyma Empreendimentos" width="220" height="84"><h1>Painel de edição</h1><label for="password">Senha</label><input id="password" name="password" type="password" autocomplete="current-password" required autofocus><button type="submit">Entrar</button><p id="login-error" role="alert"></p><a href="/">Voltar ao site</a></form></main>
+<div id="editor-view" hidden>
+  <aside><img src="/assets/img/brand/kyma-negativo.png" alt="Kyma" width="170" height="65"><p>Gerenciar conteúdo</p><nav aria-label="Seções do painel"><button data-tab="projects">Empreendimentos</button><button data-tab="blog">Blog</button><button data-tab="site">Textos do site</button><button data-tab="password">Senha</button></nav><a href="/" target="_blank" rel="noopener">Ver site ↗</a></aside>
+  <div class="workspace"><header><div><small>KYMA · ADMINISTRAÇÃO</small><h1 id="section-title">Empreendimentos</h1></div><div class="actions"><button id="reload" class="secondary">Recarregar</button><button id="save">Salvar alterações</button><button id="logout" class="secondary">Sair</button></div></header><p id="mode-banner" class="banner" hidden></p><p id="notice" class="notice" role="status" aria-live="polite"></p><section id="editor" aria-labelledby="section-title"></section></div>
+</div><script src="/adm/admin.js" defer></script></body></html>

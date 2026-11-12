@@ -1,0 +1,14 @@
+.DS_Store
+node_modules/
+__pycache__/
+
+private/backups/
+private/login-attempts.json
+private/.*.lock
+private/.edit.lock
+private/.login.lock
+*.tmp
+
+/private/admin-config.json
+
+/.vercel-public/

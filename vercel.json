@@ -1,0 +1,102 @@
+{
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "redirects": [
+    {
+      "source": "/home",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/serra-sincora",
+      "destination": "/serra-do-sincora",
+      "permanent": true
+    }
+  ],
+  "headers": [
+    {
+      "source": "/assets/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
+    },
+    {
+      "source": "/adm/:path*",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "no-store"
+        },
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex, nofollow"
+        }
+      ]
+    },
+    {
+      "source": "/adm",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "no-store"
+        },
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex, nofollow"
+        }
+      ]
+    }
+  ],
+  "rewrites": [
+    {
+      "source": "/adm",
+      "destination": "/adm/index.html"
+    },
+    {
+      "source": "/adm/api.php",
+      "destination": "/api/adm"
+    },
+    {
+      "source": "/adm/index.php",
+      "destination": "/adm/index.html"
+    },
+    {
+      "source": "/private/:path*",
+      "destination": "/api/blocked"
+    },
+    {
+      "source": "/server/:path*",
+      "destination": "/api/blocked"
+    },
+    {
+      "source": "/tools/:path*",
+      "destination": "/api/blocked"
+    },
+    {
+      "source": "/tests/:path*",
+      "destination": "/api/blocked"
+    },
+    {
+      "source": "/content/:path*",
+      "destination": "/api/blocked"
+    },
+    {
+      "source": "/build.py",
+      "destination": "/api/blocked"
+    },
+    {
+      "source": "/assets/project-media.json",
+      "destination": "/api/blocked"
+    }
+  ],
+  "functions": {
+    "api/adm.js": {
+      "includeFiles": "{content/**,assets/project-media.json}"
+    }
+  },
+  "buildCommand": "node tools/prepare-vercel.cjs",
+  "outputDirectory": ".vercel-public"
+}

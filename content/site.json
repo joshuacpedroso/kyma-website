@@ -1,0 +1,122 @@
+{
+  "name": "Kyma Empreendimentos",
+  "url": "https://kyma.com.br",
+  "phone": "(12) 3878-4488",
+  "phone_intl": "+55-12-3878-4488",
+  "whatsapp": "551238784488",
+  "instagram": "kymaempreendimentos",
+  "address": "Av. Alfredo Ignácio Nogueira Penido, 305 – Sala 1.301, São José dos Campos – SP",
+  "maps_query": "Av. Alfredo Ignácio Nogueira Penido, 305, São José dos Campos - SP",
+  "logo": "/assets/img/brand/kyma-negativo.png",
+  "favicon": "/assets/img/brand/kyma-positivo.png",
+  "navigation": [
+    [
+      "/quem-somos",
+      "Quem somos"
+    ],
+    [
+      "/empreendimentos",
+      "Empreendimentos"
+    ],
+    [
+      "/blog",
+      "Blog"
+    ],
+    [
+      "/contato",
+      "Contato"
+    ]
+  ],
+  "hero": {
+    "line": "O privilégio de viver",
+    "emphasis": "o singular",
+    "slides": [
+      [
+        "/assets/img/hero/hero-1.jpg",
+        1280,
+        731,
+        "Lazer e bem-estar"
+      ],
+      [
+        "/assets/img/hero/hero-2.jpg",
+        1280,
+        720,
+        "Ambientes que acolhem"
+      ],
+      [
+        "/assets/img/hero/hero-3.jpg",
+        1280,
+        768,
+        "Fachada residencial"
+      ],
+      [
+        "/assets/img/hero/hero-4.jpg",
+        1280,
+        720,
+        "Cada detalhe pensado para viver"
+      ]
+    ]
+  },
+  "about": {
+    "values": [
+      [
+        "Visão",
+        "Identificar e viabilizar as melhores oportunidades do mercado imobiliário, sendo reconhecida por investidores, fornecedores e clientes."
+      ],
+      [
+        "Missão",
+        "Agregar valor aos empreendimentos realizados, a fim de superar as expectativas de nossos clientes e investidores."
+      ],
+      [
+        "Valores",
+        "Ética, transparência, credibilidade, compromisso, disciplina e criatividade."
+      ]
+    ],
+    "intro_text": "Somos uma empresa da indústria da construção civil que atua regionalmente no Vale do Paraíba e no Litoral Norte do Estado de São Paulo. Oferecemos empreendimentos atuais, que primam pela qualidade, localização e que tragam o retorno esperado aos nossos clientes — sempre em busca da satisfação de investidores, parceiros, fornecedores e consumidores finais, proporcionando uma experiência única no mercado.",
+    "hero_image": [
+      "/assets/img/2022/05/quem-somos-02.png",
+      1550,
+      1330
+    ],
+    "intro_image": [
+      "/assets/img/projects/haus/19.webp",
+      "Portaria do Haus — acervo oficial Kyma",
+      2048,
+      2560
+    ],
+    "values_image": [
+      "/assets/img/projects/mon-tresor/05.webp",
+      "Espaço gourmet do Montresor — acervo oficial Kyma",
+      2560,
+      1506
+    ]
+  },
+  "cta_image": [
+    "/assets/img/brand/kyma-negativo.png",
+    2065,
+    783
+  ],
+  "texts": {
+    "home_featured_heading": "Empreendimentos <em>Kyma.</em>",
+    "home_featured_eyebrow": "Empreendimentos Kyma",
+    "addresses_heading": "Nossos <em>endereços</em>",
+    "addresses_subtitle": "Conheça a localização de cada empreendimento Kyma",
+    "about_title": "Kyma <em>Empreendimentos</em>",
+    "about_subtitle": "Desenvolvendo há 17 anos empreendimentos que unem qualidade construtiva, arquitetura atemporal e atenção aos detalhes.",
+    "about_intro_heading": "A vida ideal <em>é a real.</em>",
+    "about_values_heading": "O que nos <em>move.</em>",
+    "about_values_intro": "Oferecemos empreendimentos diferenciados, prezando pela qualidade, segurança e responsabilidade social.",
+    "portfolio_heading": "Obras que <em>assinamos.</em>",
+    "footer_summary": "Empreendimentos que unem qualidade, arquitetura e localização em endereços estratégicos.",
+    "footer_heading": "Encontre o seu <em>lugar.</em>",
+    "cta_title": "Está procurando um <em>apartamento?</em>",
+    "cta_text": "Entre em contato e descubra o empreendimento ideal para o seu momento.",
+    "listing_heading": "Nossos <em>empreendimentos</em>",
+    "listing_subtitle": "Uma seleção de empreendimentos que expressam a identidade KYMA por meio de projetos arquitetônicos singulares e endereços cuidadosamente escolhidos.",
+    "launch_heading": "Lança&shy;<em>mentos</em>",
+    "launch_subtitle": "Seja para morar ou investir, nossos lançamentos estão em regiões que você vai querer chamar de casa.",
+    "contact_heading": "Vamos <em>conversar?</em>",
+    "contact_subtitle": "Tire dúvidas, agende uma visita ou receba a tabela atualizada. Nosso time responde rapidinho.",
+    "news_heading": "Notícias e <em>destaques.</em>"
+  }
+}
