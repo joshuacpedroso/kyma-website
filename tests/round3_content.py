@@ -23,7 +23,13 @@ for p in projects:
  assert u['coordinates']==s['coordinates'] and len(u['coordinates'])==2
  assert -24<u['coordinates'][0]<-23 and -46<u['coordinates'][1]<-45
  assert s['address_type'] in ['PointAddress','StreetAddress'] and s['score']>=98
- assert u['progress_percent'] is None and u['progress_stages']==[]
+ expected={'haus':76,'azure':45,'uniko':10}.get(slug,100)
+ assert u['progress_percent']==expected
+ assert u['progress_is_demo']==(slug in ['haus','azure','uniko'])
+ if u['progress_is_demo']:
+  assert len(u['progress_stages'])==5 and sum(stage['percent'] for stage in u['progress_stages'])/5==expected
+  assert 'Valores de demonstração' in (ROOT/(slug+'.html')).read_text()
+ else:assert u['progress_stages']==[]
  assert p['status']==('lancamento' if slug=='uniko' else 'em-obras' if slug in ['haus','azure'] else 'entregue')
  assert p['street'] in ''.join(Page((ROOT/(slug+'.html')).read_text()).text)
 assert [p['slug'] for p in sorted((p for p in projects if p['featured_order']),key=lambda p:p['featured_order'])]==['uniko','haus','azure']
@@ -59,4 +65,4 @@ assert not any('/pendentes/' in p['published'] for p in load('content/round3-med
 assert len([p for p in load('content/round3-media-sources.json') if p.get('assignment_basis') and p.get('project_slug')=='monte-zurich'])==2
 for slug in ['mon-tresor','altos-do-parque','serra-do-sincora']:
  p=next(p for p in projects if p['slug']==slug);assert '/round3/' in p['card'][0] and p['hero']==p['card'] and not p['contain']
-print('PASS 9 official addresses/pins, source quality, copy, media assignments, no dashes, 9 unique office photos, Joshua-assigned humanized images, statuses and unknown percentages')
+print('PASS 9 official addresses/pins, source quality, copy, media assignments, no dashes, 9 unique office photos, Joshua-assigned humanized images, statuses and authorized demonstration/completion percentages')

@@ -15,7 +15,8 @@ window.KYMA = {
       "beds": null,
       "pitch": "Um novo endereço com a assinatura Kyma. Entre em contato para conhecer o lançamento.",
       "address": "Rua Justino Cobra, 162, Vila Ema, São José dos Campos, SP, 12243-030",
-      "progress": null,
+      "progress": 10,
+      "progressIsDemo": true,
       "coordinates": [
         -23.20461698957,
         -45.90080399341
@@ -34,7 +35,8 @@ window.KYMA = {
       "beds": "2 dormitórios",
       "pitch": "Moderno, sofisticado e completo, em uma das regiões mais desejadas de São José dos Campos.",
       "address": "Rua Padre Rodolfo, 286, Vila Ema, São José dos Campos, SP",
-      "progress": null,
+      "progress": 76,
+      "progressIsDemo": true,
       "coordinates": [
         -23.204485980423,
         -45.902609036259
@@ -53,7 +55,8 @@ window.KYMA = {
       "beds": null,
       "pitch": "Arquitetura marcante e plantas amplas, atrás da Paróquia Sagrada Família, na Vila Ema.",
       "address": "Rua Padre Rodolfo, 65, Vila Ema, São José dos Campos, SP (atrás da Paróquia Sagrada Família)",
-      "progress": null,
+      "progress": 100,
+      "progressIsDemo": false,
       "coordinates": [
         -23.203414144242,
         -45.901654973704
@@ -72,7 +75,8 @@ window.KYMA = {
       "beds": null,
       "pitch": "O Litoral Norte como endereço: um empreendimento pensado para quem quer viver ou investir perto do mar.",
       "address": "Avenida Eurico Gaspar Dutra, 60, Tabatinga, Caraguatatuba, SP, 11679-200",
-      "progress": null,
+      "progress": 45,
+      "progressIsDemo": true,
       "coordinates": [
         -23.572995102892,
         -45.274639648552
@@ -91,7 +95,8 @@ window.KYMA = {
       "beds": null,
       "pitch": "Plantas inteligentes e bem distribuídas, com a assinatura de qualidade Kyma.",
       "address": "Avenida Ouro Fino, 661, Bosque dos Eucaliptos, São José dos Campos, SP",
-      "progress": null,
+      "progress": 100,
+      "progressIsDemo": false,
       "coordinates": [
         -23.241280020793,
         -45.888218984887
@@ -110,7 +115,8 @@ window.KYMA = {
       "beds": null,
       "pitch": "Conforto e praticidade para o dia a dia, em uma localização estratégica da cidade.",
       "address": "Rua Palmares, 155, Parque Industrial, São José dos Campos, SP",
-      "progress": null,
+      "progress": 100,
+      "progressIsDemo": false,
       "coordinates": [
         -23.236060523097,
         -45.906099170733
@@ -129,7 +135,8 @@ window.KYMA = {
       "beds": null,
       "pitch": "Linhas contemporâneas e espaços bem aproveitados para viver com leveza.",
       "address": "Rua Palmares, 346, Parque Industrial, São José dos Campos, SP",
-      "progress": null,
+      "progress": 100,
+      "progressIsDemo": false,
       "coordinates": [
         -23.231977994196,
         -45.903774036981
@@ -148,7 +155,8 @@ window.KYMA = {
       "beds": null,
       "pitch": "Localização privilegiada na região Sul, com a natureza como vizinha.",
       "address": "Rua Palmares, 686, Parque Industrial, São José dos Campos, SP",
-      "progress": null,
+      "progress": 100,
+      "progressIsDemo": false,
       "coordinates": [
         -23.234313988702,
         -45.905217987441
@@ -167,7 +175,8 @@ window.KYMA = {
       "beds": null,
       "pitch": "Um projeto que integra o portfólio Kyma, fale com nosso time para conhecer os detalhes.",
       "address": "Avenida Feira de Santana, 130, Jardim Vale do Sol, São José dos Campos, SP, 12238-000",
-      "progress": null,
+      "progress": 100,
+      "progressIsDemo": false,
       "coordinates": [
         -23.256516979661,
         -45.911603991832

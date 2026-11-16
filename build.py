@@ -50,6 +50,7 @@ DETAILS = load_content('content/project-details.json')
 for p in PROJECTS:
     update = UPDATES.get(p['slug'], {})
     p['progress'] = update.get('progress_percent')
+    p['progress_is_demo'] = update.get('progress_is_demo', False)
     p['progress_stages'] = update.get('progress_stages', [])
     p['coordinates'] = update.get('coordinates')
     p['map_source'] = update.get('coordinate_source')
@@ -933,6 +934,10 @@ def locations_section():
 
 def progress_section(p):
     value = p['progress']
+    demo = p.get('progress_is_demo', False)
+    delivered = p['status']=='entregue' and value==100
+    description = 'Percentuais ilustrativos para visualizar as animações. Aguardando os valores oficiais.' if demo else 'Empreendimento entregue.' if delivered else 'Percentual a informar. Entre em contato para acompanhar a evolução da obra.' if value is None else 'Acompanhe a evolução da obra.'
+    demo_badge = '<span class="build-progress__demo">Valores de demonstração</span>' if demo else ''
     target = '' if value is None else str(value)
     label = 'A informar' if value is None else f'{value:g}%'
     aria = '' if value is None else f' aria-valuenow="{value:g}"'
@@ -948,16 +953,17 @@ def progress_section(p):
           <div class="build-stage__track" role="progressbar" aria-label="{escape(stage['name'])}" aria-valuemin="0" aria-valuemax="100"{stage_aria} aria-valuetext="{stage_label}"><span data-progress-fill style="--progress-value:{0 if percent is None else percent}%"></span></div>
         </div>'''
     if not stages:
-        stages = '<p class="build-progress__pending">Etapas detalhadas a informar.</p>'
+        stages = '' if delivered else '<p class="build-progress__pending">Etapas detalhadas a informar.</p>'
+    stages_panel = f'<div class="build-progress__stages">{stages}</div>' if stages else ''
     return f'''<section class="section theme-ink2 build-progress" id="evolucao" data-progress="{target}" data-progress-section>
       <div class="container build-progress__panel">
-        <div class="build-progress__intro"><p class="eyebrow">{p['name']}</p><h2 class="h2">Evolução <em>da obra.</em></h2><p class="lead">{'Percentual a informar. Entre em contato para acompanhar a evolução da obra.' if value is None else 'Acompanhe a evolução da obra.'}</p>
+        <div class="build-progress__intro"><p class="eyebrow">{p['name']}</p><h2 class="h2">Evolução <em>da obra.</em></h2>{demo_badge}<p class="lead">{description}</p>
           <a class="link-arrow" href="{p['wa_link']}" target="_blank" rel="noopener">Entre em contato {ic('arrow')}</a></div>
         <div class="build-progress__overall" data-progress-overall data-progress-target="{target}" role="progressbar" aria-label="Evolução geral da obra" aria-valuemin="0" aria-valuemax="100"{aria} aria-valuetext="{label}">
           <svg class="build-progress__ring" viewBox="0 0 180 180" aria-hidden="true"><circle class="build-progress__track" cx="90" cy="90" r="76"/><circle class="build-progress__fill" data-progress-ring cx="90" cy="90" r="76" pathLength="100" stroke-dasharray="100" style="stroke-dashoffset:{offset}"/></svg>
           <div class="build-progress__number"><strong data-progress-count>{label}</strong><span>Evolução geral</span></div>
         </div>
-        <div class="build-progress__stages">{stages}</div>
+{stages_panel}
       </div></section>'''
 
 
@@ -1022,7 +1028,7 @@ def data_js():
             {
                 "slug": p["slug"], "name": p["name"], "status": p["status"], "location": p["location"],
                 "area": p["area"], "beds": p["beds"], "pitch": p["pitch"],
-                "address": project_address(p), "progress": p["progress"], "coordinates": p["coordinates"], "mapSource": p["map_source"], "url": f"/{p['slug']}",
+                "address": project_address(p), "progress": p["progress"], "progressIsDemo": p["progress_is_demo"], "coordinates": p["coordinates"], "mapSource": p["map_source"], "url": f"/{p['slug']}",
                 "thumb": p["card"][0], "contain": p["contain"],
             } for p in PROJECTS
         ],

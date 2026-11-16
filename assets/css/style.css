@@ -1058,3 +1058,6 @@ body[data-page="about"] .page-hero .h1 em{color:var(--brand-deep)}
 body[data-project="monte-zurich"] .gallery a.is-contain img:not(.identity-logo){padding:12px;filter:none}
 @media(max-width:900px){.about-office-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:560px){.about-office-grid{grid-template-columns:1fr}.about-intro{padding-top:32px}}
+
+/* Percentuais ilustrativos aprovados pelo Joshua, identificados na própria seção. */
+.build-progress__demo{justify-self:start;display:inline-block;padding:8px 13px;border:1px solid var(--champagne);border-radius:999px;background:#f7f5ef;color:#414042;font-size:11px;font-weight:500;letter-spacing:.04em}
