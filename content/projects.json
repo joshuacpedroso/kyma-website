@@ -236,7 +236,9 @@
     "wa_link": "https://wa.me/551238784488?text=Ol%C3%A1%21%20Vim%20pelo%20site%20e%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es%20sobre%20o%20Monte%20Zurich.",
     "featured_order": null,
     "featured_text": "Linhas contemporâneas e espaços bem aproveitados para viver com leveza.",
-    "additional_description": "Quer saber mais sobre plantas, disponibilidade e condições? Nosso time de corretores está pronto para te atender com todas as informações atualizadas."
+    "additional_description": "Quer saber mais sobre plantas, disponibilidade e condições? Nosso time de corretores está pronto para te atender com todas as informações atualizadas.",
+    "presentation_from_card": true,
+    "presentation_override": true
   },
   {
     "slug": "altos-do-parque",

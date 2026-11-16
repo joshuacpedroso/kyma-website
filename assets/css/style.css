@@ -1042,3 +1042,19 @@ body[data-page="about"] .split { gap:clamp(28px,5vw,72px); }
 .card__meta svg,.show__meta svg,.hero-facts .chip svg{flex-shrink:0}
 .plans--official .plan img{filter:none;mix-blend-mode:normal}
 .plans--official figcaption{flex-wrap:wrap;gap:8px}
+
+/* Complemento da rodada 3: equipe primeiro; fotos únicas do novo escritório. */
+body[data-page="about"] .page-hero--short{min-height:0}
+body[data-page="about"] .page-hero__content{padding-top:45px;padding-bottom:40px}
+body[data-page="about"] .page-hero .h1 em{color:var(--brand-deep)}
+.about-intro{padding-top:55px}
+.about-intro .split__media,.about-values .split__media{aspect-ratio:3/4}
+.about-intro .split__media img,.about-values .split__media img{object-fit:contain}
+.about-office-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:28px}
+.about-office-grid figure{margin:0;min-width:0;display:grid;gap:12px;align-content:start}
+.about-office-grid a{display:block;border-radius:var(--radius);overflow:hidden;background:var(--surface-muted)}
+.about-office-grid img{width:100%;height:auto;aspect-ratio:3/4;object-fit:contain}
+.about-office-grid figcaption{font-size:13px;color:var(--text-secondary)}
+body[data-project="monte-zurich"] .gallery a.is-contain img:not(.identity-logo){padding:12px;filter:none}
+@media(max-width:900px){.about-office-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:560px){.about-office-grid{grid-template-columns:1fr}.about-intro{padding-top:32px}}

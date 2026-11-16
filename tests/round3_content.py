@@ -31,9 +31,20 @@ expected='Kyma empreendimentos - Somos uma empresa da Indústria da Construção
 assert site['about']['intro_text']==expected
 assert expected in ''.join(Page((ROOT/'quem-somos.html').read_text()).text)
 assert expected in (ROOT/'index.html').read_text() # Organization structured data uses the same canonical copy.
-assert site['about']['hero_image'][0]=='/assets/img/2022/05/quem-somos-02.png'
-assert site['about']['intro_image'][0]=='/assets/img/projects/haus/19.webp'
-assert site['about']['values_image'][0]=='/assets/img/projects/mon-tresor/05.webp'
+office='/assets/img/round3/quem-somos/'
+assert site['about']['intro_image'][0]==office+'01-equipe-trabalhando.jpg'
+assert site['about']['values_image'][0]==office+'02-sala-reuniao.jpg'
+about_images=[url for url in Page((ROOT/'quem-somos.html').read_text()).images if url and url.startswith(office)]
+assert len(about_images)==len(set(about_images))==9
+assert [Path(url).name[:2] for url in about_images]==[f'{i:02}' for i in range(1,10)]
+assert len(site['about']['office_gallery'])==7
+humans=[p for p in media['monte-zurich'] if 'humanizada-apto-' in p['src']]
+assert len(humans)==2 and all(p['contain'] and 'Joshua' in p['assignment_basis'] for p in humans)
+assert all(p['src'] in (ROOT/'monte-zurich.html').read_text() for p in humans)
+assert all('humanizada-apto-' not in (ROOT/(p['slug']+'.html')).read_text() for p in projects if p['slug']!='monte-zurich')
+zurich=next(p for p in projects if p['slug']=='monte-zurich')
+assert zurich['card'][0]=='/assets/img/2022/05/capa-zurich-1024x576.png'
+assert zurich['hero'][0]=='/assets/img/2022/05/capa-zurich.png'
 for name in load('content/generated-pages.json'):
  raw=(ROOT/name).read_text();page=Page(raw)
  assert '—' not in raw and '–' not in raw,name
@@ -44,7 +55,8 @@ for f in ['content/projects.json','content/site.json','content/project-details.j
  assert '—' not in (ROOT/f).read_text(),f
 assert len([p for p in media['altos-do-parque'] if '/round3/' in p['src']])==12
 assert len(details['monte-zurich']['plans'])==5
-assert len([p for p in load('content/round3-media-sources.json') if '/pendentes/' in p['published']])==2
+assert not any('/pendentes/' in p['published'] for p in load('content/round3-media-sources.json'))
+assert len([p for p in load('content/round3-media-sources.json') if p.get('assignment_basis') and p.get('project_slug')=='monte-zurich'])==2
 for slug in ['mon-tresor','altos-do-parque','serra-do-sincora']:
  p=next(p for p in projects if p['slug']==slug);assert '/round3/' in p['card'][0] and p['hero']==p['card'] and not p['contain']
-print('PASS 9 official addresses/pins, source quality, copy, media assignments, no dashes, unchanged About photos, pending items, statuses and unknown percentages')
+print('PASS 9 official addresses/pins, source quality, copy, media assignments, no dashes, 9 unique office photos, Joshua-assigned humanized images, statuses and unknown percentages')

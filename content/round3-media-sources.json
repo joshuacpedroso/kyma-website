@@ -134,16 +134,101 @@
   },
   {
     "source": "humanizadas/humanizada-apto-central.jpg",
-    "published": "/assets/img/round3/pendentes/humanizada-apto-central.webp",
+    "published": "/assets/img/round3/monte-zurich/humanizada-apto-central.webp",
     "width": 5000,
     "height": 1923,
-    "caption": "Empreendimento não identificado; aguardando confirmação, fora das páginas de projetos"
+    "caption": "Humanizada do apartamento central",
+    "project_slug": "monte-zurich",
+    "assignment_basis": "Atribuição ao Monte Zurich por instrução explícita do Joshua no complemento da rodada 3: contexto da sequência de envio e semelhança visual com a planta. Inferência editorial autorizada, não confirmação nominal original da cliente."
   },
   {
     "source": "humanizadas/humanizada-apto-frontal.jpg",
-    "published": "/assets/img/round3/pendentes/humanizada-apto-frontal.webp",
+    "published": "/assets/img/round3/monte-zurich/humanizada-apto-frontal.webp",
     "width": 5000,
     "height": 1923,
-    "caption": "Empreendimento não identificado; aguardando confirmação, fora das páginas de projetos"
+    "caption": "Humanizada do apartamento frontal",
+    "project_slug": "monte-zurich",
+    "assignment_basis": "Atribuição ao Monte Zurich por instrução explícita do Joshua no complemento da rodada 3: contexto da sequência de envio e semelhança visual com a planta. Inferência editorial autorizada, não confirmação nominal original da cliente."
+  },
+  {
+    "package": "kyma-rodada3-quem-somos.zip",
+    "source": "01-equipe-trabalhando.jpg",
+    "published": "/assets/img/round3/quem-somos/01-equipe-trabalhando.jpg",
+    "width": 960,
+    "height": 1280,
+    "caption": "Equipe Kyma trabalhando no escritório",
+    "page": "quem-somos"
+  },
+  {
+    "package": "kyma-rodada3-quem-somos.zip",
+    "source": "02-sala-reuniao.jpg",
+    "published": "/assets/img/round3/quem-somos/02-sala-reuniao.jpg",
+    "width": 960,
+    "height": 1280,
+    "caption": "Sala de reunião Kyma com a marca K",
+    "page": "quem-somos"
+  },
+  {
+    "package": "kyma-rodada3-quem-somos.zip",
+    "source": "03-sala-reuniao-variante.jpg",
+    "published": "/assets/img/round3/quem-somos/03-sala-reuniao-variante.jpg",
+    "width": 960,
+    "height": 1280,
+    "caption": "Sala de reunião Kyma, outra perspectiva",
+    "page": "quem-somos"
+  },
+  {
+    "package": "kyma-rodada3-quem-somos.zip",
+    "source": "04-sala-reuniao-detalhe.jpg",
+    "published": "/assets/img/round3/quem-somos/04-sala-reuniao-detalhe.jpg",
+    "width": 960,
+    "height": 1280,
+    "caption": "Detalhe da sala de reunião Kyma",
+    "page": "quem-somos"
+  },
+  {
+    "package": "kyma-rodada3-quem-somos.zip",
+    "source": "05-lounge-poltronas.jpg",
+    "published": "/assets/img/round3/quem-somos/05-lounge-poltronas.jpg",
+    "width": 960,
+    "height": 1280,
+    "caption": "Lounge do escritório Kyma",
+    "page": "quem-somos"
+  },
+  {
+    "package": "kyma-rodada3-quem-somos.zip",
+    "source": "06-estante-escritorio.jpg",
+    "published": "/assets/img/round3/quem-somos/06-estante-escritorio.jpg",
+    "width": 960,
+    "height": 1280,
+    "caption": "Estante do escritório Kyma",
+    "page": "quem-somos"
+  },
+  {
+    "package": "kyma-rodada3-quem-somos.zip",
+    "source": "07-copa-escritorio.jpg",
+    "published": "/assets/img/round3/quem-somos/07-copa-escritorio.jpg",
+    "width": 960,
+    "height": 1280,
+    "caption": "Copa do escritório Kyma",
+    "page": "quem-somos"
+  },
+  {
+    "package": "kyma-rodada3-quem-somos.zip",
+    "source": "08-detalhe-mesa-livro.jpg",
+    "published": "/assets/img/round3/quem-somos/08-detalhe-mesa-livro.jpg",
+    "width": 960,
+    "height": 1280,
+    "caption": "Detalhe de mesa e livro no escritório Kyma",
+    "page": "quem-somos"
+  },
+  {
+    "package": "kyma-rodada3-quem-somos.zip",
+    "source": "09-detalhe-mesa-livro-2.jpg",
+    "published": "/assets/img/round3/quem-somos/09-detalhe-mesa-livro-2.jpg",
+    "width": 960,
+    "height": 1280,
+    "caption": "Outra perspectiva da mesa e do livro no escritório Kyma",
+    "page": "quem-somos"
   }
 ]

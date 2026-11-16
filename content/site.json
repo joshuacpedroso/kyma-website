@@ -74,22 +74,67 @@
     ],
     "intro_text": "Kyma empreendimentos - Somos uma empresa da Indústria da Construção Civil que atua regionalmente no Vale do Paraíba e Litoral Norte no Estado de São Paulo. Oferecemos empreendimentos atuais, que primam pela qualidade, localização e que tragam o retorno esperado aos nossos clientes. Sempre em busca da satisfação dos nossos investidores, parceiros, fornecedores ou consumidores finais, proporcionando uma experiência única no mercado!",
     "hero_image": [
-      "/assets/img/2022/05/quem-somos-02.png",
-      1550,
-      1330
+      "/assets/img/round3/quem-somos/01-equipe-trabalhando.jpg",
+      960,
+      1280
     ],
     "intro_image": [
-      "/assets/img/projects/haus/19.webp",
-      "Portaria do Haus, acervo oficial Kyma",
-      2048,
-      2560
+      "/assets/img/round3/quem-somos/01-equipe-trabalhando.jpg",
+      "Equipe Kyma trabalhando no escritório",
+      960,
+      1280
     ],
     "values_image": [
-      "/assets/img/projects/mon-tresor/05.webp",
-      "Espaço gourmet do Montresor, acervo oficial Kyma",
-      2560,
-      1506
-    ]
+      "/assets/img/round3/quem-somos/02-sala-reuniao.jpg",
+      "Sala de reunião Kyma com a marca K",
+      960,
+      1280
+    ],
+    "office_gallery": [
+      {
+        "src": "/assets/img/round3/quem-somos/03-sala-reuniao-variante.jpg",
+        "width": 960,
+        "height": 1280,
+        "caption": "Sala de reunião Kyma, outra perspectiva"
+      },
+      {
+        "src": "/assets/img/round3/quem-somos/04-sala-reuniao-detalhe.jpg",
+        "width": 960,
+        "height": 1280,
+        "caption": "Detalhe da sala de reunião Kyma"
+      },
+      {
+        "src": "/assets/img/round3/quem-somos/05-lounge-poltronas.jpg",
+        "width": 960,
+        "height": 1280,
+        "caption": "Lounge do escritório Kyma"
+      },
+      {
+        "src": "/assets/img/round3/quem-somos/06-estante-escritorio.jpg",
+        "width": 960,
+        "height": 1280,
+        "caption": "Estante do escritório Kyma"
+      },
+      {
+        "src": "/assets/img/round3/quem-somos/07-copa-escritorio.jpg",
+        "width": 960,
+        "height": 1280,
+        "caption": "Copa do escritório Kyma"
+      },
+      {
+        "src": "/assets/img/round3/quem-somos/08-detalhe-mesa-livro.jpg",
+        "width": 960,
+        "height": 1280,
+        "caption": "Detalhe de mesa e livro no escritório Kyma"
+      },
+      {
+        "src": "/assets/img/round3/quem-somos/09-detalhe-mesa-livro-2.jpg",
+        "width": 960,
+        "height": 1280,
+        "caption": "Outra perspectiva da mesa e do livro no escritório Kyma"
+      }
+    ],
+    "office_gallery_heading": "Nosso <em>espaço.</em>"
   },
   "cta_image": [
     "/assets/img/brand/kyma-negativo.png",

@@ -239,7 +239,7 @@ def page_hero(title, eyebrow, crumbs, bg=None, bg_logo=None, lead=None, facts=""
     lead_html = f'<p class="lead" data-reveal>{lead}</p>' if lead else ""
     return f"""
 <section class="page-hero{' page-hero--short' if short else ''}">
-  {media}
+{media}
   <div class="page-hero__content">
     <div class="container">
       <nav aria-label="Você está em"><ol class="crumbs" data-reveal>{crumb_html}</ol></nav>
@@ -743,9 +743,10 @@ def page_project(p):
     if p["logo"][1] != c:
         gallery.append((p["logo"][1], p["logo"][1], 500, 500, "Identidade visual"))
     contain_cls = ' class="is-contain"'
+    contain_photos = {photo["src"] for photo in MEDIA.get(p["slug"], []) if photo.get("contain")}
     gal_html = "".join(
         f'<a href="{full}" data-lightbox="{p["slug"]}" data-caption="{escape(p["name"])}, {escape(cap, quote=True)}" data-cursor="Ampliar" data-reveal'
-        f'{contain_cls if (p["contain"] or cap == "Identidade visual") else ""}>{img(med, p["full"] + ", " + cap, ww, hh, cls="identity-logo logo-" + p["slug"] if (p["contain"] or cap == "Identidade visual") else "")}</a>'
+        f'{contain_cls if (p["contain"] or cap == "Identidade visual" or full in contain_photos) else ""}>{img(med, p["full"] + ", " + cap, ww, hh, cls="identity-logo logo-" + p["slug"] if (p["contain"] or cap == "Identidade visual") else "")}</a>'
         for i, (full, med, ww, hh, cap) in enumerate(gallery))
     extra_copy = p.get('additional_description','')
     body = page_hero(p["name"], f"{status_txt} · {p['location']}",
@@ -793,18 +794,26 @@ def page_project(p):
         jsonld=[breadcrumb_ld([("/", "Início"), (sec_path, section), (f"/{p['slug']}", p["name"])]), project_ld(p)])
 
 
+def office_gallery_section():
+    photos = SITE_CONTENT['about'].get('office_gallery', [])
+    if not photos:
+        return ''
+    figures = ''.join(f'''<figure><a href="{escape(photo['src'])}" data-lightbox="kyma-escritorio" data-caption="{escape(photo['caption'])}" aria-label="Ampliar: {escape(photo['caption'])}">{img(photo['src'],photo['caption'],photo['width'],photo['height'])}</a><figcaption>{escape(photo['caption'])}</figcaption></figure>''' for photo in photos)
+    return f'''<section class="section about-office"><div class="container"><div class="section-head"><p class="eyebrow">Kyma</p><h2 class="h1" data-split>{SITE_CONTENT['about'].get('office_gallery_heading','Nosso espaço')}</h2></div><div class="about-office-grid">{figures}</div></div></section>'''
+
+
 def page_about():
     pillars = "".join(
         f'<div class="pillar"><span class="pillar__n">0{i + 1}</span><h3>{t}</h3><p>{x}</p></div>'
         for i, (t, x) in enumerate(VALUES))
     body = page_hero(T("about_title"), "Quem somos", [("/", "Início"), (None, "Quem somos")],
-                     bg=SITE_CONTENT['about']['hero_image'],
+                     bg=None,
                      lead=T("about_subtitle"), short=True) + f"""
 <section class="section about-intro">
   <div class="container">
     <div class="split">
       <div class="split__media split__media--tall reveal-img">
-        <div data-parallax="0.08" style="height:112%;margin-top:-6%">{img(*SITE_CONTENT['about']['intro_image'])}</div>
+        {img(*SITE_CONTENT['about']['intro_image'])}
         <span class="frame-deco"></span>
       </div>
       <div class="split__body">
@@ -836,6 +845,7 @@ def page_about():
   </div>
 </section>
 
+{office_gallery_section()}
 """
     return layout(
         path="/quem-somos", page="about", active="/quem-somos",

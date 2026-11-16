@@ -394,5 +394,23 @@
       "height": 576,
       "caption": "Portaria do Serra do Sincorá à noite"
     }
+  ],
+  "monte-zurich": [
+    {
+      "src": "/assets/img/round3/monte-zurich/humanizada-apto-central.webp",
+      "width": 5000,
+      "height": 1923,
+      "caption": "Humanizada do apartamento central",
+      "contain": true,
+      "assignment_basis": "Atribuição ao Monte Zurich por instrução explícita do Joshua no complemento da rodada 3: contexto da sequência de envio e semelhança visual com a planta. Inferência editorial autorizada, não confirmação nominal original da cliente."
+    },
+    {
+      "src": "/assets/img/round3/monte-zurich/humanizada-apto-frontal.webp",
+      "width": 5000,
+      "height": 1923,
+      "caption": "Humanizada do apartamento frontal",
+      "contain": true,
+      "assignment_basis": "Atribuição ao Monte Zurich por instrução explícita do Joshua no complemento da rodada 3: contexto da sequência de envio e semelhança visual com a planta. Inferência editorial autorizada, não confirmação nominal original da cliente."
+    }
   ]
 }
