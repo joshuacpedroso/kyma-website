@@ -12,3 +12,5 @@ private/.login.lock
 /private/admin-config.json
 
 /.vercel-public/
+
+/dist/

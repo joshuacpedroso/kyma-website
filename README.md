@@ -57,3 +57,15 @@ O site é estático, com URLs limpas configuradas em `vercel.json`.
 
 [Conferência dos 26 itens e pendências](docs/RODADA-2-2026-11-11.md).
 A evolução animada usa `progress_percent` e `progress_stages` em `content/project-updates.json`; campos ausentes ficam como `null`, sem números presumidos. As fontes das metragens estão em `content/area-sources.json`.
+
+## Tema WordPress pronto para ativar
+
+A conversão para WordPress fica em `wordpress/kyma/`. O pacote instalável é gerado com todas as páginas, mídias, fontes e efeitos:
+
+```sh
+python3 tools/package-wordpress.py --output dist
+```
+
+Envie `dist/kyma-wordpress-1.0.0.zip` em Aparência → Temas → Enviar tema e clique em Ativar. A ativação cria as 15 páginas, as três notícias e o menu, define a home e preserva o conteúdo anterior para restauração. O ZIP do repositório GitHub não é o pacote de instalação do tema.
+
+Guia completo: [docs/TEMA-WORDPRESS.md](docs/TEMA-WORDPRESS.md). A hospedagem WordPress não precisa executar Python ou Node.
