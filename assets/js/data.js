@@ -171,7 +171,7 @@ window.KYMA = {
       "name": "Serra do Sincorá",
       "status": "entregue",
       "location": "Jardim Vale do Sol · São José dos Campos",
-      "area": null,
+      "area": "69,41 m²",
       "beds": null,
       "pitch": "Um projeto que integra o portfólio Kyma, fale com nosso time para conhecer os detalhes.",
       "address": "Avenida Feira de Santana, 130, Jardim Vale do Sol, São José dos Campos, SP, 12238-000",

@@ -16,8 +16,10 @@
     "reason": "Página oficial identifica Tabatinga e não informa metragem do Azure; valores de outros cards relacionados não foram atribuídos ao Azure."
   },
   "serra-do-sincora": {
-    "area": null,
-    "source": "Histórico do repositório e https://kyma.com.br/serra-do-sincora/",
-    "reason": "Sem metragem no histórico; página antiga não encontrada."
+    "area": "69,41 m²",
+    "source": "https://kyma.com.br/empreendimentos/",
+    "checked": "2026-11-16",
+    "verification": "Fonte oficial conferida pelo Stark e informada pelo Joshua no complemento da rodada 3.",
+    "context": "Serra do Sincorá: 69,41 m²."
   }
 }
