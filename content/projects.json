@@ -8,7 +8,7 @@
     "city": "São José dos Campos",
     "hood": "Vila Ema",
     "location": "Vila Ema · São José dos Campos",
-    "street": null,
+    "street": "Rua Justino Cobra, 162, Vila Ema, São José dos Campos, SP, 12243-030",
     "area": null,
     "beds": null,
     "pitch": "Um novo endereço com a assinatura Kyma. Entre em contato para conhecer o lançamento.",
@@ -47,7 +47,7 @@
     "city": "São José dos Campos",
     "hood": "Vila Ema",
     "location": "Vila Ema · São José dos Campos",
-    "street": "Rua Padre Rodolfo, 286",
+    "street": "Rua Padre Rodolfo, 286, Vila Ema, São José dos Campos, SP",
     "area": "79,95m² e 82,21m²",
     "beds": "2 dormitórios",
     "pitch": "Moderno, sofisticado e completo, em uma das regiões mais desejadas de São José dos Campos.",
@@ -80,19 +80,19 @@
     "city": "São José dos Campos",
     "hood": "Vila Ema",
     "location": "Vila Ema · São José dos Campos",
-    "street": "Em frente à Igreja Sagrada Família",
+    "street": "Rua Padre Rodolfo, 65, Vila Ema, São José dos Campos, SP (atrás da Paróquia Sagrada Família)",
     "area": "114,66m²",
     "beds": null,
-    "pitch": "Arquitetura marcante e plantas amplas, em frente à Igreja Sagrada Família — um novo marco na Vila Ema.",
+    "pitch": "Arquitetura marcante e plantas amplas, atrás da Paróquia Sagrada Família, na Vila Ema.",
     "card": [
-      "/assets/img/2025/01/obra-mon-2-1024x573.jpg",
+      "/assets/img/round3/mon-tresor/fachada-pronta.webp",
       1024,
-      573
+      1536
     ],
     "hero": [
-      "/assets/img/2025/01/obra-mon-2.jpg",
-      1200,
-      672
+      "/assets/img/round3/mon-tresor/fachada-pronta.webp",
+      1024,
+      1536
     ],
     "logo": [
       "/assets/img/2022/05/monte-tresor0.png",
@@ -101,9 +101,10 @@
     "contain": false,
     "wa_link": "https://wa.me/551238784488?text=Ol%C3%A1%21%20Vim%20pelo%20site%20e%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es%20sobre%20o%20Mon%20Tr%C3%A9sor.",
     "featured_order": null,
-    "featured_text": "Arquitetura marcante e plantas amplas, em frente à Igreja Sagrada Família — um novo marco na Vila Ema.",
-    "additional_description": "Todos os dias recebemos contatos perguntando se o Residencial Mon Trésor é a obra em frente à Igreja Sagrada Família — e a resposta é sim! Com ótima arquitetura e localização, o empreendimento é um marco no bairro, com plantas de 114,66m².",
-    "presentation_from_card": true
+    "featured_text": "Arquitetura marcante e plantas amplas, atrás da Paróquia Sagrada Família, na Vila Ema.",
+    "additional_description": "O Residencial Mon Trésor está na Rua Padre Rodolfo, 65, na Vila Ema, atrás da Paróquia Sagrada Família. Com arquitetura marcante e localização privilegiada, o empreendimento tem plantas de 114,66m².",
+    "presentation_from_card": true,
+    "presentation_override": true
   },
   {
     "slug": "azure",
@@ -114,10 +115,10 @@
     "city": "Caraguatatuba",
     "hood": "Tabatinga",
     "location": "Tabatinga · Caraguatatuba",
-    "street": null,
+    "street": "Avenida Eurico Gaspar Dutra, 60, Tabatinga, Caraguatatuba, SP, 11679-200",
     "area": null,
     "beds": null,
-    "pitch": "O Litoral Norte como endereço: um empreendimento pensado para quem quer viver — ou investir — perto do mar.",
+    "pitch": "O Litoral Norte como endereço: um empreendimento pensado para quem quer viver ou investir perto do mar.",
     "card": [
       "/assets/img/round2/azure-fachada.jpg",
       1280,
@@ -145,9 +146,9 @@
     "status": "entregue",
     "region": "vale",
     "city": "São José dos Campos",
-    "hood": null,
-    "location": "São José dos Campos · SP",
-    "street": null,
+    "hood": "Bosque dos Eucaliptos",
+    "location": "Bosque dos Eucaliptos · São José dos Campos",
+    "street": "Avenida Ouro Fino, 661, Bosque dos Eucaliptos, São José dos Campos, SP",
     "area": "65,76m²",
     "beds": null,
     "pitch": "Plantas inteligentes e bem distribuídas, com a assinatura de qualidade Kyma.",
@@ -178,9 +179,9 @@
     "status": "entregue",
     "region": "vale",
     "city": "São José dos Campos",
-    "hood": null,
-    "location": "São José dos Campos · SP",
-    "street": null,
+    "hood": "Parque Industrial",
+    "location": "Parque Industrial · São José dos Campos",
+    "street": "Rua Palmares, 155, Parque Industrial, São José dos Campos, SP",
     "area": "68,94m²",
     "beds": null,
     "pitch": "Conforto e praticidade para o dia a dia, em uma localização estratégica da cidade.",
@@ -211,9 +212,9 @@
     "status": "entregue",
     "region": "vale",
     "city": "São José dos Campos",
-    "hood": null,
-    "location": "São José dos Campos · SP",
-    "street": null,
+    "hood": "Parque Industrial",
+    "location": "Parque Industrial · São José dos Campos",
+    "street": "Rua Palmares, 346, Parque Industrial, São José dos Campos, SP",
     "area": "69,60m²",
     "beds": null,
     "pitch": "Linhas contemporâneas e espaços bem aproveitados para viver com leveza.",
@@ -246,17 +247,21 @@
     "city": "São José dos Campos",
     "hood": "Parque Industrial",
     "location": "Parque Industrial · São José dos Campos",
-    "street": "Rua Palmares, 686",
+    "street": "Rua Palmares, 686, Parque Industrial, São José dos Campos, SP",
     "area": "68,85m²",
     "beds": null,
     "pitch": "Localização privilegiada na região Sul, com a natureza como vizinha.",
     "card": [
-      "/assets/img/2022/05/altos-do-parque0.png",
-      500,
-      500
+      "/assets/img/round3/altos-do-parque/01.webp",
+      1600,
+      1600
     ],
-    "contain": true,
-    "hero": null,
+    "contain": false,
+    "hero": [
+      "/assets/img/round3/altos-do-parque/01.webp",
+      1600,
+      1600
+    ],
     "hero_logo": [
       "/assets/img/2022/05/altos-do-parque0.png",
       500,
@@ -269,28 +274,34 @@
     "wa_link": "https://wa.me/551238784488?text=Ol%C3%A1%21%20Vim%20pelo%20site%20e%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es%20sobre%20o%20Altos%20do%20Parque.",
     "featured_order": null,
     "featured_text": "Localização privilegiada na região Sul, com a natureza como vizinha.",
-    "additional_description": "Quer saber mais sobre plantas, disponibilidade e condições? Nosso time de corretores está pronto para te atender com todas as informações atualizadas."
+    "additional_description": "Quer saber mais sobre plantas, disponibilidade e condições? Nosso time de corretores está pronto para te atender com todas as informações atualizadas.",
+    "presentation_from_card": true,
+    "presentation_override": true
   },
   {
     "slug": "serra-do-sincora",
     "name": "Serra do Sincorá",
     "full": "Serra do Sincorá",
     "status": "entregue",
-    "region": "outros",
-    "city": null,
-    "hood": null,
-    "location": "Consulte a localização",
-    "street": null,
+    "region": "vale",
+    "city": "São José dos Campos",
+    "hood": "Jardim Vale do Sol",
+    "location": "Jardim Vale do Sol · São José dos Campos",
+    "street": "Avenida Feira de Santana, 130, Jardim Vale do Sol, São José dos Campos, SP, 12238-000",
     "area": null,
     "beds": null,
-    "pitch": "Um projeto que integra o portfólio Kyma — fale com nosso time para conhecer os detalhes.",
+    "pitch": "Um projeto que integra o portfólio Kyma, fale com nosso time para conhecer os detalhes.",
     "card": [
-      "/assets/img/2022/05/sincora00.jpg",
-      500,
-      500
+      "/assets/img/round3/serra-do-sincora/portaria-noite.webp",
+      1024,
+      576
     ],
-    "contain": true,
-    "hero": null,
+    "contain": false,
+    "hero": [
+      "/assets/img/round3/serra-do-sincora/portaria-noite.webp",
+      1024,
+      576
+    ],
     "hero_logo": [
       "/assets/img/2022/05/sincora00.jpg",
       500,
@@ -302,7 +313,9 @@
     ],
     "wa_link": "https://wa.me/551238784488?text=Ol%C3%A1%21%20Vim%20pelo%20site%20e%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es%20sobre%20o%20Serra%20do%20Sincor%C3%A1.",
     "featured_order": null,
-    "featured_text": "Um projeto que integra o portfólio Kyma — fale com nosso time para conhecer os detalhes.",
-    "additional_description": "Quer saber mais sobre plantas, disponibilidade e condições? Nosso time de corretores está pronto para te atender com todas as informações atualizadas."
+    "featured_text": "Um projeto que integra o portfólio Kyma, fale com nosso time para conhecer os detalhes.",
+    "additional_description": "Quer saber mais sobre plantas, disponibilidade e condições? Nosso time de corretores está pronto para te atender com todas as informações atualizadas.",
+    "presentation_from_card": true,
+    "presentation_override": true
   }
 ]

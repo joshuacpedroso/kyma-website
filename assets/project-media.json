@@ -93,6 +93,12 @@
   ],
   "mon-tresor": [
     {
+      "src": "/assets/img/round3/mon-tresor/fachada-pronta.webp",
+      "width": 1024,
+      "height": 1536,
+      "caption": "Fachada pronta do Mon Trésor"
+    },
+    {
       "src": "/assets/img/projects/mon-tresor/01.webp",
       "width": 2560,
       "height": 1502,
@@ -305,6 +311,88 @@
       "width": 1500,
       "height": 900,
       "caption": "Detalhe da fachada"
+    }
+  ],
+  "altos-do-parque": [
+    {
+      "src": "/assets/img/round3/altos-do-parque/01.webp",
+      "width": 1600,
+      "height": 1600,
+      "caption": "Portaria do Residencial Altos do Parque"
+    },
+    {
+      "src": "/assets/img/round3/altos-do-parque/02.webp",
+      "width": 1600,
+      "height": 1600,
+      "caption": "Vista aérea do Altos do Parque"
+    },
+    {
+      "src": "/assets/img/round3/altos-do-parque/03.webp",
+      "width": 1600,
+      "height": 1600,
+      "caption": "Salão de jogos"
+    },
+    {
+      "src": "/assets/img/round3/altos-do-parque/04.webp",
+      "width": 1600,
+      "height": 1600,
+      "caption": "Espaço de convivência"
+    },
+    {
+      "src": "/assets/img/round3/altos-do-parque/05.webp",
+      "width": 1600,
+      "height": 1600,
+      "caption": "Lazer ao ar livre"
+    },
+    {
+      "src": "/assets/img/round3/altos-do-parque/06.webp",
+      "width": 1600,
+      "height": 1600,
+      "caption": "Garagem"
+    },
+    {
+      "src": "/assets/img/round3/altos-do-parque/07.webp",
+      "width": 1600,
+      "height": 1600,
+      "caption": "Academia"
+    },
+    {
+      "src": "/assets/img/round3/altos-do-parque/08.webp",
+      "width": 1600,
+      "height": 1600,
+      "caption": "Mesa de jogos"
+    },
+    {
+      "src": "/assets/img/round3/altos-do-parque/09.webp",
+      "width": 1600,
+      "height": 1600,
+      "caption": "Playground"
+    },
+    {
+      "src": "/assets/img/round3/altos-do-parque/10.webp",
+      "width": 1600,
+      "height": 1600,
+      "caption": "Ambiente interno"
+    },
+    {
+      "src": "/assets/img/round3/altos-do-parque/11.webp",
+      "width": 1600,
+      "height": 1600,
+      "caption": "Fachada do Altos do Parque"
+    },
+    {
+      "src": "/assets/img/round3/altos-do-parque/12.webp",
+      "width": 1200,
+      "height": 1200,
+      "caption": "Planta humanizada do Altos do Parque"
+    }
+  ],
+  "serra-do-sincora": [
+    {
+      "src": "/assets/img/round3/serra-do-sincora/portaria-noite.webp",
+      "width": 1024,
+      "height": 576,
+      "caption": "Portaria do Serra do Sincorá à noite"
     }
   ]
 }

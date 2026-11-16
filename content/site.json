@@ -5,7 +5,7 @@
   "phone_intl": "+55-12-3878-4488",
   "whatsapp": "551238784488",
   "instagram": "kymaempreendimentos",
-  "address": "Av. Alfredo Ignácio Nogueira Penido, 305 – Sala 1.301, São José dos Campos – SP",
+  "address": "Av. Alfredo Ignácio Nogueira Penido, 305, Sala 1.301, São José dos Campos, SP",
   "maps_query": "Av. Alfredo Ignácio Nogueira Penido, 305, São José dos Campos - SP",
   "logo": "/assets/img/brand/kyma-negativo.png",
   "favicon": "/assets/img/brand/kyma-positivo.png",
@@ -72,7 +72,7 @@
         "Ética, transparência, credibilidade, compromisso, disciplina e criatividade."
       ]
     ],
-    "intro_text": "Somos uma empresa da indústria da construção civil que atua regionalmente no Vale do Paraíba e no Litoral Norte do Estado de São Paulo. Oferecemos empreendimentos atuais, que primam pela qualidade, localização e que tragam o retorno esperado aos nossos clientes — sempre em busca da satisfação de investidores, parceiros, fornecedores e consumidores finais, proporcionando uma experiência única no mercado.",
+    "intro_text": "Kyma empreendimentos - Somos uma empresa da Indústria da Construção Civil que atua regionalmente no Vale do Paraíba e Litoral Norte no Estado de São Paulo. Oferecemos empreendimentos atuais, que primam pela qualidade, localização e que tragam o retorno esperado aos nossos clientes. Sempre em busca da satisfação dos nossos investidores, parceiros, fornecedores ou consumidores finais, proporcionando uma experiência única no mercado!",
     "hero_image": [
       "/assets/img/2022/05/quem-somos-02.png",
       1550,
@@ -80,13 +80,13 @@
     ],
     "intro_image": [
       "/assets/img/projects/haus/19.webp",
-      "Portaria do Haus — acervo oficial Kyma",
+      "Portaria do Haus, acervo oficial Kyma",
       2048,
       2560
     ],
     "values_image": [
       "/assets/img/projects/mon-tresor/05.webp",
-      "Espaço gourmet do Montresor — acervo oficial Kyma",
+      "Espaço gourmet do Montresor, acervo oficial Kyma",
       2560,
       1506
     ]

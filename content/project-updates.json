@@ -1,68 +1,92 @@
 {
   "uniko": {
     "progress_percent": null,
-    "exact_address": null,
-    "coordinates": null,
-    "coordinate_source": null,
+    "exact_address": "Rua Justino Cobra, 162, Vila Ema, São José dos Campos, SP, 12243-030",
+    "coordinates": [
+      -23.20461698957,
+      -45.90080399341
+    ],
+    "coordinate_source": "ArcGIS World Geocoding Service, PointAddress, Rua Justino Cobra 162, São José Dos Campos, São Paulo, 12243-030, consulta em 16/11/2026",
     "progress_stages": []
   },
   "haus": {
     "progress_percent": null,
-    "exact_address": "Rua Padre Rodolfo, 286",
+    "exact_address": "Rua Padre Rodolfo, 286, Vila Ema, São José dos Campos, SP",
     "coordinates": [
-      -23.2044083,
-      -45.9029535
+      -23.204485980423,
+      -45.902609036259
     ],
-    "coordinate_source": "OpenStreetMap / Nominatim, Rua Padre Rodolfo, 286, conferido em 09/11/2026",
+    "coordinate_source": "ArcGIS World Geocoding Service, PointAddress, Rua Padre Rodolfo 286, São José Dos Campos, São Paulo, 12243-080, consulta em 16/11/2026",
     "progress_stages": []
   },
   "mon-tresor": {
     "progress_percent": null,
-    "exact_address": null,
-    "coordinates": null,
-    "coordinate_source": null,
+    "exact_address": "Rua Padre Rodolfo, 65, Vila Ema, São José dos Campos, SP (atrás da Paróquia Sagrada Família)",
+    "coordinates": [
+      -23.203414144242,
+      -45.901654973704
+    ],
+    "coordinate_source": "ArcGIS World Geocoding Service, StreetAddress, Rua Padre Rodolfo 65, Vila Ema, São José dos Campos, São Paulo, 12243-080, consulta em 16/11/2026",
     "progress_stages": []
   },
   "azure": {
     "progress_percent": null,
-    "exact_address": null,
-    "coordinates": null,
-    "coordinate_source": null,
+    "exact_address": "Avenida Eurico Gaspar Dutra, 60, Tabatinga, Caraguatatuba, SP, 11679-200",
+    "coordinates": [
+      -23.572995102892,
+      -45.274639648552
+    ],
+    "coordinate_source": "ArcGIS World Geocoding Service, StreetAddress, Avenida Eurico Gaspar Dutra 60, Praia Tabatinga, Caraguatatuba, São Paulo, 11679-200, consulta em 16/11/2026",
     "progress_stages": []
   },
   "monte-cristo": {
     "progress_percent": null,
-    "exact_address": null,
-    "coordinates": null,
-    "coordinate_source": null,
+    "exact_address": "Avenida Ouro Fino, 661, Bosque dos Eucaliptos, São José dos Campos, SP",
+    "coordinates": [
+      -23.241280020793,
+      -45.888218984887
+    ],
+    "coordinate_source": "ArcGIS World Geocoding Service, PointAddress, Avenida Ouro Fino 661, São José Dos Campos, São Paulo, 12233-400, consulta em 16/11/2026",
     "progress_stages": []
   },
   "monte-negro": {
     "progress_percent": null,
-    "exact_address": null,
-    "coordinates": null,
-    "coordinate_source": null,
+    "exact_address": "Rua Palmares, 155, Parque Industrial, São José dos Campos, SP",
+    "coordinates": [
+      -23.236060523097,
+      -45.906099170733
+    ],
+    "coordinate_source": "ArcGIS World Geocoding Service, StreetAddress, Rua Palmares 155, Parque Industrial, São José dos Campos, São Paulo, 12235-620, consulta em 16/11/2026",
     "progress_stages": []
   },
   "monte-zurich": {
     "progress_percent": null,
-    "exact_address": null,
-    "coordinates": null,
-    "coordinate_source": null,
+    "exact_address": "Rua Palmares, 346, Parque Industrial, São José dos Campos, SP",
+    "coordinates": [
+      -23.231977994196,
+      -45.903774036981
+    ],
+    "coordinate_source": "ArcGIS World Geocoding Service, PointAddress, Rua Palmares 346, São José Dos Campos, São Paulo, 12235-620, consulta em 16/11/2026",
     "progress_stages": []
   },
   "altos-do-parque": {
     "progress_percent": null,
-    "exact_address": "Rua Palmares, 686, Parque Industrial, São José dos Campos – SP",
-    "coordinates": null,
-    "coordinate_source": null,
+    "exact_address": "Rua Palmares, 686, Parque Industrial, São José dos Campos, SP",
+    "coordinates": [
+      -23.234313988702,
+      -45.905217987441
+    ],
+    "coordinate_source": "ArcGIS World Geocoding Service, PointAddress, Rua Palmares 686, São José Dos Campos, São Paulo, 12235-620, consulta em 16/11/2026",
     "progress_stages": []
   },
   "serra-do-sincora": {
     "progress_percent": null,
-    "exact_address": null,
-    "coordinates": null,
-    "coordinate_source": null,
+    "exact_address": "Avenida Feira de Santana, 130, Jardim Vale do Sol, São José dos Campos, SP, 12238-000",
+    "coordinates": [
+      -23.256516979661,
+      -45.911603991832
+    ],
+    "coordinate_source": "ArcGIS World Geocoding Service, PointAddress, Avenida Feira De Santana 130, São José Dos Campos, São Paulo, 12238-000, consulta em 16/11/2026",
     "progress_stages": []
   }
 }

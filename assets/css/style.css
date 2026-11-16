@@ -1035,3 +1035,10 @@ body[data-page="about"] .split { gap:clamp(28px,5vw,72px); }
 #lancamentos .section-head .h1,.news-highlights .section-head .h1 { font-size:clamp(34px,4vw,58px); }
 #lancamentos,.news-highlights { padding-block:clamp(56px,7vw,96px); }
 .build-progress__intro .link-arrow svg { width:20px;height:20px;flex:none; }
+
+/* Endereços completos fornecidos pela cliente, rodada 3. */
+.card__meta span,.show__meta span,.hero-facts .chip,.map-project small{overflow-wrap:anywhere;min-width:0}
+.hero-facts .chip{height:auto;min-height:40px;padding-block:10px;line-height:1.45;max-width:100%}
+.card__meta svg,.show__meta svg,.hero-facts .chip svg{flex-shrink:0}
+.plans--official .plan img{filter:none;mix-blend-mode:normal}
+.plans--official figcaption{flex-wrap:wrap;gap:8px}

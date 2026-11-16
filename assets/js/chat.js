@@ -1,4 +1,4 @@
-/* Kyma Concierge — assistente virtual com efeito de digitação.
+/* Kyma Concierge, assistente virtual com efeito de digitação.
    Roda 100% no navegador: entende intenções por palavras-chave e
    encaminha o lead para o WhatsApp com a conversa resumida. */
 (() => {
@@ -241,8 +241,8 @@
   const hi = () => (state.name ? `, ${state.name}` : '');
 
   const projectLine = p => {
-    const bits = [p.location, p.area, p.beds].filter(Boolean).join(' · ');
-    return `**${p.name}** — ${p.pitch}\n${bits}`;
+    const bits = [p.address || p.location, p.area, p.beds].filter(Boolean).join(' · ');
+    return `**${p.name}**, ${p.pitch}\n${bits}`;
   };
 
   const periodOf = t => {
@@ -296,13 +296,13 @@
         });
         break;
       case 'portfolio':
-        say(`Aqui está o nosso portfólio completo — são **${K.projects.length} empreendimentos** entre o Vale do Paraíba e o Litoral Norte. Arrasta pro lado pra ver todos 👉`, {
+        say(`Aqui está o nosso portfólio completo, são **${K.projects.length} empreendimentos** entre o Vale do Paraíba e o Litoral Norte. Arrasta pro lado pra ver todos 👉`, {
           cards: K.projects.map(p => p.slug),
           chips: [['Só lançamentos', 'lancamentos'], ['Agendar visita', 'visita'], ['Ver página completa', 'goto:/empreendimentos']]
         });
         break;
       case 'vila-ema':
-        say('Na Vila Ema, uma das regiões mais desejadas de São José dos Campos, temos o **Haus**, em obras, (2 dormitórios, 79,95m² e 82,21m²) e o **Mon Trésor**, entregue (114,66m², em frente à Igreja Sagrada Família).', {
+        say('Na Vila Ema, uma das regiões mais desejadas de São José dos Campos, temos o **Haus**, em obras, (2 dormitórios, 79,95m² e 82,21m²) e o **Mon Trésor**, entregue (114,66m², atrás da Paróquia Sagrada Família).', {
           cards: ['haus', 'mon-tresor'], chips: [['Haus', 'proj:haus'], ['Mon Trésor', 'proj:mon-tresor'], ['Agendar visita', 'visita']]
         });
         break;
@@ -312,19 +312,19 @@
       case 'visita':
         if (!state.interest) {
           state.awaiting = 'visit-project';
-          say(`Ótima escolha${hi()} — nada como sentir o lugar de perto. Qual empreendimento você quer conhecer?`, {
+          say(`Ótima escolha${hi()}, nada como sentir o lugar de perto. Qual empreendimento você quer conhecer?`, {
             chips: launches.map(p => [p.name, 'vp:' + p.slug]).concat([['Ainda não sei', 'vp:none']])
           });
         } else askPeriod();
         break;
       case 'preco':
-        say(`Os valores variam conforme a unidade, o andar e a condição de pagamento${hi()} — por isso a gente prefere te passar a **tabela atualizada** direto com um corretor, sem surpresa nenhuma.${state.interest ? `\n\nQuer que eu peça a tabela do **${state.interest}**?` : '\n\nDe qual empreendimento você quer a tabela?'}`, state.interest ? {
+        say(`Os valores variam conforme a unidade, o andar e a condição de pagamento${hi()}, por isso a gente prefere te passar a **tabela atualizada** direto com um corretor, sem surpresa nenhuma.${state.interest ? `\n\nQuer que eu peça a tabela do **${state.interest}**?` : '\n\nDe qual empreendimento você quer a tabela?'}`, state.interest ? {
           cta: { label: `Receber tabela do ${state.interest}`, href: wa(`Olá! ${state.name ? `Sou ${state.name}. ` : ''}Gostaria de receber a tabela de valores do ${state.interest}.`) },
           chips: [['Financiamento', 'financiamento'], ['Agendar visita', 'visita']]
         } : { chips: launches.map(p => [p.name, 'price:' + p.slug]).concat([['Financiamento', 'financiamento']]) });
         break;
       case 'financiamento':
-        say('Trabalhamos com condições facilitadas e nosso time te orienta em cada etapa: simulação, entrada, uso de FGTS e financiamento bancário. O ideal é fazer uma **simulação personalizada** com um corretor — é rápido e sem compromisso.', {
+        say('Trabalhamos com condições facilitadas e nosso time te orienta em cada etapa: simulação, entrada, uso de FGTS e financiamento bancário. O ideal é fazer uma **simulação personalizada** com um corretor, é rápido e sem compromisso.', {
           cta: { label: 'Fazer simulação', href: wa(`Olá! ${state.name ? `Sou ${state.name}. ` : ''}Gostaria de simular condições de pagamento${state.interest ? ` para o ${state.interest}` : ''}.`) },
           chips: [['Ver lançamentos', 'lancamentos'], ['Agendar visita', 'visita']]
         });
@@ -382,7 +382,7 @@
         break;
       default:
         say(pick([
-          `Hmm, essa eu prefiro não chutar${hi()} — quero te passar só informação certa. Posso te ajudar com uma dessas opções ou te conectar com um corretor:`,
+          `Hmm, essa eu prefiro não chutar${hi()}, quero te passar só informação certa. Posso te ajudar com uma dessas opções ou te conectar com um corretor:`,
           `Boa pergunta! Pra não te responder nada errado, deixa eu te mostrar o que eu sei fazer por aqui:`
         ]), { chips: MAIN_CHIPS.concat([['Localização', 'localizacao']]) });
     }

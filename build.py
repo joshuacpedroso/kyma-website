@@ -116,7 +116,7 @@ def header(active: str) -> str:
 <div class="progress" aria-hidden="true"></div>
 <header class="site-header" data-header>
   <div class="header-inner">
-    <a class="brand" href="/" aria-label="{escape(BRAND)} — página inicial">
+    <a class="brand" href="/" aria-label="{escape(BRAND)}, página inicial">
       <img src="{LOGO_WHITE}" alt="{escape(BRAND)}" width="461" height="140">
     </a>
     <nav class="nav" aria-label="Navegação principal"><ul>{items}</ul></nav>
@@ -177,13 +177,17 @@ def footer() -> str:
 </footer>"""
 
 
+def project_address(p):
+    return p.get('street') or p['location']
+
+
 def meta_items(p, cls="card__meta"):
     bits = []
     if p.get("area"):
         bits.append(f'<span>{ic("area")}{p["area"]}</span>')
     else:
         bits.append('<span class="area-pending">Metragem a confirmar</span>')
-    bits.append(f'<span>{ic("pin")}{p["location"]}</span>')
+    bits.append(f'<span>{ic("pin")}{escape(project_address(p))}</span>')
     return f'<div class="{cls}">{"".join(bits)}</div>'
 
 
@@ -194,7 +198,7 @@ def card(p, tags=True):
     return f"""
 <article class="card"{t}>
   <a class="card__media{' is-contain' if p['contain'] else ''}" href="/{p['slug']}" data-cursor="Ver" data-tilt aria-label="Conhecer o {escape(p['name'])}">
-    {badge}{img(c, f"{p['full']} — {p['location']}", w, h, cls=f'identity-logo logo-{p["slug"]}' if p['contain'] else '')}
+    {badge}{img(c, f"{p['full']}, {p['location']}", w, h, cls=f'identity-logo logo-{p["slug"]}' if p['contain'] else '')}
     <span class="card__go">{ic("arrow-ur")}</span>
   </a>
   <div>
@@ -262,7 +266,7 @@ ORG = {
     "telephone": PHONE_INTL,
     "address": {
         "@type": "PostalAddress",
-        "streetAddress": "Av. Alfredo Ignácio Nogueira Penido, 305 – Sala 1.301",
+        "streetAddress": "Av. Alfredo Ignácio Nogueira Penido, 305, Sala 1.301",
         "addressLocality": "São José dos Campos",
         "addressRegion": "SP",
         "addressCountry": "BR",
@@ -374,12 +378,12 @@ def page_home():
     shows = ""
     for i, p in enumerate(FEATURED):
         c, w, h = p["card"]
-        facts = f'<span>{ic("pin")}{p["location"]}</span>'
+        facts = f'<span>{ic("pin")}{escape(project_address(p))}</span>'
         shows += f"""
 <article class="show" data-featured="{p['slug']}">
   <a class="show__media reveal-img" href="/{p['slug']}" data-cursor="Ver">
     <span class="badge">{STATUS[p["status"]]}</span>
-    {img(c, f"{p['full']} — {p['location']}", w, h)}
+    {img(c, f"{p['full']}, {p['location']}", w, h)}
   </a>
   <div class="show__body">
     <h3 class="h2" data-split>{p['name']}</h3>
@@ -511,13 +515,15 @@ def project_ld(p):
     }
     if p["city"]:
         ld["address"] = {"@type": "PostalAddress", "addressLocality": p["city"], "addressRegion": "SP", "addressCountry": "BR"}
-        if p.get("street") and p["street"].startswith("Rua"):
+        if p.get("street"):
             ld["address"]["streetAddress"] = p["street"]
+    if p.get("coordinates"):
+        ld["geo"] = {"@type":"GeoCoordinates","latitude":p["coordinates"][0],"longitude":p["coordinates"][1]}
     return ld
 
 
 def facts_chips(p):
-    items = [f'<span class="chip">{ic("pin")}{p["street"] + " · " if p.get("street") else ""}{p["location"]}</span>']
+    items = [f'<span class="chip">{ic("pin")}{escape(project_address(p))}</span>']
     if p["area"]:
         items.append(f'<span class="chip">{ic("area")}{p["area"]}</span>')
     if p["beds"]:
@@ -561,8 +567,8 @@ def page_haus():
         s, w, h = b["img"]
         blocks += f"""
 <div class="split{' split--rev' if i % 2 else ''}" style="margin-top:{'0' if i == 0 else 'clamp(88px,12vw,160px)'}">
-  <a class="split__media split__media--tall reveal-img" href="{s}" data-lightbox="haus-amb" data-caption="Haus — {escape(b['eyebrow'], quote=True)}" data-cursor="Ampliar">
-    <div data-parallax="0.08" style="height:112%;margin-top:-6%">{img(s, f"Haus Vila Ema — {b['eyebrow']}", w, h)}</div>
+  <a class="split__media split__media--tall reveal-img" href="{s}" data-lightbox="haus-amb" data-caption="Haus, {escape(b['eyebrow'], quote=True)}" data-cursor="Ampliar">
+    <div data-parallax="0.08" style="height:112%;margin-top:-6%">{img(s, f"Haus Vila Ema, {b['eyebrow']}", w, h)}</div>
     <span class="frame-deco"></span>
   </a>
   <div class="split__body">
@@ -573,7 +579,7 @@ def page_haus():
   </div>
 </div>"""
     plans = "".join(
-        f'<figure class="plan" data-reveal><a href="{full}" data-lightbox="haus-plantas" data-caption="Haus — {escape(cap, quote=True)}" data-cursor="Ampliar">{img(med, f"Haus Vila Ema — {cap}", w, h)}</a>'
+        f'<figure class="plan" data-reveal><a href="{full}" data-lightbox="haus-plantas" data-caption="Haus, {escape(cap, quote=True)}" data-cursor="Ampliar">{img(med, f"Haus Vila Ema, {cap}", w, h)}</a>'
         f'<figcaption><b>{cap}</b><span>Clique para ampliar</span></figcaption></figure>'
         for full, med, w, h, cap in HAUS["plans"])
     gallery_imgs = [
@@ -585,7 +591,7 @@ def page_haus():
     if MEDIA.get('haus'):
         gallery_imgs = [(photo['src'], photo['src'], photo['width'], photo['height'], photo['caption']) for photo in MEDIA['haus']]
     gallery = "".join(
-        f'<a href="{full}" data-lightbox="haus-galeria" data-caption="Haus — {escape(cap, quote=True)}" data-cursor="Ampliar" data-reveal>{img(med, f"Haus Vila Ema — {cap}", w, h)}</a>'
+        f'<a href="{full}" data-lightbox="haus-galeria" data-caption="Haus, {escape(cap, quote=True)}" data-cursor="Ampliar" data-reveal>{img(med, f"Haus Vila Ema, {cap}", w, h)}</a>'
         for full, med, w, h, cap in gallery_imgs)
 
     body = page_hero(HAUS["hero_title"] if p["name"]=="Haus" else p["name"], f"{STATUS[p['status']]} · {p['location']}",
@@ -604,7 +610,7 @@ def page_haus():
           <a class="btn btn--dark" href="{p['wa_link']}" target="_blank" rel="noopener">Entre em contato {ic("arrow")}</a>
         </div>
       </div>
-      <a class="split__media split__media--wide reveal-img" href="{HAUS['intro_image'][0]}" data-lightbox="haus-galeria-top" data-caption="Haus — Fachada" data-cursor="Ampliar">
+      <a class="split__media split__media--wide reveal-img" href="{HAUS['intro_image'][0]}" data-lightbox="haus-galeria-top" data-caption="Haus, Fachada" data-cursor="Ampliar">
         {img(HAUS["intro_image"][0], "Fachada lateral do Residencial Haus Vila Ema", *HAUS["intro_image"][1:])}
       </a>
     </div>
@@ -666,10 +672,10 @@ def page_haus():
   <div class="container">
     <div class="section-head">
       <p class="eyebrow" data-reveal>Localização</p>
-      <h2 class="h2" data-split>{HAUS["location_heading"]}</h2>
+      <h2 class="h2" data-split>{escape(project_address(p))}</h2>
       <p class="lead" data-reveal>{HAUS["location_description"]}</p>
     </div>
-    <div class="map" data-reveal><iframe title="Mapa — Haus Vila Ema" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q={quote(', '.join(filter(None,[p.get('street'),p.get('hood'),p.get('city'),'SP'])))}&amp;output=embed"></iframe></div>
+    <div class="map" data-reveal><iframe title="Mapa, Haus Vila Ema" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q={quote(project_address(p))}&amp;output=embed"></iframe></div>
   </div>
 </section>
 
@@ -681,8 +687,8 @@ def page_haus():
     ld["amenityFeature"] = [{"@type": "LocationFeatureSpecification", "name": x, "value": True} for x in HAUS["common"]]
     return layout(
         path="/haus", project="haus", active="/empreendimentos",
-        title="Haus Vila Ema | Apartamentos de 2 dormitórios em São José dos Campos — Kyma",
-        desc="Haus Vila Ema: apartamentos de 79,95m² e 82,21m² com 2 dormitórios, lazer completo com piscina de borda infinita e 2 vagas. Rua Padre Rodolfo, 286 — São José dos Campos.",
+        title="Haus Vila Ema | Apartamentos de 2 dormitórios em São José dos Campos, Kyma",
+        desc="Haus Vila Ema: apartamentos de 79,95m² e 82,21m² com 2 dormitórios, lazer completo com piscina de borda infinita e 2 vagas. Rua Padre Rodolfo, 286, São José dos Campos.",
         body=body, og_image=p["hero"][0], preload=p["hero"][0],
         jsonld=[breadcrumb_ld([("/", "Início"), ("/empreendimentos", "Empreendimentos"), ("/haus", "Haus")]), ld])
 
@@ -703,6 +709,17 @@ def project_page_data(p):
     return local
 
 
+def project_plans_section(p):
+    detail = DETAILS.get(p['slug'], {})
+    plans = detail.get('plans', [])
+    if not plans:
+        return ''
+    figures = ''.join(
+        f'<figure class="plan" data-reveal><a href="{escape(full)}" data-lightbox="{p["slug"]}-plantas" data-caption="{escape(cap)}" data-cursor="Ampliar">{img(med,p["name"]+", "+cap,w,h)}</a><figcaption><b>{escape(cap)}</b><span>Clique para ampliar</span></figcaption></figure>'
+        for full,med,w,h,cap in plans)
+    return f'''<section class="section theme-light" id="plantas"><div class="container"><div class="section-head"><p class="eyebrow">{escape(p['name'])}</p><h2 class="h1" data-split>{detail.get('plans_heading','Plantas do empreendimento')}</h2></div><div class="plans plans--official">{figures}</div></div></section>'''
+
+
 def page_project(p):
     p = project_page_data(p)
     section = "Lançamentos" if p["status"] == "lancamento" else "Empreendimentos"
@@ -714,7 +731,7 @@ def page_project(p):
     c, w, h = p["card"]
     big = p["hero"] or p["card"]
     specs = [
-        (ic("pin"), p["location"], "Localização"),
+        (ic("pin"), escape(project_address(p)), "Localização"),
         (ic("area"), p["area"] or "A confirmar", "Área privativa"),
         (ic("building"), status_txt, "Status"),
         (ic("clock"), "Atendimento", "Corretor dedicado"),
@@ -727,8 +744,8 @@ def page_project(p):
         gallery.append((p["logo"][1], p["logo"][1], 500, 500, "Identidade visual"))
     contain_cls = ' class="is-contain"'
     gal_html = "".join(
-        f'<a href="{full}" data-lightbox="{p["slug"]}" data-caption="{escape(p["name"])} — {escape(cap, quote=True)}" data-cursor="Ampliar" data-reveal'
-        f'{contain_cls if (p["contain"] or cap == "Identidade visual") else ""}>{img(med, p["full"] + " — " + cap, ww, hh, cls="identity-logo logo-" + p["slug"] if (p["contain"] or cap == "Identidade visual") else "")}</a>'
+        f'<a href="{full}" data-lightbox="{p["slug"]}" data-caption="{escape(p["name"])}, {escape(cap, quote=True)}" data-cursor="Ampliar" data-reveal'
+        f'{contain_cls if (p["contain"] or cap == "Identidade visual") else ""}>{img(med, p["full"] + ", " + cap, ww, hh, cls="identity-logo logo-" + p["slug"] if (p["contain"] or cap == "Identidade visual") else "")}</a>'
         for i, (full, med, ww, hh, cap) in enumerate(gallery))
     extra_copy = p.get('additional_description','')
     body = page_hero(p["name"], f"{status_txt} · {p['location']}",
@@ -746,7 +763,7 @@ def page_project(p):
         <div data-reveal><a class="btn btn--dark" href="{p['wa_link']}" target="_blank" rel="noopener">Entre em contato {ic("arrow")}</a></div>
       </div>
       <a class="split__media split__media--wide reveal-img{' is-contain' if p['contain'] else ''}" href="{big[0]}" data-lightbox="{p['slug']}-top" data-caption="{escape(p['name'])}" data-cursor="Ampliar" style="{'background:var(--ink-3)' if p['contain'] else ''}">
-        {img(c, f"{p['full']} — {p['location']}", w, h, extra=' style="object-fit:contain;padding:10%"' if p['contain'] else "")}
+        {img(c, f"{p['full']}, {p['location']}", w, h, extra=' style="object-fit:contain;padding:10%"' if p['contain'] else "")}
       </a>
     </div>
     <div class="specs mt-l" data-stagger="0.08">{spec_html}</div>
@@ -763,13 +780,14 @@ def page_project(p):
   </div>
 </section>
 
+{project_plans_section(p)}
 {project_map(p)}
 {progress_section(p)}
 {cta_band(title=f"Quer conhecer o <em>{p['name']}?</em>", text="Fale com um corretor e receba plantas, disponibilidade e condições atualizadas.", msg=f"Olá! Gostaria de mais informações sobre o {p['name']}.")}
 {related(p)}"""
     return layout(
         path=f"/{p['slug']}", project=p["slug"], active=sec_path,
-        title=f"{p['full']} | {p['location']} — Kyma Empreendimentos",
+        title=f"{p['full']} | {p['location']}, Kyma Empreendimentos",
         desc=f"{p['full']} ({p['location']}{', ' + p['area'] if p['area'] else ''}). {p['pitch']}",
         body=body, og_image=big[0], preload=(p["hero"] or [None])[0],
         jsonld=[breadcrumb_ld([("/", "Início"), (sec_path, section), (f"/{p['slug']}", p["name"])]), project_ld(p)])
@@ -853,7 +871,7 @@ def page_contact():
         <div class="field"><input id="f-tel" name="telefone" type="tel" placeholder=" " autocomplete="tel" required><label for="f-tel">Telefone / WhatsApp *</label></div>
         <div class="field"><input id="f-email" name="email" type="email" placeholder=" " autocomplete="email"><label for="f-email">E-mail</label></div>
         <div class="field full">
-          <label class="sr-only" for="f-assunto">Assunto</label><select id="f-assunto" name="assunto" aria-label="Assunto"><option>Procurando por um imóvel</option><option>Financeiro</option><option>Seguro de entrega</option><option>Trabalhe conosco</option><option>Negocie seu terreno</option><option>Sou fornecedor</option><option>Boleto bancário</option><option>Solicitar assistência</option><option>Sou vizinho de uma obra</option><option>Relatar desvio de conduta</option><option>Enviar e-mail</option><option>Assessoria de imprensa</option><option>Privacidade de dados</option></select></div><div class="field full"><select id="f-int" name="interesse"><option value="">Ainda não sei — quero conhecer as opções</option>{options}</select>
+          <label class="sr-only" for="f-assunto">Assunto</label><select id="f-assunto" name="assunto" aria-label="Assunto"><option>Procurando por um imóvel</option><option>Financeiro</option><option>Seguro de entrega</option><option>Trabalhe conosco</option><option>Negocie seu terreno</option><option>Sou fornecedor</option><option>Boleto bancário</option><option>Solicitar assistência</option><option>Sou vizinho de uma obra</option><option>Relatar desvio de conduta</option><option>Enviar e-mail</option><option>Assessoria de imprensa</option><option>Privacidade de dados</option></select></div><div class="field full"><select id="f-int" name="interesse"><option value="">Ainda não sei, quero conhecer as opções</option>{options}</select>
           <label for="f-int">Interesse</label>
         </div>
         <div class="field full"><textarea id="f-msg" name="mensagem" placeholder=" " rows="4"></textarea><label for="f-msg">Mensagem</label></div>
@@ -870,7 +888,7 @@ def page_contact():
     contact_ld["contactPoint"] = {"@type": "ContactPoint", "telephone": PHONE_INTL, "contactType": "sales", "areaServed": "BR", "availableLanguage": "Portuguese"}
     return layout(
         path="/contato", active="/contato",
-        title="Contato | Kyma Empreendimentos — São José dos Campos",
+        title="Contato | Kyma Empreendimentos, São José dos Campos",
         desc=f"Fale com a Kyma Empreendimentos: WhatsApp e telefone {PHONE}. Escritório na {ADDRESS}. Agende sua visita.",
         body=body, og_image=f"{UP}/2024/11/1_3-Foto.jpg",
         jsonld=[breadcrumb_ld([("/", "Início"), ("/contato", "Contato")]), contact_ld])
@@ -886,7 +904,7 @@ def portfolio_section():
 def project_map(p):
     if not p.get("coordinates"):
         return f'''<section class="section section--tight"><div class="container"><p class="eyebrow">Localização</p><h2 class="h2">{escape(p['name'])}</h2><p class="lead">{escape(p['location'])}. Entre em contato para receber o endereço exato.</p></div></section>'''
-    query = ", ".join(filter(None, [p.get("street"), p.get("hood"), p.get("city"), "SP"]))
+    query = project_address(p)
     return f'''<section class="section section--tight"><div class="container">
       <div class="section-head"><p class="eyebrow">Localização</p><h2 class="h2">{escape(p['name'])} · <em>{escape(p['location'])}</em></h2></div>
       <div class="map"><iframe title="Localização de {escape(p['name'])}" loading="lazy" src="https://www.google.com/maps?q={quote(query)}&amp;output=embed" referrerpolicy="no-referrer-when-downgrade"></iframe></div>
@@ -896,10 +914,10 @@ def project_map(p):
 
 def locations_section():
     # Coordinates remain null until an exact address has been verified.
-    items = ''.join(f'''<li><a class="map-project" href="/{p['slug']}" data-map-project="{p['slug']}"><span>{p['name']}</span><small>{escape(p['street'] or p['location'])}</small><small>{'Ver empreendimento' if p['coordinates'] else 'Pin a confirmar' if UPDATES.get(p['slug'], {}).get('exact_address') else 'Localização exata a confirmar'}</small></a></li>''' for p in PROJECTS)
+    items = ''.join(f'''<li><a class="map-project" href="/{p['slug']}" data-map-project="{p['slug']}"><span>{p['name']}</span><small>{escape(p['street'] or p['location'])}</small><small>Ver empreendimento</small></a></li>''' for p in PROJECTS)
     return f'''<section class="section" id="enderecos"><div class="container">
       <div class="section-head"><p class="eyebrow">{T('home_featured_eyebrow')}</p><h2 class="h1">{T('addresses_heading')}</h2><p class="lead">{T('addresses_subtitle')}</p></div>
-      <div class="locations-layout"><div><div id="project-map" class="project-map" role="region" aria-label="Mapa dos empreendimentos com localização confirmada"></div><p id="map-status" class="map-status" role="status">Selecione um empreendimento. Pins disponíveis para endereços confirmados.</p><p id="map-tiles-note" class="map-status" role="status"></p><noscript><p>Consulte os endereços na lista de empreendimentos.</p></noscript></div><ul class="map-projects">{items}</ul></div>
+      <div class="locations-layout"><div><div id="project-map" class="project-map" role="region" aria-label="Mapa dos empreendimentos Kyma"></div><p id="map-status" class="map-status" role="status">Selecione um endereço para explorar os empreendimentos no mapa.</p><p id="map-tiles-note" class="map-status" role="status"></p><noscript><p>Consulte os endereços na lista de empreendimentos.</p></noscript></div><ul class="map-projects">{items}</ul></div>
     </div></section>'''
 
 
@@ -975,7 +993,7 @@ def page_404():
   <div style="display:grid;gap:26px;justify-items:center">
     <p class="eyebrow eyebrow--plain">Página não encontrada</p>
     <h1 class="display">404</h1>
-    <p class="lead">Parece que esse endereço não existe — mas o seu próximo pode estar a um clique.</p>
+    <p class="lead">Parece que esse endereço não existe, mas o seu próximo pode estar a um clique.</p>
     <div class="hero__cta" style="justify-content:center">
       <a class="btn btn--solid" href="/">Voltar ao início {ic("arrow")}</a>
       <a class="btn" href="/empreendimentos">Ver empreendimentos</a>
@@ -994,12 +1012,12 @@ def data_js():
             {
                 "slug": p["slug"], "name": p["name"], "status": p["status"], "location": p["location"],
                 "area": p["area"], "beds": p["beds"], "pitch": p["pitch"],
-                "progress": p["progress"], "coordinates": p["coordinates"], "mapSource": p["map_source"], "url": f"/{p['slug']}",
+                "address": project_address(p), "progress": p["progress"], "coordinates": p["coordinates"], "mapSource": p["map_source"], "url": f"/{p['slug']}",
                 "thumb": p["card"][0], "contain": p["contain"],
             } for p in PROJECTS
         ],
     }
-    return "/* Gerado por build.py — não edite à mão */\nwindow.KYMA = " + json.dumps(data, ensure_ascii=False, indent=2) + ";\n"
+    return "/* Gerado por build.py, não edite à mão */\nwindow.KYMA = " + json.dumps(data, ensure_ascii=False, indent=2) + ";\n"
 
 
 def main():
@@ -1035,7 +1053,7 @@ def main():
         sitemap.append(f"  <url><loc>{SITE}{u}</loc><lastmod>{today}</lastmod><priority>{prio.get(u, '0.8')}</priority></url>")
     sitemap.append("</urlset>")
     (ROOT / "sitemap.xml").write_text("\n".join(sitemap) + "\n", encoding="utf-8")
-    print(f"OK — {len(pages)} páginas geradas.")
+    print(f"OK, {len(pages)} páginas geradas.")
 
 
 if __name__ == "__main__":

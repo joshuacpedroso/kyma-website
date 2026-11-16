@@ -1,0 +1,146 @@
+{
+  "uniko": {
+    "official_address": "Rua Justino Cobra, 162, Vila Ema, São José dos Campos, SP, 12243-030",
+    "address_source": "PEDIDOS-RODADA3.md, item 1, lista oficial enviada pela cliente em 16/11/2026",
+    "query": "Rua Justino Cobra, 162, Vila Ema, São José dos Campos, SP, 12243-030",
+    "provider": "ArcGIS World Geocoding Service",
+    "matched_address": "Rua Justino Cobra 162, São José Dos Campos, São Paulo, 12243-030",
+    "address_type": "PointAddress",
+    "house_number": "162",
+    "score": 98.57,
+    "coordinates": [
+      -23.20461698957,
+      -45.90080399341
+    ],
+    "queried_on": "2026-11-16",
+    "query_url": "https://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer/findAddressCandidates?f=json&SingleLine=Rua+Justino+Cobra%2C+162%2C+Vila+Ema%2C+S%C3%A3o+Jos%C3%A9+dos+Campos%2C+SP%2C+12243-030&outFields=Match_addr%2CAddr_type%2CStAddr%2CAddNum%2CCity%2CRegion%2CPostal%2CPlaceName&sourceCountry=BRA&maxLocations=3&outSR=4326"
+  },
+  "haus": {
+    "official_address": "Rua Padre Rodolfo, 286, Vila Ema, São José dos Campos, SP",
+    "address_source": "PEDIDOS-RODADA3.md, item 1, lista oficial enviada pela cliente em 16/11/2026",
+    "query": "Rua Padre Rodolfo, 286, Vila Ema, São José dos Campos, SP",
+    "provider": "ArcGIS World Geocoding Service",
+    "matched_address": "Rua Padre Rodolfo 286, São José Dos Campos, São Paulo, 12243-080",
+    "address_type": "PointAddress",
+    "house_number": "286",
+    "score": 98.42,
+    "coordinates": [
+      -23.204485980423,
+      -45.902609036259
+    ],
+    "queried_on": "2026-11-16",
+    "query_url": "https://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer/findAddressCandidates?f=json&SingleLine=Rua+Padre+Rodolfo%2C+286%2C+Vila+Ema%2C+S%C3%A3o+Jos%C3%A9+dos+Campos%2C+SP&outFields=Match_addr%2CAddr_type%2CStAddr%2CAddNum%2CCity%2CRegion%2CPostal%2CPlaceName&sourceCountry=BRA&maxLocations=3&outSR=4326"
+  },
+  "mon-tresor": {
+    "official_address": "Rua Padre Rodolfo, 65, Vila Ema, São José dos Campos, SP (atrás da Paróquia Sagrada Família)",
+    "address_source": "PEDIDOS-RODADA3.md, item 1, lista oficial enviada pela cliente em 16/11/2026",
+    "query": "Rua Padre Rodolfo, 65, Vila Ema, São José dos Campos, SP",
+    "provider": "ArcGIS World Geocoding Service",
+    "matched_address": "Rua Padre Rodolfo 65, Vila Ema, São José dos Campos, São Paulo, 12243-080",
+    "address_type": "StreetAddress",
+    "house_number": "65",
+    "score": 100,
+    "coordinates": [
+      -23.203414144242,
+      -45.901654973704
+    ],
+    "queried_on": "2026-11-16",
+    "query_url": "https://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer/findAddressCandidates?f=json&SingleLine=Rua+Padre+Rodolfo%2C+65%2C+Vila+Ema%2C+S%C3%A3o+Jos%C3%A9+dos+Campos%2C+SP&outFields=Match_addr%2CAddr_type%2CStAddr%2CAddNum%2CCity%2CRegion%2CPostal%2CPlaceName&sourceCountry=BRA&maxLocations=3&outSR=4326"
+  },
+  "azure": {
+    "official_address": "Avenida Eurico Gaspar Dutra, 60, Tabatinga, Caraguatatuba, SP, 11679-200",
+    "address_source": "PEDIDOS-RODADA3.md, item 1, lista oficial enviada pela cliente em 16/11/2026",
+    "query": "Avenida Eurico Gaspar Dutra, 60, Tabatinga, Caraguatatuba, SP, 11679-200",
+    "provider": "ArcGIS World Geocoding Service",
+    "matched_address": "Avenida Eurico Gaspar Dutra 60, Praia Tabatinga, Caraguatatuba, São Paulo, 11679-200",
+    "address_type": "StreetAddress",
+    "house_number": "60",
+    "score": 98.57,
+    "coordinates": [
+      -23.572995102892,
+      -45.274639648552
+    ],
+    "queried_on": "2026-11-16",
+    "query_url": "https://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer/findAddressCandidates?f=json&SingleLine=Avenida+Eurico+Gaspar+Dutra%2C+60%2C+Tabatinga%2C+Caraguatatuba%2C+SP%2C+11679-200&outFields=Match_addr%2CAddr_type%2CStAddr%2CAddNum%2CCity%2CRegion%2CPostal%2CPlaceName&sourceCountry=BRA&maxLocations=3&outSR=4326"
+  },
+  "monte-cristo": {
+    "official_address": "Avenida Ouro Fino, 661, Bosque dos Eucaliptos, São José dos Campos, SP",
+    "address_source": "PEDIDOS-RODADA3.md, item 1, lista oficial enviada pela cliente em 16/11/2026",
+    "query": "Avenida Ouro Fino, 661, Bosque dos Eucaliptos, São José dos Campos, SP",
+    "provider": "ArcGIS World Geocoding Service",
+    "matched_address": "Avenida Ouro Fino 661, São José Dos Campos, São Paulo, 12233-400",
+    "address_type": "PointAddress",
+    "house_number": "661",
+    "score": 98.42,
+    "coordinates": [
+      -23.241280020793,
+      -45.888218984887
+    ],
+    "queried_on": "2026-11-16",
+    "query_url": "https://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer/findAddressCandidates?f=json&SingleLine=Avenida+Ouro+Fino%2C+661%2C+Bosque+dos+Eucaliptos%2C+S%C3%A3o+Jos%C3%A9+dos+Campos%2C+SP&outFields=Match_addr%2CAddr_type%2CStAddr%2CAddNum%2CCity%2CRegion%2CPostal%2CPlaceName&sourceCountry=BRA&maxLocations=3&outSR=4326"
+  },
+  "monte-negro": {
+    "official_address": "Rua Palmares, 155, Parque Industrial, São José dos Campos, SP",
+    "address_source": "PEDIDOS-RODADA3.md, item 1, lista oficial enviada pela cliente em 16/11/2026",
+    "query": "Rua Palmares, 155, Parque Industrial, São José dos Campos, SP",
+    "provider": "ArcGIS World Geocoding Service",
+    "matched_address": "Rua Palmares 155, Parque Industrial, São José dos Campos, São Paulo, 12235-620",
+    "address_type": "StreetAddress",
+    "house_number": "155",
+    "score": 100,
+    "coordinates": [
+      -23.236060523097,
+      -45.906099170733
+    ],
+    "queried_on": "2026-11-16",
+    "query_url": "https://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer/findAddressCandidates?f=json&SingleLine=Rua+Palmares%2C+155%2C+Parque+Industrial%2C+S%C3%A3o+Jos%C3%A9+dos+Campos%2C+SP&outFields=Match_addr%2CAddr_type%2CStAddr%2CAddNum%2CCity%2CRegion%2CPostal%2CPlaceName&sourceCountry=BRA&maxLocations=3&outSR=4326"
+  },
+  "monte-zurich": {
+    "official_address": "Rua Palmares, 346, Parque Industrial, São José dos Campos, SP",
+    "address_source": "PEDIDOS-RODADA3.md, item 1, lista oficial enviada pela cliente em 16/11/2026",
+    "query": "Rua Palmares, 346, Parque Industrial, São José dos Campos, SP",
+    "provider": "ArcGIS World Geocoding Service",
+    "matched_address": "Rua Palmares 346, São José Dos Campos, São Paulo, 12235-620",
+    "address_type": "PointAddress",
+    "house_number": "346",
+    "score": 98.42,
+    "coordinates": [
+      -23.231977994196,
+      -45.903774036981
+    ],
+    "queried_on": "2026-11-16",
+    "query_url": "https://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer/findAddressCandidates?f=json&SingleLine=Rua+Palmares%2C+346%2C+Parque+Industrial%2C+S%C3%A3o+Jos%C3%A9+dos+Campos%2C+SP&outFields=Match_addr%2CAddr_type%2CStAddr%2CAddNum%2CCity%2CRegion%2CPostal%2CPlaceName&sourceCountry=BRA&maxLocations=3&outSR=4326"
+  },
+  "altos-do-parque": {
+    "official_address": "Rua Palmares, 686, Parque Industrial, São José dos Campos, SP",
+    "address_source": "PEDIDOS-RODADA3.md, item 1, lista oficial enviada pela cliente em 16/11/2026",
+    "query": "Rua Palmares, 686, Parque Industrial, São José dos Campos, SP",
+    "provider": "ArcGIS World Geocoding Service",
+    "matched_address": "Rua Palmares 686, São José Dos Campos, São Paulo, 12235-620",
+    "address_type": "PointAddress",
+    "house_number": "686",
+    "score": 98.42,
+    "coordinates": [
+      -23.234313988702,
+      -45.905217987441
+    ],
+    "queried_on": "2026-11-16",
+    "query_url": "https://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer/findAddressCandidates?f=json&SingleLine=Rua+Palmares%2C+686%2C+Parque+Industrial%2C+S%C3%A3o+Jos%C3%A9+dos+Campos%2C+SP&outFields=Match_addr%2CAddr_type%2CStAddr%2CAddNum%2CCity%2CRegion%2CPostal%2CPlaceName&sourceCountry=BRA&maxLocations=3&outSR=4326"
+  },
+  "serra-do-sincora": {
+    "official_address": "Avenida Feira de Santana, 130, Jardim Vale do Sol, São José dos Campos, SP, 12238-000",
+    "address_source": "PEDIDOS-RODADA3.md, item 1, lista oficial enviada pela cliente em 16/11/2026",
+    "query": "Avenida Feira de Santana, 130, Jardim Vale do Sol, São José dos Campos, SP, 12238-000",
+    "provider": "ArcGIS World Geocoding Service",
+    "matched_address": "Avenida Feira De Santana 130, São José Dos Campos, São Paulo, 12238-000",
+    "address_type": "PointAddress",
+    "house_number": "130",
+    "score": 98.57,
+    "coordinates": [
+      -23.256516979661,
+      -45.911603991832
+    ],
+    "queried_on": "2026-11-16",
+    "query_url": "https://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer/findAddressCandidates?f=json&SingleLine=Avenida+Feira+de+Santana%2C+130%2C+Jardim+Vale+do+Sol%2C+S%C3%A3o+Jos%C3%A9+dos+Campos%2C+SP%2C+12238-000&outFields=Match_addr%2CAddr_type%2CStAddr%2CAddNum%2CCity%2CRegion%2CPostal%2CPlaceName&sourceCountry=BRA&maxLocations=3&outSR=4326"
+  }
+}

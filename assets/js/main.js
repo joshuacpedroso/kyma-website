@@ -1,4 +1,4 @@
-/* Kyma Empreendimentos — interações e animações */
+/* Kyma Empreendimentos, interações e animações */
 (() => {
   const d = document;
   const root = d.documentElement;
@@ -482,10 +482,13 @@ document.querySelectorAll('[data-subject]').forEach(link => {
   tiles.on('tileload', () => {tileReady = true;const note=document.getElementById('map-tiles-note');if(note) note.textContent='';});
   tiles.on('tileerror', () => {const note=document.getElementById('map-tiles-note');if (!tileReady && note) note.textContent = 'Não foi possível carregar o mapa. Os endereços continuam disponíveis na lista.';});
   const markers = new Map();
+  const points = projects.filter(p => Array.isArray(p.coordinates)).map(p => p.coordinates);
+  if(points.length) map.fitBounds(points, {padding:[32,32],maxZoom:16});
+  if(status) status.textContent = points.length+' empreendimentos no mapa. Selecione um endereço.';
   projects.filter(p => Array.isArray(p.coordinates)).forEach(project => {
     const icon = L.divIcon({className:'kyma-map-marker',html:'<div class="kyma-map-pin"></div>',iconSize:[32,32],iconAnchor:[16,32]});
     const popup = document.createElement('div');
-    const title = document.createElement('strong');title.textContent=project.name;popup.append(title,document.createElement('br'),document.createTextNode(project.location));
+    const title = document.createElement('strong');title.textContent=project.name;popup.append(title,document.createElement('br'),document.createTextNode(project.address || project.location));
     const marker=L.marker(project.coordinates,{icon,title:project.name,alt:project.name}).addTo(map).bindPopup(popup);
     marker.on('click',()=>{window.location.assign(project.url);});
     markers.set(project.slug,marker);
@@ -495,7 +498,7 @@ document.querySelectorAll('[data-subject]').forEach(link => {
       const project=projects.find(p=>p.slug===link.dataset.mapProject);
       const marker=markers.get(project?.slug);
       if(marker) {map.setView(project.coordinates,17);marker.openPopup();}
-      if(status) status.textContent=project?.coordinates ? project.name+': clique para conhecer o empreendimento.' : (project?.name||'Empreendimento')+': endereço exato a confirmar.';
+      if(status) status.textContent=project?.coordinates ? project.name+': '+(project.address || project.location) : (project?.name||'Empreendimento')+': consulte o endereço na lista.';
     });
   });
 })();

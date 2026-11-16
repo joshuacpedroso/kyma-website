@@ -2,7 +2,7 @@
   "haus": {
     "about": [
       "O HAUS Vila Ema está localizado em uma das regiões mais desejadas de São José dos Campos, com infraestrutura completa e opções de lazer, cultura, gastronomia e serviços. A torre possui plantas de 79,95m² e 82,21m², com dois dormitórios.",
-      "O empreendimento combina conforto, conveniência, modernidade e uma localização privilegiada — ideal para quem busca qualidade de vida, oferecendo facilidade na rotina dos proprietários ou se tornando uma ótima oportunidade de investimento."
+      "O empreendimento combina conforto, conveniência, modernidade e uma localização privilegiada, ideal para quem busca qualidade de vida, oferecendo facilidade na rotina dos proprietários ou se tornando uma ótima oportunidade de investimento."
     ],
     "private": [
       "Área gourmet com churrasqueira",
@@ -165,10 +165,10 @@
     ],
     "private_heading": "Cada detalhe <em>pensado.</em>",
     "common_heading": "Lazer de <em>clube.</em>",
-    "common_intro": "São {count} espaços para viver, trabalhar, receber e desacelerar — sem sair de casa.",
+    "common_intro": "São {count} espaços para viver, trabalhar, receber e desacelerar, sem sair de casa.",
     "plans_heading": "Espaços que <em>se adaptam.</em>",
     "gallery_heading": "Veja de <em>perto.</em>",
-    "location_heading": "Rua Padre Rodolfo, 286 — <em>Vila Ema.</em>",
+    "location_heading": "Rua Padre Rodolfo, 286, <em>Vila Ema.</em>",
     "location_description": "Uma das regiões mais desejadas de São José dos Campos, com infraestrutura completa e opções de lazer, cultura, gastronomia e serviços.",
     "cta_title": "Seu novo endereço na <em>Vila Ema.</em>",
     "cta_text": "Agende uma visita e conheça o Haus de perto com um de nossos corretores.",
@@ -177,5 +177,45 @@
       1074,
       1080
     ]
+  },
+  "monte-zurich": {
+    "plans": [
+      [
+        "/assets/img/round3/monte-zurich/01.webp",
+        "/assets/img/round3/monte-zurich/01.webp",
+        1200,
+        1200,
+        "Planta humanizada"
+      ],
+      [
+        "/assets/img/round3/monte-zurich/02.webp",
+        "/assets/img/round3/monte-zurich/02.webp",
+        1200,
+        1200,
+        "Perspectiva da fachada"
+      ],
+      [
+        "/assets/img/round3/monte-zurich/03.webp",
+        "/assets/img/round3/monte-zurich/03.webp",
+        1200,
+        1200,
+        "Perspectiva da cozinha e área de serviço"
+      ],
+      [
+        "/assets/img/round3/monte-zurich/04.webp",
+        "/assets/img/round3/monte-zurich/04.webp",
+        1200,
+        1200,
+        "Perspectiva da sala de estar"
+      ],
+      [
+        "/assets/img/round3/monte-zurich/05.webp",
+        "/assets/img/round3/monte-zurich/05.webp",
+        1200,
+        1200,
+        "Perspectiva dos ambientes integrados"
+      ]
+    ],
+    "plans_heading": "Plantas e <em>ambientes.</em>"
   }
 }
