@@ -2,7 +2,9 @@
 defined('ABSPATH') || exit;
 
 function kyma_asset_url(string $path): string {
-    return get_template_directory_uri().'/'.ltrim($path,'/');
+    $path='/'.ltrim($path,'/');
+    if (function_exists('kyma_image_overrides') && isset(kyma_image_overrides()[$path])) return kyma_image_overrides()[$path];
+    return get_template_directory_uri().$path;
 }
 function kyma_local_url(string $path): string {
     if ($path==='/site.webmanifest') return rest_url('kyma/v1/manifest');

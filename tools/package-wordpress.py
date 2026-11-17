@@ -93,7 +93,7 @@ def main():
    file.write_text(text)
  css=theme/'assets/css/style.css';css.write_text(css.read_text().replace('/assets/fonts/','../fonts/'))
  # Keep all JS behavior; only the WordPress-specific URL/data adapter is appended.
- data=theme/'assets/js/data.js';data.write_text(data.read_text()+'''\n(function(){const config=window.KYMA_WORDPRESS;if(!config||!window.KYMA)return;window.KYMA.projects=window.KYMA.projects.map(p=>Object.assign(p,config.projects[p.slug]||{}));})();\n''')
+ data=theme/'assets/js/data.js';data.write_text(data.read_text()+'''\n(function(){const config=window.KYMA_WORDPRESS;if(!config||!window.KYMA)return;const images=config.images||{};const fix=v=>{if(typeof v==='string')return v.startsWith('/assets/')?(images[v]||config.themeUrl+v):v;if(Array.isArray(v))return v.map(fix);if(v&&typeof v==='object'){for(const k in v)v[k]=fix(v[k]);}return v;};fix(window.KYMA);Object.assign(window.KYMA,config.contact||{});window.KYMA.projects=window.KYMA.projects.map(p=>Object.assign(p,config.projects[p.slug]||{}));})();\n''')
  fonts=Path(args.fonts)
  for file in fonts.iterdir():
   if file.is_file():shutil.copyfile(file,theme/'assets/fonts'/file.name)
@@ -110,10 +110,11 @@ body.admin-bar .site-header{top:32px}body.admin-bar .progress{top:32px}
   if file.is_file() and file.name in forbidden:raise RuntimeError('Private/build file in package: '+str(file))
  (theme/'docs').mkdir(exist_ok=True)
  for name in ['TEMA-WORDPRESS.md','RODADA-3-2026-11-16.md']:shutil.copyfile(ROOT/'docs'/name,theme/'docs'/name)
- archive=output/'kyma-wordpress-1.0.0.zip'
+ version=re.search(r'^Version:\s*(\S+)',(ROOT/'wordpress/kyma/style.css').read_text(),re.M)[1]
+ archive=output/f'kyma-wordpress-{version}.zip'
  with zipfile.ZipFile(archive,'w',zipfile.ZIP_DEFLATED) as z:
   for file in sorted(theme.rglob('*')):
    if file.is_file():z.write(file,'kyma/'+str(file.relative_to(theme)))
- sha=hashlib.sha256(archive.read_bytes()).hexdigest();(output/'kyma-wordpress-1.0.0.sha256').write_text(sha+'  '+archive.name+'\n')
+ sha=hashlib.sha256(archive.read_bytes()).hexdigest();(output/f'kyma-wordpress-{version}.sha256').write_text(sha+'  '+archive.name+'\n')
  print(json.dumps({'zip':str(archive),'bytes':archive.stat().st_size,'pages':len(manifest),'news':len(json.loads((theme/'data/blog.json').read_text())),'assets':len(paths),'sha256':sha},ensure_ascii=False))
 if __name__=='__main__':main()

@@ -5,9 +5,14 @@ function kyma_enqueue(): void {
     $uri=get_template_directory_uri();
     wp_enqueue_style('kyma-fonts',$uri.'/assets/fonts/fonts.css',[],KYMA_THEME_VERSION);
     wp_enqueue_style('kyma-leaflet',$uri.'/assets/vendor/leaflet/leaflet.css',[],KYMA_THEME_VERSION);
-    wp_enqueue_style('kyma-visual',$uri.'/assets/css/style.css',['kyma-fonts','kyma-leaflet'],KYMA_THEME_VERSION);
+    [$style_src,$style_inline]=kyma_stylesheet_src();
+    wp_register_style('kyma-visual',$style_src,['kyma-fonts','kyma-leaflet'],$style_src?KYMA_THEME_VERSION:null);
+    wp_enqueue_style('kyma-visual');
+    if ($style_inline!=='') wp_add_inline_style('kyma-visual',$style_inline);
+    foreach (kyma_google_fonts_urls() as $handle=>$google) wp_enqueue_style($handle,$google,[],null);
     wp_enqueue_style('kyma-wordpress',$uri.'/assets/css/wordpress.css',['kyma-visual'],KYMA_THEME_VERSION);
-    $settings=['siteUrl'=>untrailingslashit(home_url()),'themeUrl'=>$uri,'projects'=>[]];
+    wp_add_inline_style('kyma-wordpress',kyma_font_css());
+    $settings=['siteUrl'=>untrailingslashit(home_url()),'themeUrl'=>$uri,'projects'=>[]]+kyma_js_overrides();
     foreach (kyma_seed('projects') as $project) {
         $progress=kyma_progress_data($project['slug']);
         $settings['projects'][$project['slug']]=['url'=>kyma_local_url('/'.$project['slug']),
@@ -58,6 +63,7 @@ function kyma_render_document(?string $forced=null): void {
     if ($desktop) $html=preg_replace('~(<nav class="nav"[^>]*>).*?(</nav>)~s','$1'.$desktop.'$2',$html,1);
     if ($mobile) $html=preg_replace('~(<nav aria-label="Menu">).*?(</nav>)~s','$1'.$mobile.'$2',$html,1);
     $html=kyma_rewrite_html($html);
+    $html=kyma_apply_customizations($html);
     // WordPress owns the document title and canonical URL.
     $html=preg_replace('~<title>.*?</title>\s*~s','',$html);
     $html=preg_replace('~<link rel="canonical"[^>]*>\s*~','',$html);
@@ -88,7 +94,7 @@ add_action('rest_api_init',function() {
     register_rest_route('kyma/v1','/manifest',['methods'=>'GET','permission_callback'=>'__return_true','callback'=>function() {
         $site=kyma_seed('site');
         return new WP_REST_Response(['name'=>$site['name'],'short_name'=>'Kyma','start_url'=>home_url('/'),
-            'display'=>'standalone','background_color'=>'#ffffff','theme_color'=>'#303F1F',
+            'display'=>'standalone','background_color'=>'#ffffff','theme_color'=>kyma_recolor('#303f1f'),
             'icons'=>[['src'=>kyma_asset_url($site['favicon']),'sizes'=>'any','type'=>'image/png']]],200);
     }]);
 });

@@ -5,7 +5,7 @@ Base visual e de conteúdo: versão aprovada no commit `098e3d1efec34994fc0bfb6d
 ## Instalar
 
 1. No WordPress da hospedagem, abra **Aparência → Temas → Adicionar tema → Enviar tema**.
-2. Envie **kyma-wordpress-1.0.0.zip** e clique em **Instalar agora**. Não envie o ZIP do repositório GitHub nem os ZIPs de fotos.
+2. Envie **kyma-wordpress-1.1.0.zip** e clique em **Instalar agora**. Não envie o ZIP do repositório GitHub nem os ZIPs de fotos.
 3. Clique em **Ativar**. A ativação é a etapa que troca a apresentação e executa a configuração automática. Apenas enviar o arquivo não troca o tema ativo no WordPress.
 
 Não há importação XML separada, page builder obrigatório, plugin obrigatório do tema, comando Python, Node, Composer ou configuração de senha própria a executar na hospedagem.
@@ -42,6 +42,12 @@ Apenas mudar de tema em Aparência não é equivalente a executar essa restaura�
 
 ## Editar depois da instalação
 
+### Cores, fontes, imagens, contatos e textos (versão 1.1.0)
+
+- **Kyma → Cores, fontes e contatos** (ou Aparência → Personalizar → Kyma: aparência do site): as 9 cores da marca, trocadas no site inteiro (CSS, botões, barras, ícones e o tom do logo); as fontes dos títulos, dos textos e de destaque, com uma lista pronta ou qualquer nome do Google Fonts; o tamanho dos textos; telefone, WhatsApp, Instagram e endereço; e trocas de texto fixo, como no rodapé (`texto atual => texto novo`). Tudo aparece na prévia ao vivo e só vai ao ar ao clicar em Publicar.
+- **Kyma → Imagens**: todas as fotos e logos do site, cada uma com Trocar (biblioteca de mídia) e Voltar ao original.
+- **CSS adicional**: Aparência → Personalizar → CSS adicional, para ajustes livres.
+
 - **Kyma:** atalhos para todas as páginas e para a restauração.
 - **Páginas:** cada página já vem preenchida. O layout fiel usa blocos HTML personalizados, editáveis no WordPress; não depende de Elementor, de um construtor externo ou de geração Python. Alterações estruturais livres nesses blocos exigem cuidado com o HTML.
 - **Posts:** criar, editar, excluir notícias e escolher imagem destacada. Novas notícias aparecem na home e no Blog. As notícias iniciais não exibem uma data editorial inventada, pois a fonte não informou essas datas.
@@ -77,7 +83,7 @@ Na cópia de desenvolvimento do repositório, com Python e Pillow disponíveis:
 python3 tools/package-wordpress.py --output dist
 ```
 
-Isso gera `dist/kyma-wordpress-1.0.0.zip` e o SHA-256 correspondente. A ferramenta parte das páginas estáticas aprovadas e dos JSONs atuais. Os arquivos gerados são preparados antes da instalação; não existe essa dependência na hospedagem WordPress.
+Isso gera `dist/kyma-wordpress-1.1.0.zip` e o SHA-256 correspondente. A ferramenta parte das páginas estáticas aprovadas e dos JSONs atuais. Os arquivos gerados são preparados antes da instalação; não existe essa dependência na hospedagem WordPress.
 
 O ZIP não inclui `wp-config.php`, bancos de teste, sessões de navegador, credenciais, `.env`, `private/admin-config.json` ou o backend standalone.
 

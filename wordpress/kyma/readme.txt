@@ -1,9 +1,9 @@
 KYMA, tema WordPress completo
-Versão 1.0.0
+Versão 1.1.0
 
 INSTALAÇÃO
 Aparência > Temas > Adicionar tema > Enviar tema.
-Envie kyma-wordpress-1.0.0.zip, instale e clique em ATIVAR.
+Envie kyma-wordpress-1.1.0.zip, instale e clique em ATIVAR.
 
 Ao ativar, o tema cria as 15 páginas, as três notícias e o menu e define a nova página inicial. Fotos, fontes, ícones, animações e efeitos já estão incluídos. Não há importação XML separada nem dependência de Python na hospedagem.
 
@@ -15,6 +15,10 @@ Evolução da obra: Páginas > empreendimento > Evolução da obra.
 Haus 76%, Azure 45% e Uniko 10%, incluindo suas etapas, são demonstrativos. Os oficiais ainda serão enviados. Ao substituí-los, desmarque a opção de demonstração.
 
 O conteúdo das páginas usa blocos HTML para preservar o layout. Notícias, menu e os percentuais usam os recursos nativos do WordPress. Mapa, Instagram e WhatsApp mantêm as integrações públicas do site aprovado.
+
+EDITAR APARÊNCIA
+Kyma > Cores, fontes e contatos: cores, fontes, contatos e textos fixos, com prévia ao vivo.
+Kyma > Imagens: trocar qualquer foto ou logo do site.
 
 DOCUMENTAÇÃO
 Consulte docs/TEMA-WORDPRESS.md no repositório do projeto.

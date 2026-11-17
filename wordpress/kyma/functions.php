@@ -1,10 +1,11 @@
 <?php
 defined('ABSPATH') || exit;
-define('KYMA_THEME_VERSION', '1.0.0');
+define('KYMA_THEME_VERSION', '1.1.0');
 require_once __DIR__.'/inc/setup.php';
 require_once __DIR__.'/inc/content.php';
 require_once __DIR__.'/inc/render.php';
 require_once __DIR__.'/inc/admin.php';
+require_once __DIR__.'/inc/customize.php';
 
 add_action('after_setup_theme', function () {
     add_theme_support('title-tag');
